@@ -1,0 +1,68 @@
+[Writable]
+  LogLevel = "INFO"
+  [Writable.Pipeline]
+    ExecutionOrder = "MQTTSend"
+
+    [Writable.Pipeline.Functions.FilterByDeviceName]
+      [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
+        DeviceNames = ""
+    [Writable.Pipeline.Functions.FilterByValueDescriptor]
+      [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
+        ValueDescriptors = ""
+    [Writable.Pipeline.Functions.MQTTSend]
+      [Writable.Pipeline.Functions.MQTTSend.Parameters]
+        qos="0"
+        key=""
+        autoreconnect="false"
+        retain="false"
+        cert=""
+      [Writable.Pipeline.Functions.MQTTSend.Addressable]
+        Address=   "localhost"
+        Port=      1883
+        Protocol=  "tcp"
+        Publisher= "AppServiceConfigurable-mqtt-export"
+        User=      ""
+        Password=  ""
+        Topic=     "edgex-events"
+
+[Service]
+BootTimeout = 30000
+ClientMonitor = 15000
+CheckInterval = "10s"
+Host = "localhost"
+Port = 50002
+Protocol = "http"
+ReadMaxLimit = 100
+StartupMsg = "AppServiceConfigurable-mqtt-export has Started"
+Timeout = 5000
+
+[Registry]
+Host = "localhost"
+Port = 8500
+Type = "consul"
+
+[Clients]
+  [Clients.CoreData]
+  Protocol = "http"
+  Host = "localhost"
+  Port = 48080
+
+  [Clients.Logging]
+  Protocol = "http"
+  Host = "localhost"
+  Port = 48061
+
+[Binding]
+Type="messagebus"
+SubscribeTopic="events"
+
+[MessageBus]
+Type = "zero"
+    [MessageBus.SubscribeHost]
+        Host = "localhost"
+        Port = 5563
+        Protocol = "tcp"
+
+[Logging]
+EnableRemote = false
+File = "./logs/app-service-configurable-mqtt-export.log"

@@ -1,0 +1,7 @@
+test.txt
+debug
+*.exe
+app-service-configurable
+.vscode
+go.sum
+logs/
