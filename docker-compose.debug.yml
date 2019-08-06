@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  app-service-configurable:
+    image: app-service-configurable
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 48095:48095
