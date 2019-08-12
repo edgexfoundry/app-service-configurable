@@ -1,8 +1,10 @@
 [Writable]
   LogLevel = "INFO"
   [Writable.Pipeline]
-    ExecutionOrder = "MQTTSend"
+    ExecutionOrder = "TransformToJSON, MQTTSend, MarkAsPushed"
 
+    [Writable.Pipeline.Functions.TransformToJSON]
+    [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = ""
