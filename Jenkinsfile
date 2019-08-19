@@ -35,7 +35,6 @@ pipeline {
         stage('LF Prep') {
             steps {
                 edgeXSetupEnvironment()
-                edgeXDockerLogin(settingsFile: env.MVN_SETTINGS)
                 edgeXSemver 'init'
                 script {
                     def semverVersion = edgeXSemver()
@@ -96,6 +95,8 @@ pipeline {
 
                             steps {
                                 script {
+                                    edgeXDockerLogin(settingsFile: env.MVN_SETTINGS)
+
                                     docker.withRegistry("https://${env.DOCKER_REGISTRY}:10004") {
                                         image_amd64.push(env.VERSION)
                                         image_amd64.push("${env.GIT_COMMIT}-${env.VERSION}")
@@ -155,6 +156,8 @@ pipeline {
 
                             steps {
                                 script {
+                                    edgeXDockerLogin(settingsFile: env.MVN_SETTINGS)
+
                                     docker.withRegistry("https://${env.DOCKER_REGISTRY}:10004") {
                                         image_arm64.push(env.VERSION)
                                         image_arm64.push("${env.GIT_COMMIT}-${env.VERSION}")
