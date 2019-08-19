@@ -1,5 +1,6 @@
 [Writable]
   LogLevel = "INFO"
+  LogLevel = "INFO"
   # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
     # ExecutionOrder specifies which functions to run and the order to run them.
@@ -27,10 +28,17 @@
         Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
         InitVector = "123456789012345678901234567890"
     [Writable.Pipeline.Functions.SetOutputData]
+    [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.HTTPPost]
       [Writable.Pipeline.Functions.HTTPPost.Parameters]
         url = "http://"
         mimeType = "" #OPTIONAL - default application/json
+    [Writable.Pipeline.Functions.HTTPPostJSON]
+      [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
+        url = "http://"
+    [Writable.Pipeline.Functions.HTTPPostXML]
+      [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
+        url = "http://"
     [Writable.Pipeline.Functions.MQTTSend]
       [Writable.Pipeline.Functions.MQTTSend.Parameters]
         qos="0"

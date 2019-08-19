@@ -19,11 +19,25 @@
       [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
         ValueDescriptors = "RandomValue_Int8, RandomValue_Int64"
     [Writable.Pipeline.Functions.TransformToXML]
+    [Writable.Pipeline.Functions.TransformToJSON]
+    [Writable.Pipeline.Functions.CompressWithGZIP]
+    [Writable.Pipeline.Functions.CompressWithZLIB]
+    [Writable.Pipeline.Functions.EncryptWithAES]
+      [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
+        Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+        InitVector = "123456789012345678901234567890"
     [Writable.Pipeline.Functions.SetOutputData]
+    [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.HTTPPost]
       [Writable.Pipeline.Functions.HTTPPost.Parameters]
         url = "http://"
         mimeType = "" #OPTIONAL - default application/json
+    [Writable.Pipeline.Functions.HTTPPostJSON]
+      [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
+        url = "http://"
+    [Writable.Pipeline.Functions.HTTPPostXML]
+      [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
+        url = "http://"
     [Writable.Pipeline.Functions.MQTTSend]
       [Writable.Pipeline.Functions.MQTTSend.Parameters]
         qos="0"
