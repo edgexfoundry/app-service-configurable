@@ -173,8 +173,8 @@ pipeline {
         stage('Clair Scan') {
             when { expression { edgex.isReleaseStream() } }
             steps {
-                edgeXClair("${env.DOCKER_REGISTRY}:10003/docker-app-service-configurable:${env.GIT_COMMIT}-${env.VERSION}")
-                edgeXClair("${env.DOCKER_REGISTRY}:10003/docker-app-service-configurable-arm64:${env.GIT_COMMIT}-${env.VERSION}")
+                edgeXClair("${env.DOCKER_REGISTRY}:10004/docker-app-service-configurable:${env.GIT_COMMIT}-${env.VERSION}")
+                edgeXClair("${env.DOCKER_REGISTRY}:10004/docker-app-service-configurable-arm64:${env.GIT_COMMIT}-${env.VERSION}")
             }
         }
 
