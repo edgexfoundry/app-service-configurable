@@ -40,7 +40,34 @@ In a few cases, such as `TransformToXML`, `TransformToJSON`, or `SetOutputData`,
 
 That's it! Now we can run/deploy this service and the functions pipeline will process the data with functions we've defined.
 
-## What if I want to deploy multiple piplines using this service?
+## What if I want to deploy multiple pipelines using this service?
 
 It not uncommon to have different sets of function pipelines that need to be deployed. This is where `--profiles` comes in handy. You can create different "profile" folders inside the `/res` directory with different configurations. This is typically used in other EdgeX services for having a separate configuration for Docker based deployments and native deployments. Since the pipeline is specified in the `configuration.toml` file, we can use this as a way to run the `app-service-configurable` application with different profiles by specifying the `"--profile=http-export"` and `"--confdir=/res"` as command line options when deploying. If running with Registry enabled, the service key used will be `AppService-[profile name]`, e.g `AppService-http-export` when using --profile option or just `AppService` if not using the --profile option.
+
+## What if my input data isn't an EdgeX Event ?
+
+The default `TargetType` for data flowing into the functions pipeline is an EdgeX event. There are cases when this incoming data might not be an EdgeX event. In these cases the `Pipeline` can be configured using `UseTargetTypeOfByteArray=true` to set the `TargetType` to be a byte array, i.e. `byte[]`. The first function in the pipeline must then be one that can handle the `byte[]`data. The **compression**,  **encryption** and **export** functions are examples of pipeline functions that will take input data that is `byte[]`. Here is an example of how to configure the functions pipeline to **compress**, **encrypt** and then **export** the  `byte[]` data via HTTP.
+
+```
+[Writable]
+  LogLevel = 'DEBUG'
+  [Writable.Pipeline]
+    UseTargetTypeOfByteArray = true
+    ExecutionOrder = "CompressWithGZIP, EncryptWithAES, HTTPPost"
+    [Writable.Pipeline.Functions.CompressWithGZIP]
+    [Writable.Pipeline.Functions.EncryptWithAES]
+      [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
+        Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+        InitVector = "123456789012345678901234567890"
+    [Writable.Pipeline.Functions.HTTPPost]
+      [Writable.Pipeline.Functions.HTTPPost.Parameters]
+        url = "http://my.api.net/edgexdata"
+```
+
+If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable's `/trigger` endpoint and have compressed, encrypted and sent to your configured URL above.
+
+```
+[Binding]
+Type="http"
+```
 
