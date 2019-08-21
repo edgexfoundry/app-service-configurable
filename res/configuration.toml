@@ -2,6 +2,10 @@
   LogLevel = "INFO"
   # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
+    # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
+    # This is useful when the incoming data isn't an EdgeX Event.
+    UseTargetTypeOfByteArray = false
+
     # ExecutionOrder specifies which functions to run and the order to run them.
     # All functions listed must have an entry below in the Pipeline.Functions section
     ExecutionOrder = "FilterByDeviceName, TransformToXML, SetOutputData"
