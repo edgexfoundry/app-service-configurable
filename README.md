@@ -64,7 +64,7 @@ The default `TargetType` for data flowing into the functions pipeline is an Edge
         url = "http://my.api.net/edgexdata"
 ```
 
-If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable's `/trigger` endpoint and have compressed, encrypted and sent to your configured URL above.
+If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable's `/trigger` endpoint and have it compressed, encrypted and sent to your configured URL above.
 
 ```
 [Binding]
