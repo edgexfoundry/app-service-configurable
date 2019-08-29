@@ -1,6 +1,6 @@
 [Writable]
   LogLevel = "INFO"
-  LogLevel = "INFO"
+  
   # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
     # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
