@@ -100,7 +100,7 @@ pipeline {
                                     docker.withRegistry("https://${env.DOCKER_REGISTRY}:10004") {
                                         image_amd64.push(env.VERSION)
                                         image_amd64.push('latest')
-                                        image_amd64.push("${env.GIT_BRANCH}")
+                                        image_amd64.push("${env.SEMVER_BRANCH}")
                                         image_amd64.push("${env.GIT_COMMIT}-${env.VERSION}")
                                     }
                                 }
@@ -163,7 +163,7 @@ pipeline {
                                     docker.withRegistry("https://${env.DOCKER_REGISTRY}:10004") {
                                         image_arm64.push(env.VERSION)
                                         image_arm64.push('latest')
-                                        image_arm64.push("${env.GIT_BRANCH}")
+                                        image_arm64.push("${env.SEMVER_BRANCH}")
                                         image_arm64.push("${env.GIT_COMMIT}-${env.VERSION}")
                                     }
                                 }
