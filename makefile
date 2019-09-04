@@ -34,6 +34,8 @@ test:
 	$(GO) vet ./...
 	gofmt -l .
 	[ "`gofmt -l .`" = "" ]
+	./bin/test-go-mod-tidy.sh
+	./bin/test-attribution-txt.sh
 
 clean:
 	rm -f $(MICROSERVICE)
