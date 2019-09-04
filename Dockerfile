@@ -28,6 +28,10 @@ LABEL license='SPDX-License-Identifier: Apache-2.0' \
 RUN sed -e 's/dl-cdn[.]alpinelinux.org/nl.alpinelinux.org/g' -i~ /etc/apk/repositories
 RUN apk add --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
 WORKDIR /app
+
+COPY go.mod .
+RUN go mod download
+
 COPY . .
 ARG MAKE=build
 RUN make $MAKE

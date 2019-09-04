@@ -26,7 +26,7 @@ docker:
 		-f Dockerfile \
 		--label "git_sha=$(GIT_SHA)" \
 		-t edgexfoundry/docker-app-service-configurable:$(GIT_SHA) \
-		-t edgexfoundry/docker-app-service-configurable:$(VERSION)-dev \
+		-t edgexfoundry/docker-app-service-configurable:dev \
 		.
 
 test:
