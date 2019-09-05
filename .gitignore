@@ -4,5 +4,6 @@ debug
 app-service-configurable
 .vscode
 go.sum
+coverage.out
 logs/
 VERSION
