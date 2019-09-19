@@ -177,7 +177,7 @@ pipeline {
         stage('Snyk Scan') {
             when { expression { edgex.isReleaseStream() } }
             steps {
-                edgexSnyk()
+                edgeXSnyk()
             }
         }
 
