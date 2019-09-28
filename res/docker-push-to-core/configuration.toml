@@ -1,0 +1,55 @@
+[Writable]
+  LogLevel = "INFO"
+  # The Pipeline section allows the functions pipeline to be specified via configuration
+  [Writable.Pipeline]
+    # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
+    # This is useful when the incoming data isn't an EdgeX Event.
+    UseTargetTypeOfByteArray = true
+
+    # ExecutionOrder specifies which functions to run and the order to run them.
+    # All functions listed must have an entry below in the Pipeline.Functions section
+    ExecutionOrder = "PushToCore"
+
+    # The Pipeline.Functions sections define the parameter configuration for each specific function.
+    # These function names must match a function define in the configurable package of the SDK.
+    # See the Built-In Transforms/Functions section of the SDK"s README for complete list.
+    # Some functions do not require any parameters, but still must be listed.
+    # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
+    # dynamic changes from Consul.
+    [Writable.Pipeline.Functions.PushToCore]
+      [Writable.Pipeline.Functions.PushToCore.Parameters]
+        DeviceName = ""
+        ReadingName = ""
+
+[Service]
+BootTimeout = 30000
+ClientMonitor = 15000
+CheckInterval = "10s"
+Host = "edgex-app-service-configurable-push-to-core"
+Port = 48095
+Protocol = "http"
+ReadMaxLimit = 100
+StartupMsg = "Configurable Application Service Started"
+Timeout = 5000
+
+[Registry]
+Host = "edgex-core-consul"
+Port = 8500
+Type = "consul"
+
+[Logging]
+EnableRemote = true
+
+[Clients]
+  [Clients.CoreData]
+  Protocol = "http"
+  Host = "edgex-core-data"
+  Port = 48080
+
+  [Clients.Logging]
+  Protocol = "http"
+  Host = "edgex-support-logging"
+  Port = 48061
+
+[Binding]
+Type="http"

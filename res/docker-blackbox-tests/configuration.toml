@@ -91,20 +91,7 @@ Type = "consul"
   Port = 48061
 
 [Binding]
-Type="messagebus"
-SubscribeTopic="events"
-PublishTopic="example"
-
-[MessageBus]
-Type = "zero"
-    [MessageBus.SubscribeHost]
-        Host = "edgex-core-data"
-        Port = 5563
-        Protocol = "tcp"
-    [MessageBus.PublishHost]
-        Host = "*"
-        Port = 5565
-        Protocol = "tcp"
+Type="http"
 
 [Logging]
 EnableRemote = true
