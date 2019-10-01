@@ -1,5 +1,6 @@
 [Writable]
   LogLevel = "INFO"
+
   # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
     # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
@@ -32,6 +33,10 @@
         InitVector = "123456789012345678901234567890"
     [Writable.Pipeline.Functions.SetOutputData]
     [Writable.Pipeline.Functions.MarkAsPushed]
+    [Writable.Pipeline.Functions.PushToCore]
+      [Writable.Pipeline.Functions.PushToCore.Parameters]
+        DeviceName = ""
+        ReadingName = ""
     [Writable.Pipeline.Functions.HTTPPost]
       [Writable.Pipeline.Functions.HTTPPost.Parameters]
         url = "http://"
