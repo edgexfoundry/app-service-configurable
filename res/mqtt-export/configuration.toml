@@ -1,5 +1,11 @@
 [Writable]
   LogLevel = "INFO"
+
+  [Writable.StoreAndForward]
+    Enabled = false
+    RetryInterval = 300000 # 5mins in milliseconds
+    MaxRetryCount = 10
+
   [Writable.Pipeline]
     ExecutionOrder = "TransformToJSON, MQTTSend, MarkAsPushed"
 
@@ -18,6 +24,7 @@
         autoreconnect="false"
         retain="false"
         cert=""
+        persistOnError = "false"
       [Writable.Pipeline.Functions.MQTTSend.Addressable]
         Address=   "localhost"
         Port=      1883

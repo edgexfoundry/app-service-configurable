@@ -1,5 +1,11 @@
 [Writable]
   LogLevel = "INFO"
+
+  [Writable.StoreAndForward]
+    Enabled = false
+    RetryInterval = 300000 # 5mins in milliseconds
+    MaxRetryCount = 10
+
   [Writable.Pipeline]
     ExecutionOrder = "FilterByDeviceName, TransformToJSON, HTTPPostJSON, MarkAsPushed"
 
@@ -14,6 +20,7 @@
     [Writable.Pipeline.Functions.HTTPPostJSON]
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
         url = "http://"
+        persistOnError = "false"
 
 [Service]
 BootTimeout = 30000
@@ -30,6 +37,14 @@ Timeout = 5000
 Host = "localhost"
 Port = 8500
 Type = "consul"
+
+[Database]
+Type = "mongodb"
+Host = "localhost"
+Port = 27017
+Timeout = 5000
+Username = ""
+Password = ""
 
 [Clients]
   [Clients.CoreData]
