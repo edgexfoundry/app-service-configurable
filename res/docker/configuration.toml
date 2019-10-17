@@ -1,6 +1,11 @@
 [Writable]
   LogLevel = "INFO"
-  
+
+  [Writable.StoreAndForward]
+    Enabled = false
+    RetryInterval = 300000 # 5mins in milliseconds
+    MaxRetryCount = 10
+
   # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
     # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
@@ -41,12 +46,15 @@
       [Writable.Pipeline.Functions.HTTPPost.Parameters]
         url = "http://"
         mimeType = "" #OPTIONAL - default application/json
+        persistOnError = "false"
     [Writable.Pipeline.Functions.HTTPPostJSON]
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
         url = "http://"
+        persistOnError = "false"
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
         url = "http://"
+        persistOnError = "false"
     [Writable.Pipeline.Functions.MQTTSend]
       [Writable.Pipeline.Functions.MQTTSend.Parameters]
         qos="0"
@@ -54,6 +62,7 @@
         autoreconnect="false"
         retain="false"
         cert=""
+        persistOnError = "false"
       [Writable.Pipeline.Functions.MQTTSend.Addressable]
         Address=   "localhost"
         Port=      1883
@@ -78,6 +87,14 @@ Timeout = 5000
 Host = "edgex-core-consul"
 Port = 8500
 Type = "consul"
+
+[Database]
+Type = "mongodb"
+Host = "edgex-mongo"
+Port = 27017
+Timeout = 5000
+Username = ""
+Password = ""
 
 [Clients]
   [Clients.CoreData]
