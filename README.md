@@ -2,6 +2,15 @@
 
 App-Service-Configurable is provided as an easy way to get started with processing data flowing through EdgeX. This service leverages the [App Functions SDK](https://github.com/edgexfoundry/app-functions-sdk-go) and provides a way for developers to use configuration instead of having to compile standalone services to utilize built in functions in the SDK. For a full list of supported/built-in functions view the [README](https://github.com/edgexfoundry/app-functions-sdk-go) located in the App Functions SDK repository. 
 
+<!--ts-->
+
+- [Getting Started](#getting-started)
+- [Deploying Multiple Instances](#deploying-multiple-instances)
+- [Input Data Not An EdgeX Event](#input-data-not-an-edgex-event)
+- [Environment Variable Overrides For Docker](#environment-variable-overrides-for-docker)
+
+ <!--te-->
+
 # Getting Started 
 
 To get started with the configurable app service, you'll want to start by determining which functions are required in your pipeline. Using a simple example.
@@ -40,15 +49,21 @@ In a few cases, such as `TransformToXML`, `TransformToJSON`, or `SetOutputData`,
 
 That's it! Now we can run/deploy this service and the functions pipeline will process the data with functions we've defined.
 
-## What if I want to deploy multiple pipelines using this service?
+## Deploying Multiple Instances
+
+What if I want to deploy multiple pipelines using this service?
 
 It not uncommon to have different sets of function pipelines that need to be deployed. This is where `--profiles` comes in handy. You can create different "profile" folders inside the `/res` directory with different configurations. This is typically used in other EdgeX services for having a separate configuration for Docker based deployments and native deployments. Since the pipeline is specified in the `configuration.toml` file, we can use this as a way to run the `app-service-configurable` application with different profiles by specifying the `"--profile=http-export"` and `"--confdir=/res"` as command line options when deploying. If running with Registry enabled, the service key used will be `AppService-[profile name]`, e.g `AppService-http-export` when using --profile option or just `AppService` if not using the --profile option.
 
-## What if my input data isn't an EdgeX Event ?
+
+
+## Input Data Not An EdgeX Event
+
+What if my input data isn't an EdgeX Event ?
 
 The default `TargetType` for data flowing into the functions pipeline is an EdgeX event. There are cases when this incoming data might not be an EdgeX event. In these cases the `Pipeline` can be configured using `UseTargetTypeOfByteArray=true` to set the `TargetType` to be a byte array, i.e. `byte[]`. The first function in the pipeline must then be one that can handle the `byte[]`data. The **compression**,  **encryption** and **export** functions are examples of pipeline functions that will take input data that is `byte[]`. Here is an example of how to configure the functions pipeline to **compress**, **encrypt** and then **export** the  `byte[]` data via HTTP.
 
-```
+```toml
 [Writable]
   LogLevel = 'DEBUG'
   [Writable.Pipeline]
@@ -64,10 +79,55 @@ The default `TargetType` for data flowing into the functions pipeline is an Edge
         url = "http://my.api.net/edgexdata"
 ```
 
-If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable's `/trigger` endpoint and have it compressed, encrypted and sent to your configured URL above.
+If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable' s `/api/v1/trigger` endpoint and have it compressed, encrypted and sent to your configured URL above.
 
 ```
 [Binding]
 Type="http"
 ```
 
+## Environment Variable Overrides For Docker
+
+App Service Configurable no longer has docker specific profiles. It now relies on environment variable overrides in the docker compose files for the docker specific differences. The following environment settings are required in the compose files when using App Service Configurable.
+
+```
+edgex_registry: consul://edgex-core-consul:8500
+edgex_profile : [target profile]
+edgex_service : http://[service name]:[port]
+Service_Host : [service name]
+Clients_CoreData_Host: edgex-core-data
+Clients_Logging_Host : edgex-support-logging
+Logging_EnableRemote: "true"
+Database_Host : edgex-mongo
+Database_Username : appservice
+Database_Password : password
+```
+
+The following is an example docker compose entry for **App Service Configurable**:
+
+```yaml
+  app-service-configurable-rules:
+    image: edgexfoundry/docker-app-service-configurable:1.1.0
+    environment:
+      edgex_registry: consul://edgex-core-consul:8500
+      edgex_service: http://edgex-app-service-configurable-rules:48096
+      edgex_profile: rules-engine
+      Service_Host: edgex-app-service-configurable-rules
+      Clients_CoreData_Host: edgex-core-data
+      Clients_Logging_Host : edgex-support-logging
+      Logging_EnableRemote: "true"      
+      MessageBus_SubscribeHost_Host: edgex-core-data
+    ports:
+      - "48096:48096"
+    container_name: edgex-app-service-configurable-rules
+    hostname: edgex-app-service-configurable-rules
+    networks:
+      edgex-network:
+        aliases:
+          - edgex-app-service-configurable-rules
+    depends_on:
+      - data
+      - command
+```
+
+> *Note: **App Service Configurable** is designed to be run multiple times each with different profiles. This is why in the above example the name `edgex-app-service-configurable-rules` is used for the instance running the `rules-engine` profile.*
