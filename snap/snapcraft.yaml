@@ -1,0 +1,101 @@
+name: edgex-app-service-configurable
+base: core18
+adopt-info: app-service-config
+license: Apache-2.0
+summary:   The reference EdgeX App Service Configurable
+title: EdgeX App Service Configurable
+description: |
+  The reference EdgeX app-service-configurable is built using the App
+  Functions SDK. This service is provided as an easy way to get started
+  with processing data flowing through EdgeX. This service leverages the
+  App Functions SDK and provides a way for developers to use configuration
+  instead of having to compile standalone services to utilize built in
+  functions in the SDK. For a full list of supported/built-in functions
+  view the README located in the App Functions SDK repository.
+
+  https://github.com/edgexfoundry/app-functions-sdk-go/README
+
+  Initially the daemon in the snap is disabled - this allows the configuration
+  to be modified and provided to app-service-config in
+  "$SNAP_DATA/config/app-service-configurable/res" before starting.
+
+# TODO: add armhf when the project supports this
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+
+grade: stable
+confinement: strict
+
+# edinburgh release is epoch 1
+epoch: 1
+
+apps:
+  app-service-configurable:
+    adapter: full
+    command: bin/service-wrapper.sh
+    daemon: simple
+    plugs: [network, network-bind]
+
+parts:
+  go:
+    plugin: nil
+    source: snap/local
+    build-packages: [curl]
+    override-build: |
+      # use dpkg architecture to figure out our target arch
+      # note - we specifically don't use arch
+      case "$(dpkg --print-architecture)" in
+        amd64)
+          FILE_NAME=go1.11.9.linux-amd64.tar.gz
+          FILE_HASH=e88aa3e39104e3ba6a95a4e05629348b4a1ec82791fb3c941a493ca349730608
+          ;;
+        arm64)
+          FILE_NAME=go1.11.9.linux-arm64.tar.gz
+          FILE_HASH=892ab6c2510c4caa5905b3b1b6a1d4c6f04e384841fec50881ca2be7e8accf05
+          ;;
+      esac
+      # download the archive, failing on ssl cert problems
+      curl https://dl.google.com/go/$FILE_NAME -O
+      echo "$FILE_HASH $FILE_NAME" > sha256
+      sha256sum -c sha256 | grep OK
+      tar -C $SNAPCRAFT_STAGE -xf go*.tar.gz --strip-components=1
+    prime:
+      - "-*"
+
+  app-service-config:
+    source: .
+    plugin: make
+    build-packages: [gcc, git, libzmq3-dev, pkg-config]
+    stage-packages: [libzmq5]
+    after: [go]
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "1.1.0-dev.11-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
+    override-build: |
+      cd $SNAPCRAFT_PART_SRC
+      make build
+
+      # install the service binary
+      install -DT "./app-service-configurable" \
+         "$SNAPCRAFT_PART_INSTALL/bin/app-service-configurable"
+
+      # create config dirs
+      find ./res -maxdepth 1 -type d -exec install -d "$SNAPCRAFT_PART_INSTALL/config/"{} \;
+
+      # replace relative log paths in configuration.toml files with fully qualified paths
+      # prefixed with $SNAP_COMMON
+      find ./res -name "configuration.toml" | \
+          while read fname; do
+               cat "$fname" | sed -e s:\./logs/:\\'$SNAP_COMMON/'\: > \
+              "$SNAPCRAFT_PART_INSTALL/config/$fname"
+          done
+
+      install -DT "./Attribution.txt" \
+         "$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable/Attribution.txt"
+      install -DT "./LICENSE" \
+         "$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable/LICENSE"
+
+  config-common:
+    plugin: dump
+    source: snap/local/runtime-helpers
