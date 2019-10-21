@@ -47,12 +47,12 @@ parts:
       # note - we specifically don't use arch
       case "$(dpkg --print-architecture)" in
         amd64)
-          FILE_NAME=go1.11.9.linux-amd64.tar.gz
-          FILE_HASH=e88aa3e39104e3ba6a95a4e05629348b4a1ec82791fb3c941a493ca349730608
+          FILE_NAME=go1.12.12.linux-amd64.tar.gz
+          FILE_HASH=4cf11ac6a8fa42d26ab85e27a5d916ee171900a87745d9f7d4a29a21587d78fc
           ;;
         arm64)
-          FILE_NAME=go1.11.9.linux-arm64.tar.gz
-          FILE_HASH=892ab6c2510c4caa5905b3b1b6a1d4c6f04e384841fec50881ca2be7e8accf05
+          FILE_NAME=go1.12.12.linux-arm64.tar.gz
+          FILE_HASH=a7e2fed536904f2bf7007deed3609b3484c55660821bd2faaeb6928fa62fd33e
           ;;
       esac
       # download the archive, failing on ssl cert problems
