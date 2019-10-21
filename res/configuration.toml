@@ -3,7 +3,7 @@
 
   [Writable.StoreAndForward]
     Enabled = false
-    RetryInterval = 300000 # 5mins in milliseconds
+    RetryInterval = "5m"
     MaxRetryCount = 10
 
   # The Pipeline section allows the functions pipeline to be specified via configuration
@@ -73,15 +73,15 @@
         Topic=     "sampleTopic"
 
 [Service]
-BootTimeout = 30000
-ClientMonitor = 15000
+BootTimeout = "30s"
+ClientMonitor = "15s"
 CheckInterval = "10s"
 Host = "localhost"
 Port = 48095
 Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "Configurable Application Service Started"
-Timeout = 5000
+Timeout = "5s"
 
 [Registry]
 Host = "localhost"
@@ -92,7 +92,7 @@ Type = "consul"
 Type = "mongodb"
 Host = "localhost"
 Port = 27017
-Timeout = 5000
+Timeout = "5s"
 Username = ""
 Password = ""
 
