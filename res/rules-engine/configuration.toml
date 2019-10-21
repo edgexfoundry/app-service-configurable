@@ -12,15 +12,15 @@
         ValueDescriptors = ""
 
 [Service]
-BootTimeout = 30000
-ClientMonitor = 15000
+BootTimeout = "30s"
+ClientMonitor = "15s"
 CheckInterval = "10s"
 Host = "localhost"
 Port = 50001
 Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "AppServiceConfigurable-rules-engine has Started"
-Timeout = 5000
+Timeout = "5s"
 
 [Registry]
 Host = "localhost"
