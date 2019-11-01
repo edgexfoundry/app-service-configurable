@@ -50,6 +50,34 @@ Host = "localhost"
 Port = 8500
 Type = "consul"
 
+# Database is require when Store and Forward is enabled
+# Note when running in docker from compose file set the following environment variables:
+# - Databse_Host: edgex-mongo
+[Database]
+Type = "mongodb"
+Host = "localhost"
+Port = 27017
+Timeout = "30s"
+Username = ""
+Password = ""
+
+# SecretStore is required when Store and Forward is enabled and running with security
+# so Databse credentails can be pulled from Vault.
+# Note when running in docker from compose file set the following environment variables:
+#   - SecretStore_Host: edgex-vault
+#   - SecretStore_ServerName: edgex-vault
+#   - SecretStore_RootCaCertPath: /vault/config/pki/EdgeXFoundryCA/EdgeXFoundryCA.pem
+#   - SecretStore_TokenFile: /vault/config/assets/resp-init.json
+[SecretStore]
+  Host = 'localhost'
+  Port = 8200
+  Path = '/v1/secret/edgex/appservice/'
+  Protocol = 'https'
+
+  [SecretStore.Authentication]
+  AuthType = 'X-Vault-Token'
+  AuthToken = 'edgex'
+
 [Clients]
   [Clients.CoreData]
   Protocol = "http"
