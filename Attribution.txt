@@ -24,6 +24,12 @@ https://github.com/edgexfoundry/go-mod-registry/blob/master/LICENSE
 edgexfoundry/go-mod-messaging (Apache 2.0) https://github.com/edgexfoundry/go-mod-messaging
 https://github.com/edgexfoundry/go-mod-messaging/blob/master/LICENSE
 
+edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-secrets
+https://github.com/edgexfoundry/go-mod-secrets/blob/master/LICENSE
+
+BurntSushi/toml (MIT) https://github.com/BurntSushi/toml
+https://github.com/BurntSushi/toml/blob/master/COPYING
+
 go-kit/kit (MIT) github.com/go-kit/kit
 https://github.com/go-kit/kit/blob/master/LICENSE
 
