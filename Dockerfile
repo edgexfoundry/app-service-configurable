@@ -47,5 +47,14 @@ COPY --from=builder /app/res/ /res/
 COPY --from=builder /app/app-service-configurable /app-service-configurable
 EXPOSE 48095
 
-ENTRYPOINT ["/app-service-configurable","--registry","--profile=OVERWRITEME","--confdir=/res"]
+# Default configuation has been moved to the new "default" profile.
+# Must always specify the profile using
+# environment:
+#   - edgex_profile: <profile>
+# or use
+# command: "-profile=<profile>"
+# If not you will recive error:
+# SDK initialization failed: Could not load configuration file (./res/configuration.toml)...
+
+ENTRYPOINT ["/app-service-configurable","--registry","--confdir=/res"]
 

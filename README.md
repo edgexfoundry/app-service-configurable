@@ -5,9 +5,9 @@ App-Service-Configurable is provided as an easy way to get started with processi
 <!--ts-->
 
 - [Getting Started](#getting-started)
+- [Environment Variable Overrides For Docker](#environment-variable-overrides-for-docker)
 - [Deploying Multiple Instances](#deploying-multiple-instances)
 - [Input Data Not An EdgeX Event](#input-data-not-an-edgex-event)
-- [Environment Variable Overrides For Docker](#environment-variable-overrides-for-docker)
 
  <!--te-->
 
@@ -48,43 +48,6 @@ In a few cases, such as `TransformToXML`, `TransformToJSON`, or `SetOutputData`,
 > Note: By default, the configuration provided is set to use MessageBus as a trigger from CoreData. This means you must have EdgeX Running with devices sending data in order to trigger the pipeline. You can also change the trigger to be HTTP. For more on triggers, view the documentation [here](https://github.com/edgexfoundry/app-functions-sdk-go#triggers).
 
 That's it! Now we can run/deploy this service and the functions pipeline will process the data with functions we've defined.
-
-## Deploying Multiple Instances
-
-What if I want to deploy multiple pipelines using this service?
-
-It not uncommon to have different sets of function pipelines that need to be deployed. This is where `--profiles` comes in handy. You can create different "profile" folders inside the `/res` directory with different configurations. This is typically used in other EdgeX services for having a separate configuration for Docker based deployments and native deployments. Since the pipeline is specified in the `configuration.toml` file, we can use this as a way to run the `app-service-configurable` application with different profiles by specifying the `"--profile=http-export"` and `"--confdir=/res"` as command line options when deploying. If running with Registry enabled, the service key used will be `AppService-[profile name]`, e.g `AppService-http-export` when using --profile option or just `AppService` if not using the --profile option.
-
-
-
-## Input Data Not An EdgeX Event
-
-What if my input data isn't an EdgeX Event ?
-
-The default `TargetType` for data flowing into the functions pipeline is an EdgeX event. There are cases when this incoming data might not be an EdgeX event. In these cases the `Pipeline` can be configured using `UseTargetTypeOfByteArray=true` to set the `TargetType` to be a byte array, i.e. `byte[]`. The first function in the pipeline must then be one that can handle the `byte[]`data. The **compression**,  **encryption** and **export** functions are examples of pipeline functions that will take input data that is `byte[]`. Here is an example of how to configure the functions pipeline to **compress**, **encrypt** and then **export** the  `byte[]` data via HTTP.
-
-```toml
-[Writable]
-  LogLevel = 'DEBUG'
-  [Writable.Pipeline]
-    UseTargetTypeOfByteArray = true
-    ExecutionOrder = "CompressWithGZIP, EncryptWithAES, HTTPPost"
-    [Writable.Pipeline.Functions.CompressWithGZIP]
-    [Writable.Pipeline.Functions.EncryptWithAES]
-      [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
-        Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
-        InitVector = "123456789012345678901234567890"
-    [Writable.Pipeline.Functions.HTTPPost]
-      [Writable.Pipeline.Functions.HTTPPost.Parameters]
-        url = "http://my.api.net/edgexdata"
-```
-
-If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable' s `/api/v1/trigger` endpoint and have it compressed, encrypted and sent to your configured URL above.
-
-```
-[Binding]
-Type="http"
-```
 
 ## Environment Variable Overrides For Docker
 
@@ -131,3 +94,77 @@ The following is an example docker compose entry for **App Service Configurable*
 ```
 
 > *Note: **App Service Configurable** is designed to be run multiple times each with different profiles. This is why in the above example the name `edgex-app-service-configurable-rules` is used for the instance running the `rules-engine` profile.*
+
+## Deploying Multiple Instances using profiles
+
+App Service Configurable was designed to be deployed as multiple instances with different purposes. Since the function pipeline is specified in the `configuration.toml` file, we can use this as a way to run each instance with a different function pipeline. App Service Configurable does not have the standard default configuration at `/res/configuration.toml`. This default configuration has been moved to the `sample` profile. This forces you to specify the profile for the configuration you would like to run. The profile is specified using the `-p/-profile=[profilename]` command line option or the `edgex_profile=[profilename]` environment variable override. The profile name selected is used in the service key (`AppService-[profile name]`) to make each instance unique, e.g. `AppService-sample` when specifying `sample` as the profile.
+
+The following profiles and their purposes are provided with App Service Configurable. 
+
+- **blackbox-tests** - Profile used for black box testing the SDK 
+- **http-export** - Starter profile used for exporting data via HTTP. 
+  Requires further configuration which can easily be accomplished using environment variable overrides
+  - Required:
+    - `Writable_Pipeline_Functions_HTTPPostJSON_Parameters_Url:[Your URL]`
+  - Optional: 
+    - `Writable_Pipeline_Functions_HTTPPostJSON_Parameters_PersistOnError:["true"/"false"]`
+  - Optional: 
+    - `Writable_Pipeline_Functions_FilterByDeviceName_Parameters_DeviceNames:"[comma separated list]"`
+  - Optional: 
+    - `Writable_Pipeline_Functions_FilterByValueDescriptor_Parameters_ValueDescriptors: "[comma separated list]"`
+- **mqtt-export** - Starter profile used for exporting data via MQTT.
+  Requires further configuration which can easily be accomplished using environment variable overrides
+  - Required:
+    - `Writable_Pipeline_Functions_MQTTSend_Parameters_Addressable_Address:[Your Address]`
+  - Optional: 
+    - `Writable_Pipeline_Functions_MQTTSend_Parameters_Addressable`
+      - `_Port:["your port"]`
+      - `_Protocol:[tcp or tcps]`  
+      - `_Publisher:[your name]`
+      - `_User:[your username]`
+      - `_Password:[your passowrd`
+      - `_Topic:[your topic]`
+  - Optional: 
+    - `Writable_Pipeline_Functions_MQTTSend_Parameters_Addressable`
+      - `_Qos:["your quality or service"]`
+      - `_Key:[your Key]`  
+      - `_Cert:[your Certificate]`
+      - `_Autoreconnect:["true" or "false"]`
+      - `_Retain:["true" or "false"]`
+      - `_PersistOnError:["true" or "false"]`
+- **rules-engine** - Profile used to push Event messages to the Rules Engine via ZMQ.
+- **sample** - Sample profile with all available functions declared and a sample pipeline. Provided as a sample that can be copy and modified to create new custom profiles.
+
+> *Note: Running multiple instances with the same profile undermines this design and is not recommended.*
+
+> *Note: Functions can be declared in a profile but not used in the pipeline `ExecutionOrder` allowing them to be added to the pipeline `ExecutionOrder` later at runtime if needed.*
+
+## Input Data Not An EdgeX Event
+
+What if my input data isn't an EdgeX Event ?
+
+The default `TargetType` for data flowing into the functions pipeline is an EdgeX event. There are cases when this incoming data might not be an EdgeX event. In these cases the `Pipeline` can be configured using `UseTargetTypeOfByteArray=true` to set the `TargetType` to be a byte array, i.e. `byte[]`. The first function in the pipeline must then be one that can handle the `byte[]`data. The **compression**,  **encryption** and **export** functions are examples of pipeline functions that will take input data that is `byte[]`. Here is an example of how to configure the functions pipeline to **compress**, **encrypt** and then **export** the  `byte[]` data via HTTP.
+
+```toml
+[Writable]
+  LogLevel = 'DEBUG'
+  [Writable.Pipeline]
+    UseTargetTypeOfByteArray = true
+    ExecutionOrder = "CompressWithGZIP, EncryptWithAES, HTTPPost"
+    [Writable.Pipeline.Functions.CompressWithGZIP]
+    [Writable.Pipeline.Functions.EncryptWithAES]
+      [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
+        Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+        InitVector = "123456789012345678901234567890"
+    [Writable.Pipeline.Functions.HTTPPost]
+      [Writable.Pipeline.Functions.HTTPPost.Parameters]
+        url = "http://my.api.net/edgexdata"
+```
+
+If along with this pipeline configuration, you also configured the `Binding` to be `http` trigger,  you could then send any data to the app-service-configurable' s `/api/v1/trigger` endpoint and have it compressed, encrypted and sent to your configured URL above.
+
+```
+[Binding]
+Type="http"
+```
+

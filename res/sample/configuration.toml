@@ -80,7 +80,7 @@ Host = "localhost"
 Port = 48095
 Protocol = "http"
 ReadMaxLimit = 100
-StartupMsg = "Configurable Application Service Started"
+StartupMsg = "Sample Configurable Application Service Started"
 Timeout = "5s"
 
 [Registry]
