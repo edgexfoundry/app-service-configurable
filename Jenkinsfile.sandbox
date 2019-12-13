@@ -16,8 +16,7 @@
 
 edgeXBuildGoApp (
     project: 'app-service-configurable',
-    semver: false,
     goVersion: '1.12',
     testScript: 'make test',
-    buildScript: 'build'
+    buildScript: 'make build'
 )

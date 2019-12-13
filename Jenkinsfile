@@ -14,27 +14,7 @@
 // limitations under the License.
 //
 
-loadGlobalLibrary('stable')
-
 edgeXBuildGoApp (
     project: 'app-service-configurable',
-    semver: false,
-    goVersion: '1.12',
-    testScript: 'make test',
-    buildScript: 'build'
+    goVersion: '1.12'
 )
-
-def loadGlobalLibrary(branch = '*/master') {
-    library(identifier: 'edgex-global-pipelines@master', 
-        retriever: legacySCM([
-            $class: 'GitSCM',
-            userRemoteConfigs: [[url: 'https://github.com/edgexfoundry/edgex-global-pipelines.git']],
-            branches: [[name: branch]],
-            doGenerateSubmoduleConfigurations: false,
-            extensions: [[
-                $class: 'SubmoduleOption',
-                recursiveSubmodules: true,
-            ]]]
-        )
-    ) _
-}

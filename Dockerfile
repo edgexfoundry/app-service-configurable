@@ -33,8 +33,9 @@ COPY go.mod .
 RUN go mod download
 
 COPY . .
-ARG MAKE=build
-RUN make $MAKE
+
+ARG MAKE="make build"
+RUN $MAKE
 
 #final stage
 FROM alpine:latest
