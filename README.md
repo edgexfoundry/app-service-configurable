@@ -115,9 +115,9 @@ The following profiles and their purposes are provided with App Service Configur
 - **mqtt-export** - Starter profile used for exporting data via MQTT.
   Requires further configuration which can easily be accomplished using environment variable overrides
   - Required:
-    - `Writable_Pipeline_Functions_MQTTSend_Parameters_Addressable_Address:[Your Address]`
+    - `Writable_Pipeline_Functions_MQTTSend_Addressable_Address:[Your Address]`
   - Optional: 
-    - `Writable_Pipeline_Functions_MQTTSend_Parameters_Addressable`
+    - `Writable_Pipeline_Functions_MQTTSend_Addressable`
       - `_Port:["your port"]`
       - `_Protocol:[tcp or tcps]`  
       - `_Publisher:[your name]`
@@ -125,7 +125,7 @@ The following profiles and their purposes are provided with App Service Configur
       - `_Password:[your passowrd`
       - `_Topic:[your topic]`
   - Optional: 
-    - `Writable_Pipeline_Functions_MQTTSend_Parameters_Addressable`
+    - `Writable_Pipeline_Functions_MQTTSend_Parameters`
       - `_Qos:["your quality or service"]`
       - `_Key:[your Key]`  
       - `_Cert:[your Certificate]`
