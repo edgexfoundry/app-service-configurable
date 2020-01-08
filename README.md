@@ -101,7 +101,7 @@ App Service Configurable was designed to be deployed as multiple instances with 
 
 The following profiles and their purposes are provided with App Service Configurable. 
 
-- **blackbox-tests** - Profile used for black box testing the SDK 
+- **blackbox-tests** - Profile used for black box testing the SDK  
 - **http-export** - Starter profile used for exporting data via HTTP. 
   Requires further configuration which can easily be accomplished using environment variable overrides
   - Required:
