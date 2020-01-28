@@ -105,9 +105,9 @@ The following profiles and their purposes are provided with App Service Configur
 - **http-export** - Starter profile used for exporting data via HTTP. 
   Requires further configuration which can easily be accomplished using environment variable overrides
   - Required:
-    - `Writable_Pipeline_Functions_HTTPPostJSON_Parameters_Url:[Your URL]`
+    - `Writable_Pipeline_Functions_HTTPPostJSON_Parameters_url:[Your URL]`
   - Optional: 
-    - `Writable_Pipeline_Functions_HTTPPostJSON_Parameters_PersistOnError:["true"/"false"]`
+    - `Writable_Pipeline_Functions_HTTPPostJSON_Parameters_persistOnError:["true"/"false"]`
   - Optional: 
     - `Writable_Pipeline_Functions_FilterByDeviceName_Parameters_DeviceNames:"[comma separated list]"`
   - Optional: 
@@ -126,12 +126,12 @@ The following profiles and their purposes are provided with App Service Configur
       - `_Topic:[your topic]`
   - Optional: 
     - `Writable_Pipeline_Functions_MQTTSend_Parameters`
-      - `_Qos:["your quality or service"]`
-      - `_Key:[your Key]`  
-      - `_Cert:[your Certificate]`
-      - `_Autoreconnect:["true" or "false"]`
-      - `_Retain:["true" or "false"]`
-      - `_PersistOnError:["true" or "false"]`
+      - `_qos:["your quality or service"]`
+      - `_key:[your Key]`  
+      - `_cert:[your Certificate]`
+      - `_autoreconnect:["true" or "false"]`
+      - `_retain:["true" or "false"]`
+      - `_persistOnError:["true" or "false"]`
 - **rules-engine** - Profile used to push Event messages to the Rules Engine via ZMQ.
 - **sample** - Sample profile with all available functions declared and a sample pipeline. Provided as a sample that can be copy and modified to create new custom profiles.
 
