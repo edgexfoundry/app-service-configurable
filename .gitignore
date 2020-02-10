@@ -6,4 +6,5 @@ app-service-configurable
 go.sum
 coverage.out
 logs/
+.idea
 VERSION
