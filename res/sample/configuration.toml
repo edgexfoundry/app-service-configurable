@@ -94,8 +94,8 @@ Type = "mongodb"
 Host = "localhost"
 Port = 27017
 Timeout = "30s"
-Username = ""
-Password = ""
+Username = "appservice"
+Password = "password"
 
 # SecretStore is required when Store and Forward is enabled and running with security
 # so Databse credentails can be pulled from Vault.
