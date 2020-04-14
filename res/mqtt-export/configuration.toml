@@ -66,17 +66,19 @@ Password = "password"
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 #   - SecretStore_ServerName: edgex-vault
-#   - SecretStore_RootCaCertPath: /vault/config/pki/EdgeXFoundryCA/EdgeXFoundryCA.pem
-#   - SecretStore_TokenFile: /vault/config/assets/resp-init.json
 [SecretStore]
   Host = 'localhost'
   Port = 8200
   Path = '/v1/secret/edgex/appservice/'
   Protocol = 'https'
+  RootCaCertPath = '/vault/config/pki/EdgeXFoundryCA/EdgeXFoundryCA.pem'
+  ServerName = 'localhost'
+  TokenFile = '/vault/config/assets/resp-init.json'
+  AdditionalRetryAttempts = 10
+  RetryWaitPeriod = "1s"
 
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
-  AuthToken = 'edgex'
 
 [Clients]
   [Clients.CoreData]
