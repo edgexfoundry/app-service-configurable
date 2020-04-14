@@ -98,16 +98,23 @@ Username = "appservice"
 Password = "password"
 
 # SecretStore is required when Store and Forward is enabled and running with security
-# so database credentials can be pulled from Vault.
+# so Databse credentails can be pulled from Vault.
+# Note when running in docker from compose file set the following environment variables:
+#   - SecretStore_Host: edgex-vault
+#   - SecretStore_ServerName: edgex-vault
 [SecretStore]
   Host = 'localhost'
   Port = 8200
-  Path = '/v1/secret/edgex/application-service/'
+  Path = '/v1/secret/edgex/appservice/'
   Protocol = 'https'
+  RootCaCertPath = '/vault/config/pki/EdgeXFoundryCA/EdgeXFoundryCA.pem'
+  ServerName = 'localhost'
+  TokenFile = '/vault/config/assets/resp-init.json'
+  AdditionalRetryAttempts = 10
+  RetryWaitPeriod = "1s"
 
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
-  AuthToken = 'edgex'
 
 [Clients]
   [Clients.CoreData]
