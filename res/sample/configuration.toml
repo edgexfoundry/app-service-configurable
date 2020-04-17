@@ -28,6 +28,9 @@
     [Writable.Pipeline.Functions.FilterByValueDescriptor]
       [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
         ValueDescriptors = "RandomValue_Int8, RandomValue_Int64"
+    [Writable.Pipeline.Functions.JSONLogic]
+      [Writable.Pipeline.Functions.JSONLogic.Parameters]
+        rule = "{ \"and\" : [{\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"==\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} ] }"
     [Writable.Pipeline.Functions.TransformToXML]
     [Writable.Pipeline.Functions.TransformToJSON]
     [Writable.Pipeline.Functions.CompressWithGZIP]
@@ -36,6 +39,18 @@
       [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
         Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
         InitVector = "123456789012345678901234567890"
+    [Writable.Pipeline.Functions.Batch]
+      [Writable.Pipeline.Functions.Batch.Parameters]
+    [Writable.Pipeline.Functions.BatchByCount]
+      [Writable.Pipeline.Functions.BatchByCount.Parameters]
+      batchthreshold = 30
+    [Writable.Pipeline.Functions.BatchByTime]
+      [Writable.Pipeline.Functions.BatchByTime.Parameters]
+      timeinterval = "60s"
+    [Writable.Pipeline.Functions.BatchByTimeAndCount]
+      [Writable.Pipeline.Functions.BatchByTimeAndCount.Parameters]
+      batchthreshold = 30
+      timeinterval = "60s"
     [Writable.Pipeline.Functions.SetOutputData]
     [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.PushToCore]
@@ -54,6 +69,18 @@
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
         url = "http://"
+        persistOnError = "false"
+    [Writable.Pipeline.Functions.MQTTSecretSend]
+      [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
+        brokeraddress = "tcps://localhost:8883"
+        topic = "mytopic"
+        secretpath = "/mqtt"
+        clientid = "myclientid"
+        qos="0"
+        autoreconnect="false"
+        retain="false"
+        skipverify = "false"
+        authmode = "none"
         persistOnError = "false"
     [Writable.Pipeline.Functions.MQTTSend]
       [Writable.Pipeline.Functions.MQTTSend.Parameters]
