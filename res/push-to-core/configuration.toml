@@ -39,7 +39,7 @@ Type = "consul"
 
 [Logging]
 EnableRemote = false
-File = "./logs/app-service-configurable.log"
+File = ""
 
 [Clients]
   [Clients.CoreData]

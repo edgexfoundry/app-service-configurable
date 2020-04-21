@@ -95,4 +95,4 @@ Type="http"
 
 [Logging]
 EnableRemote = false
-File = "./logs/app-service-configurable-blackbox-tests.log"
+File = ""

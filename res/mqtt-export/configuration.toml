@@ -104,4 +104,4 @@ Type = "zero"
 
 [Logging]
 EnableRemote = false
-File = "./logs/app-service-configurable-mqtt-export.log"
+File = ""
