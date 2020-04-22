@@ -93,4 +93,4 @@ Type = "zero"
 
 [Logging]
 EnableRemote = false
-File = "./logs/app-service-configurable-http-export.log"
+File = ""

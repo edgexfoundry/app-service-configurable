@@ -41,18 +41,36 @@ Type = "consul"
 [Binding]
 Type="messagebus"
 SubscribeTopic="events"
-PublishTopic=""
+PublishTopic="rules-events"
 
 [MessageBus]
-Type = "zero"
+Type = "mqtt"
     [MessageBus.SubscribeHost]
         Host = "localhost"
-        Port = 5563
+        Port = 1883
         Protocol = "tcp"
     [MessageBus.PublishHost]
-        Host = "*"
-        Port = 5566
+        Host = "localhost"
+        Port = 1883
         Protocol = "tcp"
+    [MessageBus.Optional]
+        # MQTT Specific options
+        # Client Identifiers
+        Username =""
+        Password =""
+        ClientId ="AppServiceRulesEngine"
+        # Connection information
+        Qos          =  "0" # Quality of Sevice values are 0 (At most once), 1 (At least once) or 2 (Exactly once)
+        KeepAlive    =  "10" # Seconds (must be 2 or greater)
+        Retained     = "false"
+        AutoReconnect  = "true"
+        ConnectTimeout = "5" # Seconds
+        # TLS configuration - Only used if Cert/Key file or Cert/Key PEMblock are specified
+        SkipCertVerify = "false"
+        CertFile       = ""
+        KeyFile        = ""
+        KeyPEMBlock    = ""
+        CertPEMBlock   = ""
 
 [Logging]
 EnableRemote = false
