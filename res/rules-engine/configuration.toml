@@ -19,7 +19,7 @@ Host = "localhost"
 Port = 50001
 Protocol = "http"
 ReadMaxLimit = 100
-StartupMsg = "AppServiceConfigurable-rules-engine has Started"
+StartupMsg = "AppService-rules-engine using ZMQ Message Bus has Started"
 Timeout = "5s"
 
 [Registry]
