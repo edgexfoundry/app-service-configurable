@@ -54,14 +54,11 @@ That's it! Now we can run/deploy this service and the functions pipeline will pr
 App Service Configurable no longer has docker specific profiles. It now relies on environment variable overrides in the docker compose files for the docker specific differences. The following environment settings are required in the compose files when using App Service Configurable.
 
 ```
-edgex_registry: consul://edgex-core-consul:8500
-edgex_profile : [target profile]
-edgex_service : http://[service name]:[port]
+EDGEX_PROFILE : [target profile]
 Service_Host : [service name]
+Service_Port : [service port]
 Clients_CoreData_Host: edgex-core-data
-Clients_Logging_Host : edgex-support-logging
-Logging_EnableRemote: "true"
-Database_Host : edgex-mongo
+Database_Host : edgex-redis
 Database_Username : appservice
 Database_Password : password
 ```
@@ -72,13 +69,10 @@ The following is an example docker compose entry for **App Service Configurable*
   app-service-configurable-rules:
     image: edgexfoundry/docker-app-service-configurable:1.1.0
     environment:
-      edgex_registry: consul://edgex-core-consul:8500
-      edgex_service: http://edgex-app-service-configurable-rules:48096
-      edgex_profile: rules-engine
+      EDGEX_PROFILE: rules-engine
       Service_Host: edgex-app-service-configurable-rules
+      Service_Port: 48096
       Clients_CoreData_Host: edgex-core-data
-      Clients_Logging_Host : edgex-support-logging
-      Logging_EnableRemote: "true"      
       MessageBus_SubscribeHost_Host: edgex-core-data
     ports:
       - "48096:48096"
@@ -90,7 +84,6 @@ The following is an example docker compose entry for **App Service Configurable*
           - edgex-app-service-configurable-rules
     depends_on:
       - data
-      - command
 ```
 
 > *Note: **App Service Configurable** is designed to be run multiple times each with different profiles. This is why in the above example the name `edgex-app-service-configurable-rules` is used for the instance running the `rules-engine` profile.*
