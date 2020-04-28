@@ -44,18 +44,18 @@ LABEL license='SPDX-License-Identifier: Apache-2.0' \
 LABEL Name=app-service-configurable Version=${VERSION}
 
 RUN apk --no-cache add ca-certificates zeromq
+
 COPY --from=builder /app/res/ /res/
 COPY --from=builder /app/app-service-configurable /app-service-configurable
 EXPOSE 48095
 
-# Default configuation has been moved to the new "default" profile.
 # Must always specify the profile using
 # environment:
-#   - edgex_profile: <profile>
+#   - EDGEX_PROFILE: <profile>
 # or use
 # command: "-profile=<profile>"
 # If not you will recive error:
 # SDK initialization failed: Could not load configuration file (./res/configuration.toml)...
 
-ENTRYPOINT ["/app-service-configurable","--registry","--confdir=/res"]
+ENTRYPOINT ["/app-service-configurable", "-cp=consul.http://edgex-core-consul:8500", "--registry", "--confdir=/res"]
 

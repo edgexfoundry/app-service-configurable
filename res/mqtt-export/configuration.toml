@@ -52,11 +52,11 @@ Type = "consul"
 
 # Database is require when Store and Forward is enabled
 # Note when running in docker from compose file set the following environment variables:
-# - Databse_Host: edgex-mongo
+# - Databse_Host: edgex-redis
 [Database]
-Type = "mongodb"
+Type = "redisdb"
 Host = "localhost"
-Port = 27017
+Port = 6379
 Timeout = "30s"
 Username = "appservice"
 Password = "password"
