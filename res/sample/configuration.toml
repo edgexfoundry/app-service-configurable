@@ -62,14 +62,20 @@
         url = "http://"
         mimeType = "" #OPTIONAL - default application/json
         persistOnError = "false"
+        secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
+        secretpath = ""
     [Writable.Pipeline.Functions.HTTPPostJSON]
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
         url = "http://"
         persistOnError = "false"
+        secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
+        secretpath = ""
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
         url = "http://"
         persistOnError = "false"
+        secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
+        secretpath = ""
     [Writable.Pipeline.Functions.MQTTSecretSend]
       [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
         brokeraddress = "tcps://localhost:8883"
@@ -99,6 +105,27 @@
         Password=  ""
         Topic=     "sampleTopic"
 
+# InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports and MQTT exports with
+# new MQTTSecretSend function when not using security services, i.e. Vault
+  [Writable.InsecureSecrets]
+    [Writable.InsecureSecrets.DB]
+        path = "redisdb"
+        [Writable.InsecureSecrets.DB.Secrets]
+            username = ""
+            password = ""
+    [Writable.InsecureSecrets.http]
+        path = "http"
+        [Writable.InsecureSecrets.http.Secrets]
+            yoursecretheadername = "" # Note the key name and value are your custom values.
+    [Writable.InsecureSecrets.mqtt]
+        path = "mqtt"
+        [Writable.InsecureSecrets.mqtt.Secrets]
+            username = ""
+            password = ""
+            keypemblock = ""
+            certpemblock = ""
+            capemblock = ""
+
 [Service]
 BootTimeout = "30s"
 ClientMonitor = "15s"
@@ -121,8 +148,6 @@ Type = "redisdb"
 Host = "localhost"
 Port = 6379
 Timeout = "30s"
-Username = "appservice"
-Password = "password"
 
 # SecretStore is required when Store and Forward is enabled and running with security
 # so Databse credentails can be pulled from Vault.
@@ -141,6 +166,30 @@ Password = "password"
   RetryWaitPeriod = "1s"
 
   [SecretStore.Authentication]
+  AuthType = 'X-Vault-Token'
+
+# SecretStoreExclusive is required when using exclusive secrets in secure mode for
+# retieving the secrets from Vault for authenticated HTTP or MQTT exports.
+# See HTTPSend and MQTTSecretSend documentation for more details on setting parameters for using secrets.
+#
+# Note that you must use the new /api/v1/secrets REST API on the App Service after a fresh & clean start
+# of the EdgeX services to POST your custom secrets so they are pushed into Vault.
+#
+# Note when running in docker from compose file set the following environment variables:
+#   - SecretStore_Host: edgex-vault
+#   - SecretStore_ServerName: edgex-vault
+[SecretStoreExclusive]
+  Host = 'localhost'
+  Port = 8200
+  Path = '/v1/secret/edgex/appservice-mqtt-export/'
+  Protocol = 'https'
+  RootCaCertPath = '/vault/config/pki/EdgeXFoundryCA/EdgeXFoundryCA.pem'
+  ServerName = 'localhost'
+  TokenFile = '/vault/config/assets/resp-init.json'
+  AdditionalRetryAttempts = 10
+  RetryWaitPeriod = "1s"
+
+  [SecretStoreExclusive.Authentication]
   AuthType = 'X-Vault-Token'
 
 [Clients]
