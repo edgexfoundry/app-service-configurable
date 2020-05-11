@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	serviceKey = "AppService" + appsdk.ProfileSuffixPlaceholder
+	serviceKey = "AppService-" + appsdk.ProfileSuffixPlaceholder
 )
 
 func main() {
