@@ -37,7 +37,7 @@
       [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
         brokeraddress = "tcps://localhost:8883"
         topic = "mytopic"
-        secretpath = "/mqtt"
+        secretpath = "mqtt"
         clientid = "myclientid"
         qos="0"
         autoreconnect="false"
@@ -59,9 +59,9 @@
         [Writable.InsecureSecrets.mqtt.Secrets]
             username = ""
             password = ""
-            keypemblock = ""
-            certpemblock = ""
-            capemblock = ""
+            cacert = ""
+            clientcert = ""
+            clientkey = ""
 
 [Service]
 BootTimeout = "30s"
