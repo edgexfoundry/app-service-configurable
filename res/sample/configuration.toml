@@ -122,9 +122,9 @@
         [Writable.InsecureSecrets.mqtt.Secrets]
             username = ""
             password = ""
-            keypemblock = ""
-            certpemblock = ""
-            capemblock = ""
+            cacert = ""
+            clientcert = ""
+            clientkey = ""
 
 [Service]
 BootTimeout = "30s"
