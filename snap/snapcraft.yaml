@@ -28,7 +28,9 @@ grade: stable
 confinement: strict
 
 # edinburgh release is epoch 1
-epoch: 1
+# fuji release is epoch 2
+# geneva release is epoch 3
+epoch: 3
 
 apps:
   app-service-configurable:
@@ -47,12 +49,12 @@ parts:
       # note - we specifically don't use arch
       case "$(dpkg --print-architecture)" in
         amd64)
-          FILE_NAME=go1.12.12.linux-amd64.tar.gz
-          FILE_HASH=4cf11ac6a8fa42d26ab85e27a5d916ee171900a87745d9f7d4a29a21587d78fc
+          FILE_NAME=go1.13.10.linux-amd64.tar.gz
+          FILE_HASH=8a4cbc9f2b95d114c38f6cbe94a45372d48c604b707db2057c787398dfbf8e7f
           ;;
         arm64)
-          FILE_NAME=go1.12.12.linux-arm64.tar.gz
-          FILE_HASH=a7e2fed536904f2bf7007deed3609b3484c55660821bd2faaeb6928fa62fd33e
+          FILE_NAME=go1.13.10.linux-arm64.tar.gz
+          FILE_HASH=f16f19947855b410e48f395ca488bd39223c7b35e8b69c7f15ec00201e20b572
           ;;
       esac
       # download the archive, failing on ssl cert problems
@@ -71,7 +73,7 @@ parts:
     after: [go]
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "1.1.0-dev.11-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
+      snapcraftctl set-version "1.1.0-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
     override-build: |
       cd $SNAPCRAFT_PART_SRC
       make build
