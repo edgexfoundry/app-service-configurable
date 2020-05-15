@@ -11,9 +11,9 @@ description: |
   App Functions SDK and provides a way for developers to use configuration
   instead of having to compile standalone services to utilize built in
   functions in the SDK. For a full list of supported/built-in functions
-  view the README located in the App Functions SDK repository.
+  view the documentation located here:
 
-  https://github.com/edgexfoundry/app-functions-sdk-go/README
+  https://docs.edgexfoundry.org/1.2/microservices/application/ApplServices/
 
   Initially the daemon in the snap is disabled - this allows the configuration
   to be modified and provided to app-service-config in
