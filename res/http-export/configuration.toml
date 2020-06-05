@@ -15,9 +15,11 @@
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = ""
+        FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByValueDescriptor]
       [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
         ValueDescriptors = ""
+        FilterOut = "false"
     [Writable.Pipeline.Functions.HTTPPostJSON]
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
         url = "http://"
