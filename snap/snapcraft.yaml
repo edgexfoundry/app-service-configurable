@@ -73,7 +73,7 @@ parts:
     after: [go]
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "1.1.0-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
+      snapcraftctl set-version "1.2.0-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
     override-build: |
       cd $SNAPCRAFT_PART_SRC
       make build
