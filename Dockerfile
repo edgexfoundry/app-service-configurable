@@ -45,8 +45,11 @@ LABEL Name=app-service-configurable Version=${VERSION}
 
 RUN apk --no-cache add ca-certificates zeromq
 
+COPY --from=builder /app/Attribution.txt /Attribution.txt
+COPY --from=builder /app/LICENSE /LICENSE
 COPY --from=builder /app/res/ /res/
 COPY --from=builder /app/app-service-configurable /app-service-configurable
+
 EXPOSE 48095
 
 # Must always specify the profile using
