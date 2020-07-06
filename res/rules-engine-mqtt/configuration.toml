@@ -15,7 +15,6 @@
 
 [Service]
 BootTimeout = "30s"
-ClientMonitor = "15s"
 CheckInterval = "10s"
 Host = "localhost"
 Port = 50001
