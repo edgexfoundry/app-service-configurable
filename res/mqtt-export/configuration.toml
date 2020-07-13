@@ -69,6 +69,7 @@
 BootTimeout = "30s"
 CheckInterval = "10s"
 Host = "localhost"
+ServerBindAddr = "" # blank value defaults to Service.Host value
 Port = 50002
 Protocol = "http"
 ReadMaxLimit = 100
