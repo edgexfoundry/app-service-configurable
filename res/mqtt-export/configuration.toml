@@ -69,7 +69,7 @@
 BootTimeout = "30s"
 CheckInterval = "10s"
 Host = "localhost"
-ServerBindAddr = "" # blank value defaults to Service.Host value
+ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
 Port = 50002
 Protocol = "http"
 ReadMaxLimit = 100
