@@ -6,7 +6,7 @@ For documentation please visit https://docs.edgexfoundry.org/1.2/microservices/a
 
 For a list of examples please visit https://docs.edgexfoundry.org/1.2/examples/AppServiceExamples/
 
-### Build Prerequisites
+## Build Prerequisites
 
 Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/master/README.md).
 
