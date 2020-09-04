@@ -7,7 +7,7 @@
     MaxRetryCount = 10
 
   [Writable.Pipeline]
-    ExecutionOrder = "TransformToJSON, MQTTSend, MarkAsPushed"
+    ExecutionOrder = "TransformToJSON, MQTTSecretSend, MarkAsPushed"
 
     [Writable.Pipeline.Functions.TransformToJSON]
     [Writable.Pipeline.Functions.MarkAsPushed]
