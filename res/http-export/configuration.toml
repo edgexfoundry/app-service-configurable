@@ -26,7 +26,9 @@
         persistOnError = "false"
         secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
         secretpath = ""
-
+    [Writable.Pipeline.Functions.AddTags]
+      [Writable.Pipeline.Functions.AddTags.Parameters]
+        tags=""
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
 # security services, i.e. Vault
   [Writable.InsecureSecrets]

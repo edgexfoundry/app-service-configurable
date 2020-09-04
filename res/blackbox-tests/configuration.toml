@@ -25,6 +25,9 @@
       [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
         ValueDescriptors = "RandomValue_Int8, RandomValue_Int64"
         FilterOut = "false"
+    [Writable.Pipeline.Functions.AddTags]
+      [Writable.Pipeline.Functions.AddTags.Parameters]
+        tags=""
     [Writable.Pipeline.Functions.TransformToXML]
     [Writable.Pipeline.Functions.TransformToJSON]
     [Writable.Pipeline.Functions.CompressWithGZIP]
