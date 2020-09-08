@@ -30,6 +30,9 @@
       [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
         ValueDescriptors = "RandomValue_Int8, RandomValue_Int64"
         FilterOut = "false"
+    [Writable.Pipeline.Functions.AddTags]
+      [Writable.Pipeline.Functions.AddTags.Parameters]
+        tags=""
     [Writable.Pipeline.Functions.JSONLogic]
       [Writable.Pipeline.Functions.JSONLogic.Parameters]
         rule = "{ \"and\" : [{\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"==\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} ] }"
