@@ -47,6 +47,9 @@
         skipverify = "false"
         authmode = "none"
         persistOnError = "false"
+    [Writable.Pipeline.Functions.AddTags]
+      [Writable.Pipeline.Functions.AddTags.Parameters]
+        tags=""
 
 # InsecureSecrets are required for Store and Forward DB access and for authenticated MQTT exports with
 # new MQTTSecretSend function when not using security services, i.e. Vault

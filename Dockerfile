@@ -17,7 +17,7 @@
 # This file will work as is for local development. No need to use Dockerfile.build
 
 #build stage
-ARG BASE=golang:1.13-alpine
+ARG BASE=golang:1.15-alpine
 FROM ${BASE} AS builder
 
 ARG ALPINE_PKG_BASE="make git gcc libc-dev libsodium-dev zeromq-dev"
