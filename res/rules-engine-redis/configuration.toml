@@ -13,6 +13,15 @@
         ValueDescriptors = ""
         FilterOut = "false"
 
+    # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
+    # security services, i.e. Vault
+    [Writable.InsecureSecrets]
+      [Writable.InsecureSecrets.DB]
+        path = "redisdb"
+      [Writable.InsecureSecrets.DB.Secrets]
+        username = ""
+        Password = ""
+
 [Service]
 BootTimeout = "30s"
 CheckInterval = "10s"
@@ -39,6 +48,32 @@ Type = "consul"
   Protocol = "http"
   Host = "localhost"
   Port = 48061
+
+[Database]
+Type = "redisdb"
+Host = "localhost"
+Port = 6379
+Timeout = "30s"
+Password = ""
+
+# SecretStore is required when Store and Forward is enabled and running with security
+# so Databse credentails can be pulled from Vault.
+# Note when running in docker from compose file set the following environment variables:
+#   - SecretStore_Host: edgex-vault
+#   - SecretStore_ServerName: edgex-vault
+[SecretStore]
+Host = 'localhost'
+Port = 8200
+Path = '/v1/secret/edgex/appservice/'
+Protocol = 'https'
+RootCaCertPath = '/vault/config/pki/EdgeXFoundryCA/EdgeXFoundryCA.pem'
+ServerName = 'localhost'
+TokenFile = '/vault/config/assets/resp-init.json'
+AdditionalRetryAttempts = 10
+RetryWaitPeriod = "1s"
+
+  [SecretStore.Authentication]
+  AuthType = 'X-Vault-Token'
 
 [Binding]
 Type="messagebus"
