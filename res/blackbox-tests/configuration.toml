@@ -37,6 +37,8 @@
         Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
         InitVector = "123456789012345678901234567890"
     [Writable.Pipeline.Functions.SetOutputData]
+      [Writable.Pipeline.Functions.SetOutputData.Parameters]
+        ResponseContentType = ""
     [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
