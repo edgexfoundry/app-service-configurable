@@ -40,6 +40,24 @@ The App Service Configurable application service allows a variety of use cases t
 
 /var/snap/edgex-app-service-configurable/current/config/res/
 
+### Startup environment variables
+
+EdgeX services by default wait 60s for dependencies (e.g. Core Data) to become available, and will exit after this time if the dependencies aren't met. The following options can be used to override this startup behavior on systems where it takes longer than expected for the dependent services provided by the edgexfoundry snap to start. Note, both options below are specified as a number of seconds.
+    
+To change the default startup duration (60 seconds), for a service to complete the startup, aka bootstrap, phase of execution by using the following command:
+
+```bash
+$ sudo snap set edgex-app-service-configurable startup-duration=60
+```
+
+The following environment variable overrides the retry startup interval or sleep time before a failure is retried during the start-up, aka bootstrap, phase of execution by using the following command:
+
+```bash
+$ sudo snap set edgex-app-service-configurable startup-interval=1
+```
+
+**Note** - Should the environment variables be modified after the service has started, the service must be restarted.
+
 ### Profiles
 In additional to base configuration.toml in this directory, there are a number of sub-directories that also contain configuration.toml files. These sub-directories are referred to as profiles. The service’s default behavior is to use the configuration.toml file from the /res directory. If you want to use one of the profiles, use the snap set command to instruct the service to read its configuration from one of these sub-directories. For example, to use the push-to-core profile you would run:
 ```
