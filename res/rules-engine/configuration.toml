@@ -4,6 +4,8 @@
     ExecutionOrder = "SetOutputData"
 
     [Writable.Pipeline.Functions.SetOutputData]
+      [Writable.Pipeline.Functions.SetOutputData.Parameters]
+        ResponseContentType = ""
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = ""

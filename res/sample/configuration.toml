@@ -57,6 +57,8 @@
       batchthreshold = "30"
       timeinterval = "60s"
     [Writable.Pipeline.Functions.SetOutputData]
+      [Writable.Pipeline.Functions.SetOutputData.Parameters]
+        ResponseContentType = ""
     [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
