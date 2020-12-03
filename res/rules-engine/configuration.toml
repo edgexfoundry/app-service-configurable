@@ -37,11 +37,6 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-  [Clients.Logging]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 48061
-
 [Binding]
 Type="messagebus"
 SubscribeTopic="events"
@@ -58,6 +53,3 @@ Type = "zero"
         Port = 5566
         Protocol = "tcp"
 
-[Logging]
-EnableRemote = false
-File = ""

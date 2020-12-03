@@ -46,11 +46,6 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-  [Clients.Logging]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 48061
-
 [Database]
 Type = "redisdb"
 Host = "localhost"
@@ -95,6 +90,3 @@ Type = "redisstreams"
     [MessageBus.Optional]
         Password ="password"
 
-[Logging]
-EnableRemote = false
-File = ""
