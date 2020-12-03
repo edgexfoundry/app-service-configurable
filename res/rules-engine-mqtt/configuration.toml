@@ -37,11 +37,6 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-  [Clients.Logging]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 48061
-
 [Binding]
 Type="messagebus"
 SubscribeTopic="events"
@@ -76,6 +71,3 @@ Type = "mqtt"
         KeyPEMBlock    = ""
         CertPEMBlock   = ""
 
-[Logging]
-EnableRemote = false
-File = ""

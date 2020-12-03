@@ -92,14 +92,6 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-  [Clients.Logging]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 48061
-
 [Binding]
 Type="http"
 
-[Logging]
-EnableRemote = false
-File = ""
