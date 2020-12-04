@@ -1,8 +1,0 @@
-version: '2.1'
-
-services:
-  app-service-configurable:
-    image: app-service-configurable
-    build: .
-    ports:
-      - 48095:48095
