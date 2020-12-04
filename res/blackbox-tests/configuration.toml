@@ -54,21 +54,19 @@
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
         url = "http://"
-    [Writable.Pipeline.Functions.MQTTSend]
-      [Writable.Pipeline.Functions.MQTTSend.Parameters]
+    [Writable.Pipeline.Functions.MQTTSecretSend]
+      [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
+        brokeraddress = "tcps://localhost:8883"
+        topic = "mytopic"
+        secretpath = "mqtt"
+        clientid = "myclientid"
         qos="0"
-        key=""
         autoreconnect="false"
         retain="false"
-        cert=""
-      [Writable.Pipeline.Functions.MQTTSend.Addressable]
-        Address=   "localhost"
-        Port=      1883
-        Protocol=  "tcp"
-        Publisher= "MyApp"
-        User=      ""
-        Password=  ""
-        Topic=     "sampleTopic"
+        skipverify = "false"
+        authmode = "none"
+        persistOnError = "false"
+
 
 [Service]
 BootTimeout = "30s"

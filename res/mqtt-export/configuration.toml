@@ -7,7 +7,7 @@
     MaxRetryCount = 10
 
   [Writable.Pipeline]
-    ExecutionOrder = "TransformToJSON, MQTTSend, MarkAsPushed"
+    ExecutionOrder = "TransformToJSON, MQTTSecretSend, MarkAsPushed"
 
     [Writable.Pipeline.Functions.TransformToJSON]
     [Writable.Pipeline.Functions.MarkAsPushed]
@@ -19,22 +19,6 @@
       [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
         ValueDescriptors = ""
         FilterOut = "false"
-    [Writable.Pipeline.Functions.MQTTSend]
-      [Writable.Pipeline.Functions.MQTTSend.Parameters]
-        qos="0"
-        key=""
-        autoreconnect="false"
-        retain="false"
-        cert=""
-        persistOnError = "false"
-      [Writable.Pipeline.Functions.MQTTSend.Addressable]
-        Address=   "localhost"
-        Port=      1883
-        Protocol=  "tcp"
-        Publisher= "AppServiceConfigurable-mqtt-export"
-        User=      ""
-        Password=  ""
-        Topic=     "edgex-events"
     [Writable.Pipeline.Functions.MQTTSecretSend]
       [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
         brokeraddress = "tcps://localhost:8883"
