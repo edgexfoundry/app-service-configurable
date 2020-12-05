@@ -114,22 +114,6 @@
         skipverify = "false"
         authmode = "none"
         persistOnError = "false"
-    [Writable.Pipeline.Functions.MQTTSend]
-      [Writable.Pipeline.Functions.MQTTSend.Parameters]
-        qos="0"
-        key=""
-        autoreconnect="false"
-        retain="false"
-        cert=""
-        persistOnError = "false"
-      [Writable.Pipeline.Functions.MQTTSend.Addressable]
-        Address=   "localhost"
-        Port=      1883
-        Protocol=  "tcp"
-        Publisher= "MyApp"
-        User=      ""
-        Password=  ""
-        Topic=     "sampleTopic"
 
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports and MQTT exports with
 # new MQTTSecretSend function when not using security services, i.e. Vault
