@@ -117,9 +117,6 @@ https://github.com/xdg-go/scram/blob/master/LICENSE
 github.com/xdg/stringprep (Apache 2.0) https://github.com/xdg-go/stringprep
 https://github.com/xdg-go/stringprep/blob/master/LICENSE
 
-go.mongodb.org/mongo-driver (Apache 2.0) https://github.com/mongodb/mongo-go-driver
-https://github.com/mongodb/mongo-go-driver/blob/master/LICENSE
-
 golang.org/x/crypto (Unspecified) https://github.com/golang/crypto
 https://github.com/golang/crypto/blob/master/LICENSE
 

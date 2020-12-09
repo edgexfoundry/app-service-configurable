@@ -101,7 +101,8 @@ Timeout = "30s"
 #
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
-#   - SecretStore_ServerName: edgex-vault[SecretStoreExclusive]
+#   - SecretStore_ServerName: edgex-vault
+[SecretStoreExclusive]
   Host = 'localhost'
   Port = 8200
   Path = '/v1/secret/edgex/appservice-http-export/'
