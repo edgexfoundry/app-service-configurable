@@ -89,3 +89,29 @@ or
 sudo snap install edgex-app-service-configurable edgex-app-service-configurable_mqtt
 ```
 **Note** – you must ensure that any configuration values that might cause conflict between the multiple instances (e.g. port, log file path, …) must be modified before enabling the snap’s service.
+
+### Secret Store Usage
+Some profile configuration.toml files specify configuration which requires secret-store support, however this snap doesn't fully support secure secrets without manual intervention (see below). The snap can also be configured to use insecure secrets as can be done via docker-compose by setting the option ```security-secret-store=false```. Ex.
+
+```
+sudo snap set edgex-app-service-configurable security-secret-store=false
+```
+
+### Manually configure the Secret Store (aka Vault) token
+Here's an example of how to use a configuration/profile which includes secrets:
+
+```
+$ sudo snap install edgex-app-service-configurable
+$ sudo snap set edgex-app-service-configurable profile=mqtt-export
+$ cd /var/snap/edgex-app-service-configurable/current/config/res/mqtt-export
+$ sudo cp /var/snap/edgexfoundry/current/secrets/edgex-application-service/secrets-token.json .
+```
+
+Next the profile's ```configuration.toml``` file (see ```/var/snap/edgex-app-service-configurable/current/config/res/mqtt-export```) needs to be updated to reference the new token file location in ```$SNAP_DATA```. The config field that need updated is ```SecretStore.TokenFile```. The following example shows how this can be done via the sed command-line tool, however the file can also be easily updated via your favorite editor.
+
+
+```
+$ sudo sed -i -e 's@/vault/config/assets/resp-init.json@/var/snap/edgex-app-service-configurable/current/config/res/mqtt-export/secrets-token.json@' ./configuration.toml
+```
+
+**Note** -- these configuration changes need to be made *before* the service is started for the first time. Otherwise, the recommended approach is to stop the service, delete the existing app-service-configurable configuration in Consul's kv store, and then proceed.
