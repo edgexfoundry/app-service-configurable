@@ -14,19 +14,17 @@
 # limitations under the License.
 #
 
-# This file will work as is for local development. No need to use Dockerfile.build
-
 #build stage
-ARG BASE=golang:1.15-alpine
+ARG BASE=golang:1.15-alpine3.12
 FROM ${BASE} AS builder
 
 ARG ALPINE_PKG_BASE="make git gcc libc-dev libsodium-dev zeromq-dev"
 ARG ALPINE_PKG_EXTRA=""
 
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
-  copyright='Copyright (c) 2019: Intel'
+    copyright='Copyright (c) 2019: Intel'
 RUN sed -e 's/dl-cdn[.]alpinelinux.org/nl.alpinelinux.org/g' -i~ /etc/apk/repositories
-RUN apk add --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
+RUN apk add --update --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
 WORKDIR /app
 
 COPY go.mod .
@@ -38,12 +36,12 @@ ARG MAKE="make build"
 RUN $MAKE
 
 #final stage
-FROM alpine:latest
+FROM alpine:3.12
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
   copyright='Copyright (c) 2019: Intel'
 LABEL Name=app-service-configurable Version=${VERSION}
 
-RUN apk --no-cache add ca-certificates zeromq
+RUN apk add --update --no-cache ca-certificates zeromq
 
 COPY --from=builder /app/Attribution.txt /Attribution.txt
 COPY --from=builder /app/LICENSE /LICENSE
