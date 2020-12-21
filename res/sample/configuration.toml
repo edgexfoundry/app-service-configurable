@@ -178,30 +178,6 @@ Timeout = "30s"
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
-# SecretStoreExclusive is required when using exclusive secrets in secure mode for
-# retrieving the secrets from Vault for authenticated HTTP or MQTT exports.
-# See HTTPSend and MQTTSecretSend documentation for more details on setting parameters for using secrets.
-#
-# Note that you must use the new /api/v1/secrets REST API on the App Service after a fresh & clean start
-# of the EdgeX services to POST your custom secrets so they are pushed into Vault.
-#
-# Note when running in docker from compose file set the following environment variables:
-#   - SecretStore_Host: edgex-vault
-#   - SecretStore_ServerName: edgex-vault
-[SecretStoreExclusive]
-  Host = 'localhost'
-  Port = 8200
-  Path = '/v1/secret/edgex/appservice-mqtt-export/'
-  Protocol = 'http'
-  RootCaCertPath = ''
-  ServerName = ''
-  TokenFile = '/vault/config/assets/resp-init.json'
-  AdditionalRetryAttempts = 10
-  RetryWaitPeriod = "1s"
-
-  [SecretStoreExclusive.Authentication]
-  AuthType = 'X-Vault-Token'
-
 [Clients]
   [Clients.CoreData]
   Protocol = "http"
@@ -223,4 +199,3 @@ Type = "zero"
         Host = "*"
         Port = 5565
         Protocol = "tcp"
-
