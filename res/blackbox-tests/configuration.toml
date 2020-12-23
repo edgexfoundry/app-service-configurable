@@ -29,9 +29,20 @@
       [Writable.Pipeline.Functions.AddTags.Parameters]
         tags=""
     [Writable.Pipeline.Functions.TransformToXML]
+      [Writable.Pipeline.Functions.TransformToXML.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.TransformToJSON]
+      [Writable.Pipeline.Functions.TransformToJSON.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithGZIP]
+      [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithZLIB]
+      [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+    [Writable.Pipeline.Functions.MarkAsPushed]
+      [Writable.Pipeline.Functions.MarkAsPushed.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.EncryptWithAES]
       [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
         Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
@@ -39,7 +50,6 @@
     [Writable.Pipeline.Functions.SetOutputData]
       [Writable.Pipeline.Functions.SetOutputData.Parameters]
         ResponseContentType = ""
-    [Writable.Pipeline.Functions.MarkAsPushed]
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
         DeviceName = ""

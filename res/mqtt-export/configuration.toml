@@ -9,8 +9,21 @@
   [Writable.Pipeline]
     ExecutionOrder = "TransformToJSON, MQTTSecretSend, MarkAsPushed"
 
+    [Writable.Pipeline.Functions.TransformToXML]
+      [Writable.Pipeline.Functions.TransformToXML.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.TransformToJSON]
+      [Writable.Pipeline.Functions.TransformToJSON.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+    [Writable.Pipeline.Functions.CompressWithGZIP]
+      [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+    [Writable.Pipeline.Functions.CompressWithZLIB]
+      [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.MarkAsPushed]
+      [Writable.Pipeline.Functions.MarkAsPushed.Parameters]
+        NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = ""
