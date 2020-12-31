@@ -39,7 +39,7 @@ Type = "consul"
 
 [Binding]
 Type="messagebus"
-SubscribeTopic="events"
+SubscribeTopics="events"
 PublishTopic="rules-events"
 
 [MessageBus]

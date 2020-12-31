@@ -74,7 +74,7 @@ RetryWaitPeriod = "1s"
 
 [Binding]
 Type="messagebus"
-SubscribeTopic="events"
+SubscribeTopics="events"
 PublishTopic="rules-events"
 
 [MessageBus]

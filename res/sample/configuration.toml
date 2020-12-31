@@ -196,7 +196,7 @@ Timeout = "30s"
 
 [Binding]
 Type="messagebus"
-SubscribeTopic="events"
+SubscribeTopics="events"
 PublishTopic="example"
 
 [MessageBus]
