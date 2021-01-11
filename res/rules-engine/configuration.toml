@@ -39,8 +39,8 @@ Type = "consul"
 
 [Binding]
 Type="messagebus"
-SubscribeTopic="events"
-PublishTopic=""
+SubscribeTopics="events"
+PublishTopic="rules-events"
 
 [MessageBus]
 Type = "zero"
