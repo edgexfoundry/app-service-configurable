@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/appsdk"
+	"github.com/edgexfoundry/app-functions-sdk-go/v2/appsdk"
 )
 
 const (
