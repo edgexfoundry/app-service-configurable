@@ -195,8 +195,8 @@ Timeout = "30s"
   Port = 48080
 
 [Binding]
-Type="messagebus"
-SubscribeTopics="events"
+Type="edgex-messagebus"
+SubscribeTopics="events, edgex/events"
 PublishTopic="example"
 
 [MessageBus]
