@@ -15,22 +15,22 @@ https://github.com/eclipse/paho.mqtt.golang/blob/master/LICENSE
 edgexfoundry/app-functions-sdk-go (Apache 2.0) https://github.com/edgexfoundry/app-functions-sdk-go/v2
 https://github.com/edgexfoundry/app-functions-sdk-go/blob/master/LICENSE
 
-edgexfoundry/go-mod-core-contracts (Apache 2.0) https://github.com/edgexfoundry/go-mod-core-contracts
+edgexfoundry/go-mod-core-contracts (Apache 2.0) https://github.com/edgexfoundry/go-mod-core-contracts/v2
 https://github.com/edgexfoundry/go-mod-core-contracts/blob/master/LICENSE
 
-edgexfoundry/go-mod-registry (Apache 2.0) https://github.com/edgexfoundry/go-mod-registry
+edgexfoundry/go-mod-registry (Apache 2.0) https://github.com/edgexfoundry/go-mod-registry/v2
 https://github.com/edgexfoundry/go-mod-registry/blob/master/LICENSE
 
 edgexfoundry/go-mod-messaging (Apache 2.0) https://github.com/edgexfoundry/go-mod-messaging/v2
 https://github.com/edgexfoundry/go-mod-messaging/blob/master/LICENSE
 
-edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-secrets
+edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-secrets/v2
 https://github.com/edgexfoundry/go-mod-secrets/blob/master/LICENSE
 
-edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-bootstrap
+edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-bootstrap/v2
 https://github.com/edgexfoundry/go-mod-bootstrap/blob/master/LICENSE
 
-edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-configuration
+edgexfoundry/go-mod-secrets (Apache 2.0) https://github.com/edgexfoundry/go-mod-configuration/v2
 https://github.com/edgexfoundry/go-mod-configuration/blob/master/LICENSE
 
 BurntSushi/toml (MIT) https://github.com/BurntSushi/toml
