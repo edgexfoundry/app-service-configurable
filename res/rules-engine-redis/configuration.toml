@@ -73,8 +73,8 @@ RetryWaitPeriod = "1s"
   AuthType = 'X-Vault-Token'
 
 [Binding]
-Type="messagebus"
-SubscribeTopics="events"
+Type="edgex-messagebus"
+SubscribeTopics="events, edgex/events"
 PublishTopic="rules-events"
 
 [MessageBus]

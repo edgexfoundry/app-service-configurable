@@ -143,3 +143,6 @@ https://github.com/go-playground/validator/blob/master/LICENSE
 
 leodido/go-urn (MIT) https://github.com/leodido/go-urn
 https://github.com/leodido/go-urn
+
+gopkg.in/yaml.v2 (Apache 2.0) https://github.com/go-yaml/yaml/
+https://github.com/go-yaml/yaml/blob/v2.2.2/LICENSE
