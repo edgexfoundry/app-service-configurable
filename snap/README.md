@@ -24,14 +24,13 @@ You can see the current revisions available for your machine's architecture by r
 $ snap info edgex-app-service-configurable
 ```
 
-The snap can be installed using `snap install`. To install the snap from the edge channel:
+The latest stable version of the snap can be installed using:
 
 ```bash
-$ sudo snap install edgex-app-service-configurable --edge
+$ sudo snap install edgex-app-service-configurable
 ```
-Lastly, on a system supporting it, the snap may be installed using GNOME (or Ubuntu) Software Center by searching for `edgex-app-service-configurable`.
 
-**Note** - the snap has only been tested on Ubuntu Desktop/Server versions 18.04 and 16.04, as well as Ubuntu Core versions 16 and 18.
+**Note** - this snap has only been tested on Ubuntu Desktop/Server 16.04 LTS (or greater) and Ubuntu Core 16 (or greater).
 
 ## Using the EdgeX App Service Configurable snap
 
@@ -65,16 +64,6 @@ $ sudo snap set edgex-app-service-configurable profile=push-to-core
 ```
 In addition to instructing the service to read a different configuration file, the profile will also be used to name the service when it registers itself to the system.
 
-**Note** - as this service is based on the latest development release of EdgeX, not all use cases are supported, in particular integration with the EdgeX rules-engine will not work when used in conjunction with the Edinburgh release of EdgeX, but will work with the Fuji release. Perform the following steps to install the edgex-app-service-configurable application service using the mqtt-export-configuration example and Mosquitto to test:
-```
-sudo snap install edgex-app-service-configurable
-
-sudo snap set edgex-app-service-configurable profile=mqtt-export
-
-sudo snap start --enable edgex-app-service-configurable.app-service-configurable
-
-mosquitto_sub -t "edgex-events"
-```
 ### Multiple Instances
 Multiple instances of edgex-app-service-configurable can be installed by using snap [Parallel Installs](https://snapcraft.io/docs/parallel-installs). This is an experimental snap feature and must be first be enabled by running this command:
 ```
@@ -89,3 +78,29 @@ or
 sudo snap install edgex-app-service-configurable edgex-app-service-configurable_mqtt
 ```
 **Note** – you must ensure that any configuration values that might cause conflict between the multiple instances (e.g. port, log file path, …) must be modified before enabling the snap’s service.
+
+### Secret Store Usage
+Some profile configuration.toml files specify configuration which requires Secret Store (aka Vault) support, however this snap doesn't fully support secure secrets without manual intervention (see below). The snap can also be configured to use insecure secrets as can be done via docker-compose by setting the option ```security-secret-store=false```. Ex.
+
+```
+sudo snap set edgex-app-service-configurable security-secret-store=false
+```
+
+### Manually configure the Secret Store (aka Vault) token
+Here's an example of how to use a configuration/profile which includes secrets:
+
+```
+$ sudo snap install edgex-app-service-configurable
+$ sudo snap set edgex-app-service-configurable profile=mqtt-export
+$ cd /var/snap/edgex-app-service-configurable/current/config/res/mqtt-export
+$ sudo cp /var/snap/edgexfoundry/current/secrets/edgex-application-service/secrets-token.json .
+```
+
+Next the profile's ```configuration.toml``` file (see ```/var/snap/edgex-app-service-configurable/current/config/res/mqtt-export```) needs to be updated to reference the new token file location in ```$SNAP_DATA```. The config field that need updated is ```SecretStore.TokenFile```. The following example shows how this can be done via the sed command-line tool, however the file can also be easily updated via your favorite editor.
+
+
+```
+$ sudo sed -i -e 's@/vault/config/assets/resp-init.json@/var/snap/edgex-app-service-configurable/current/config/res/mqtt-export/secrets-token.json@' ./configuration.toml
+```
+
+**Note** -- these configuration changes need to be made *before* the service is started for the first time. Otherwise, the recommended approach is to stop the service, delete the existing app-service-configurable configuration in Consul's kv store, and then proceed.
