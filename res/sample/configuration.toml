@@ -14,7 +14,7 @@
 
     # ExecutionOrder specifies which functions to run and the order to run them.
     # All functions listed must have an entry below in the Pipeline.Functions section
-    ExecutionOrder = "FilterByDeviceName, TransformToXML, SetOutputData"
+    ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, TransformToXML, SetOutputData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
     # These function names must match a function defined in the configurable package of the SDK.
@@ -22,13 +22,18 @@
     # Some functions do not require any parameters, but still must be listed.
     # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
     # dynamic changes from Consul.
+    [Writable.Pipeline.Functions.FilterByProfileName]
+      [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
+        # TODO: Remove 'Unknown' once V1 events no longer supported.
+        ProfileNames = "Random-Float-Device, Random-Integer-Device, Unknown"
+        FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = "Random-Float-Device,Random-Integer-Device"
+        DeviceNames = "Random-Float-Device, Random-Integer-Device"
         FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByValueDescriptor]
-      [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
-        ValueDescriptors = "RandomValue_Int8, RandomValue_Int64"
+    [Writable.Pipeline.Functions.FilterByResourceName]
+      [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
+        ResourceNames = "Int64, Float64"
         FilterOut = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]

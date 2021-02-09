@@ -6,13 +6,17 @@
     [Writable.Pipeline.Functions.SetOutputData]
       [Writable.Pipeline.Functions.SetOutputData.Parameters]
         ResponseContentType = ""
+    [Writable.Pipeline.Functions.FilterByProfileName]
+      [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
+        ProfileNames = ""
+        FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = ""
         FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByValueDescriptor]
-      [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
-        ValueDescriptors = ""
+    [Writable.Pipeline.Functions.FilterByResourceName]
+      [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
+        ResourceNames = ""
         FilterOut = "false"
 
     # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using

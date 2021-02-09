@@ -17,13 +17,17 @@
     # Some functions do not require any parameters, but still must be listed.
     # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
     # dynamic changes from Consul.
+    [Writable.Pipeline.Functions.FilterByProfileName]
+      [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
+        ProfileNames = ""
+        FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = "Random-Float-Device,Random-Integer-Device"
         FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByValueDescriptor]
-      [Writable.Pipeline.Functions.FilterByValueDescriptor.Parameters]
-        ValueDescriptors = "RandomValue_Int8, RandomValue_Int64"
+    [Writable.Pipeline.Functions.FilterByResourceName]
+      [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
+        ResourceNames = "RandomValue_Int8, RandomValue_Int64"
         FilterOut = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
