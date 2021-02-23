@@ -57,19 +57,18 @@ Port = 6379
 Timeout = "30s"
 Password = ""
 
-# SecretStore is required when Store and Forward is enabled and running with security
-# so Database credentials can be pulled from Vault.
+# SecretStore is needed for the Redis DB passord for RedisStreams as the MessageBus
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
-#   - SecretStore_ServerName: edgex-vault
 [SecretStore]
+Type = 'vault'
 Host = 'localhost'
 Port = 8200
 Path = '/v1/secret/edgex/appservice/'
 Protocol = 'http'
 RootCaCertPath = ''
 ServerName = ''
-TokenFile = '/vault/config/assets/resp-init.json'
+TokenFile = '/tmp/edgex/secrets/edgex-application-service/secrets-token.json'
 AdditionalRetryAttempts = 10
 RetryWaitPeriod = "1s"
 
