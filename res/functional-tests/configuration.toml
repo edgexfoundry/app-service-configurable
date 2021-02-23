@@ -51,6 +51,8 @@
       [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
         Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
         InitVector = "123456789012345678901234567890"
+        SecretPath = ""
+        SecretName = ""
     [Writable.Pipeline.Functions.SetOutputData]
       [Writable.Pipeline.Functions.SetOutputData.Parameters]
         ResponseContentType = ""
