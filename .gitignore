@@ -1,4 +1,5 @@
 test.txt
+go.mod.bk
 debug
 *.exe
 app-service-configurable
@@ -8,3 +9,4 @@ coverage.out
 logs/
 .idea
 VERSION
+vendor/

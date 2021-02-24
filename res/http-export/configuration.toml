@@ -38,20 +38,30 @@
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
         url = "http://"
         persistOnError = "false"
-        secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
-        secretpath = ""
+        headername = "" # Name of the header key to add to the HTTP header
+        secretname = "" # Name of the secret for the header value in the SecretStore
+        secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPutJSON]
       [Writable.Pipeline.Functions.HTTPPutJSON.Parameters]
         url = "http://"
         persistOnError = "false"
-        secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
-        secretpath = ""
+        headername = "" # Name of the header key to add to the HTTP header
+        secretname = "" # Name of the secret for the header value in the SecretStore
+        secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
         url = "http://"
         persistOnError = "false"
-        secretheadername = "" # This is the name used in the HTTP header and also used as the secret key
-        secretpath = ""
+        headername = "" # Name of the header key to add to the HTTP header
+        secretname = "" # Name of the secret for the header value in the SecretStore
+        secretpath = "" # Path to the secret for the header value in the SecretStore
+    [Writable.Pipeline.Functions.HTTPPutXML]
+      [Writable.Pipeline.Functions.HTTPPutXML.Parameters]
+        url = "http://"
+        persistOnError = "false"
+        headername = "" # Name of the header key to add to the HTTP header
+        secretname = "" # Name of the secret for the header value in the SecretStore
+        secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
         tags=""
@@ -66,7 +76,7 @@
     [Writable.InsecureSecrets.http]
         path = "http"
         [Writable.InsecureSecrets.http.Secrets]
-            yoursecretheadername = "" # Note the key name and value are your custom values.
+          headervalue = "<put your value here>"
 
 [Service]
 BootTimeout = "30s"
