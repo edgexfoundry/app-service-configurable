@@ -1,70 +1,69 @@
 [Writable]
-  LogLevel = "INFO"
+LogLevel = "INFO"
 
   [Writable.StoreAndForward]
-    Enabled = false
-    RetryInterval = "5m"
-    MaxRetryCount = 10
+  Enabled = false
+  RetryInterval = "5m"
+  MaxRetryCount = 10
 
   [Writable.Pipeline]
-    ExecutionOrder = "TransformToJSON, MQTTSecretSend"
-
+  ExecutionOrder = "TransformToJSON, MQTTSecretSend"
     [Writable.Pipeline.Functions.TransformToXML]
       [Writable.Pipeline.Functions.TransformToXML.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.TransformToJSON]
       [Writable.Pipeline.Functions.TransformToJSON.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithGZIP]
       [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithZLIB]
       [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-        ProfileNames = ""
-        FilterOut = "false"
+      ProfileNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = ""
-        FilterOut = "false"
+      DeviceNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-        ResourceNames = ""
-        FilterOut = "false"
+      ResourceNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.MQTTSecretSend]
       [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
-        brokeraddress = "tcps://localhost:8883"
-        topic = "mytopic"
-        secretpath = "mqtt"
-        clientid = "myclientid"
-        qos="0"
-        autoreconnect="false"
-        retain="false"
-        skipverify = "false"
-        authmode = "none"
-        persistOnError = "false"
+      brokeraddress = "tcp://broker.hivemq.com:1883" # Hive Public Test Broker
+      topic = "edgex-export"
+      secretpath = "mqtt"
+      clientid = "MQTT-Export"
+      qos="0"
+      autoreconnect="true"
+      retain="false"
+      skipverify = "false"
+      authmode = "none"
+      persistOnError = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
-        tags=""
+      tags=""
 
 # InsecureSecrets are required for Store and Forward DB access and for authenticated MQTT exports with
 # new MQTTSecretSend function when not using security services, i.e. Vault
   [Writable.InsecureSecrets]
     [Writable.InsecureSecrets.DB]
-        path = "redisdb"
-        [Writable.InsecureSecrets.DB.Secrets]
-            username = ""
-            password = ""
+    path = "redisdb"
+      [Writable.InsecureSecrets.DB.Secrets]
+      username = ""
+      password = ""
     [Writable.InsecureSecrets.mqtt]
-        path = "mqtt"
-        [Writable.InsecureSecrets.mqtt.Secrets]
-            username = ""
-            password = ""
-            cacert = ""
-            clientcert = ""
-            clientkey = ""
+    path = "mqtt"
+      [Writable.InsecureSecrets.mqtt.Secrets]
+      username = ""
+      password = ""
+      cacert = ""
+      clientcert = ""
+      clientkey = ""
 
 [Service]
 BootTimeout = "30s"
@@ -96,17 +95,16 @@ Timeout = "30s"
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
-  Type = 'vault'
-  Host = 'localhost'
-  Port = 8200
-  Path = '/v1/secret/edgex/app-service-mqtt-export/'
-  Protocol = 'http'
-  RootCaCertPath = ''
-  ServerName = ''
-  TokenFile = '/tmp/edgex/secrets/app-service-mqtt-export/secrets-token.json'
-  AdditionalRetryAttempts = 10
-  RetryWaitPeriod = "1s"
-
+Type = 'vault'
+Host = 'localhost'
+Port = 8200
+Path = '/v1/secret/edgex/app-service-mqtt-export/'
+Protocol = 'http'
+RootCaCertPath = ''
+ServerName = ''
+TokenFile = '/tmp/edgex/secrets/app-service-mqtt-export/secrets-token.json'
+AdditionalRetryAttempts = 10
+RetryWaitPeriod = "1s"
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
@@ -116,13 +114,12 @@ Timeout = "30s"
   Host = "localhost"
   Port = 48080
 
-[Binding]
+[Trigger]
 Type="edgex-messagebus"
 SubscribeTopics="events, edgex/events"
-
-[MessageBus]
-Type = "zero"
-    [MessageBus.SubscribeHost]
-        Host = "localhost"
-        Port = 5563
-        Protocol = "tcp"
+  [Trigger.EdgexMessageBus]
+  Type = "zero"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 5563
+    Protocol = "tcp"

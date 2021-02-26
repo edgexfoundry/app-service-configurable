@@ -2,81 +2,81 @@
   LogLevel = "INFO"
 
   [Writable.StoreAndForward]
-    Enabled = false
-    RetryInterval = "5m"
-    MaxRetryCount = 10
+  Enabled = false
+  RetryInterval = "5m"
+  MaxRetryCount = 10
 
   [Writable.Pipeline]
     UseTargetTypeOfByteArray = false
     ExecutionOrder = "FilterByDeviceName, TransformToJSON, HTTPPostJSON"
-
-    [Writable.Pipeline.Functions.TransformToXML]
-      [Writable.Pipeline.Functions.TransformToXML.Parameters]
+      [Writable.Pipeline.Functions.TransformToXML]
+        [Writable.Pipeline.Functions.TransformToXML.Parameters]
         NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.TransformToJSON]
-      [Writable.Pipeline.Functions.TransformToJSON.Parameters]
+      [Writable.Pipeline.Functions.TransformToJSON]
+        [Writable.Pipeline.Functions.TransformToJSON.Parameters]
         NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.CompressWithGZIP]
-      [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
+      [Writable.Pipeline.Functions.CompressWithGZIP]
+        [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
         NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.CompressWithZLIB]
-      [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
+      [Writable.Pipeline.Functions.CompressWithZLIB]
+        [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
         NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.FilterByProfileName]
-      [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
+      [Writable.Pipeline.Functions.FilterByProfileName]
+        [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
         ProfileNames = ""
         FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByDeviceName]
-      [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
+      [Writable.Pipeline.Functions.FilterByDeviceName]
+        [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
         DeviceNames = ""
         FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByResourceName]
-      [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
+      [Writable.Pipeline.Functions.FilterByResourceName]
+        [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
         ResourceNames = ""
         FilterOut = "false"
-    [Writable.Pipeline.Functions.HTTPPostJSON]
-      [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
-        url = "http://"
+      [Writable.Pipeline.Functions.HTTPPostJSON]
+        [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
+        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
         persistOnError = "false"
         headername = "" # Name of the header key to add to the HTTP header
         secretname = "" # Name of the secret for the header value in the SecretStore
         secretpath = "" # Path to the secret for the header value in the SecretStore
-    [Writable.Pipeline.Functions.HTTPPutJSON]
-      [Writable.Pipeline.Functions.HTTPPutJSON.Parameters]
-        url = "http://"
+      [Writable.Pipeline.Functions.HTTPPutJSON]
+        [Writable.Pipeline.Functions.HTTPPutJSON.Parameters]
+        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
         persistOnError = "false"
         headername = "" # Name of the header key to add to the HTTP header
         secretname = "" # Name of the secret for the header value in the SecretStore
         secretpath = "" # Path to the secret for the header value in the SecretStore
-    [Writable.Pipeline.Functions.HTTPPostXML]
-      [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
-        url = "http://"
+      [Writable.Pipeline.Functions.HTTPPostXML]
+        [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
+        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
         persistOnError = "false"
         headername = "" # Name of the header key to add to the HTTP header
         secretname = "" # Name of the secret for the header value in the SecretStore
         secretpath = "" # Path to the secret for the header value in the SecretStore
-    [Writable.Pipeline.Functions.HTTPPutXML]
-      [Writable.Pipeline.Functions.HTTPPutXML.Parameters]
-        url = "http://"
+      [Writable.Pipeline.Functions.HTTPPutXML]
+        [Writable.Pipeline.Functions.HTTPPutXML.Parameters]
+        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
         persistOnError = "false"
         headername = "" # Name of the header key to add to the HTTP header
         secretname = "" # Name of the secret for the header value in the SecretStore
         secretpath = "" # Path to the secret for the header value in the SecretStore
-    [Writable.Pipeline.Functions.AddTags]
-      [Writable.Pipeline.Functions.AddTags.Parameters]
+      [Writable.Pipeline.Functions.AddTags]
+        [Writable.Pipeline.Functions.AddTags.Parameters]
         tags=""
+
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
 # security services, i.e. Vault
   [Writable.InsecureSecrets]
     [Writable.InsecureSecrets.DB]
-        path = "redisdb"
-        [Writable.InsecureSecrets.DB.Secrets]
-            username = ""
-            password = ""
+    path = "redisdb"
+      [Writable.InsecureSecrets.DB.Secrets]
+      username = ""
+      password = ""
     [Writable.InsecureSecrets.http]
-        path = "http"
-        [Writable.InsecureSecrets.http.Secrets]
-          headervalue = "<put your value here>"
+    path = "http"
+      [Writable.InsecureSecrets.http.Secrets]
+      headervalue = "<put your value here>"
 
 [Service]
 BootTimeout = "30s"
@@ -108,17 +108,16 @@ Timeout = "30s"
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
-  Type = 'vault'
-  Host = 'localhost'
-  Port = 8200
-  Path = '/v1/secret/edgex/app-service-http-export/'
-  Protocol = 'http'
-  RootCaCertPath = ''
-  ServerName = ''
-  TokenFile = '/tmp/edgex/secrets/app-service-http-export/secrets-token.json'
-  AdditionalRetryAttempts = 10
-  RetryWaitPeriod = "1s"
-
+Type = 'vault'
+Host = 'localhost'
+Port = 8200
+Path = '/v1/secret/edgex/app-service-http-export/'
+Protocol = 'http'
+RootCaCertPath = ''
+ServerName = ''
+TokenFile = '/tmp/edgex/secrets/app-service-http-export/secrets-token.json'
+AdditionalRetryAttempts = 10
+RetryWaitPeriod = "1s"
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
@@ -128,13 +127,12 @@ Timeout = "30s"
   Host = "localhost"
   Port = 48080
 
-[Binding]
+[Trigger]
 Type="edgex-messagebus"
 SubscribeTopics="events, edgex/events"
-
-[MessageBus]
-Type = "zero"
-    [MessageBus.SubscribeHost]
-        Host = "localhost"
-        Port = 5563
-        Protocol = "tcp"
+  [Trigger.EdgexMessageBus]
+  Type = "zero"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 5563
+    Protocol = "tcp"

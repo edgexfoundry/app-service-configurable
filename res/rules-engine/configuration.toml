@@ -1,23 +1,23 @@
 [Writable]
-  LogLevel = "INFO"
-  [Writable.Pipeline]
-    ExecutionOrder = "SetOutputData"
+LogLevel = "INFO"
 
+  [Writable.Pipeline]
+  ExecutionOrder = "SetOutputData"
     [Writable.Pipeline.Functions.SetOutputData]
       [Writable.Pipeline.Functions.SetOutputData.Parameters]
-        ResponseContentType = ""
+      ResponseContentType = ""
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-        ProfileNames = ""
-        FilterOut = "false"
+      ProfileNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = ""
-        FilterOut = "false"
+      DeviceNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-        ResourceNames = ""
-        FilterOut = "false"
+      ResourceNames = ""
+      FilterOut = "false"
 
 [Service]
 BootTimeout = "30s"
@@ -41,19 +41,19 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-[Binding]
+[Trigger]
 Type="edgex-messagebus"
 SubscribeTopics="events, edgex/events"
 PublishTopic="rules-events"
 
-[MessageBus]
+[Trigger.EdgexMessageBus]
 Type = "zero"
-    [MessageBus.SubscribeHost]
-        Host = "localhost"
-        Port = 5563
-        Protocol = "tcp"
-    [MessageBus.PublishHost]
-        Host = "*"
-        Port = 5566
-        Protocol = "tcp"
+  [Trigger.EdgexMessageBus.SubscribeHost]
+  Host = "localhost"
+  Port = 5563
+  Protocol = "tcp"
+  [Trigger.EdgexMessageBus.PublishHost]
+  Host = "*"
+  Port = 5566
+  Protocol = "tcp"
 

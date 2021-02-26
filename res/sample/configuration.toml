@@ -1,20 +1,20 @@
 [Writable]
-  LogLevel = "INFO"
+LogLevel = "INFO"
 
   [Writable.StoreAndForward]
-    Enabled = false
-    RetryInterval = "5m"
-    MaxRetryCount = 10
+  Enabled = false
+  RetryInterval = "5m"
+  MaxRetryCount = 10
 
   # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
-    # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
-    # This is useful when the incoming data isn't an EdgeX Event.
-    UseTargetTypeOfByteArray = false
+  # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
+  # This is useful when the incoming data isn't an EdgeX Event.
+  UseTargetTypeOfByteArray = false
 
-    # ExecutionOrder specifies which functions to run and the order to run them.
-    # All functions listed must have an entry below in the Pipeline.Functions section
-    ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, TransformToXML, SetOutputData"
+  # ExecutionOrder specifies which functions to run and the order to run them.
+  # All functions listed must have an entry below in the Pipeline.Functions section
+  ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, TransformToXML, SetOutputData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
     # These function names must match a function defined in the configurable package of the SDK.
@@ -24,44 +24,44 @@
     # dynamic changes from Consul.
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-        # TODO: Remove 'Unknown' once V1 events no longer supported.
-        ProfileNames = "Random-Float-Device, Random-Integer-Device, Unknown"
-        FilterOut = "false"
+      # TODO: Remove 'Unknown' once V1 events no longer supported.
+      ProfileNames = "Random-Float-Device, Random-Integer-Device, Unknown"
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = "Random-Float-Device, Random-Integer-Device"
-        FilterOut = "false"
+      DeviceNames = "Random-Float-Device, Random-Integer-Device"
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-        ResourceNames = "Int64, Float64"
-        FilterOut = "false"
+      ResourceNames = "Int64, Float64"
+      FilterOut = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
-        tags=""
+      tags=""
     [Writable.Pipeline.Functions.JSONLogic]
       [Writable.Pipeline.Functions.JSONLogic.Parameters]
-        rule = "{ \"and\" : [{\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"==\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} ] }"
+      rule = "{ \"and\" : [{\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"==\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} ] }"
     [Writable.Pipeline.Functions.TransformToXML]
       [Writable.Pipeline.Functions.TransformToXML.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.TransformToJSON]
       [Writable.Pipeline.Functions.TransformToJSON.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithGZIP]
       [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithZLIB]
       [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.MarkAsPushed]
       [Writable.Pipeline.Functions.MarkAsPushed.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.EncryptWithAES]
       [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
-        Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
-        InitVector = "123456789012345678901234567890"
-        SecretPath = ""
-        SecretName = ""
+      Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+      InitVector = "123456789012345678901234567890"
+      SecretPath = ""
+      SecretName = ""
     [Writable.Pipeline.Functions.Batch]
       [Writable.Pipeline.Functions.Batch.Parameters]
     [Writable.Pipeline.Functions.BatchByCount]
@@ -76,92 +76,92 @@
       timeinterval = "60s"
     [Writable.Pipeline.Functions.SetOutputData]
       [Writable.Pipeline.Functions.SetOutputData.Parameters]
-        ResponseContentType = ""
+      ResponseContentType = ""
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
-        DeviceName = ""
-        ReadingName = ""
+      DeviceName = ""
+      ReadingName = ""
     [Writable.Pipeline.Functions.HTTPPost]
       [Writable.Pipeline.Functions.HTTPPost.Parameters]
-        url = "http://"
-        mimeType = "" #OPTIONAL - default application/json
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
+      url = "http://"
+      mimeType = "" #OPTIONAL - default application/json
+      persistOnError = "false"
+      headername = "" # Name of the header key to add to the HTTP header
+      secretname = "" # Name of the secret for the header value in the SecretStore
+      secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPostJSON]
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
-        url = "http://"
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
+      url = "http://"
+      persistOnError = "false"
+      headername = "" # Name of the header key to add to the HTTP header
+      secretname = "" # Name of the secret for the header value in the SecretStore
+      secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
-        url = "http://"
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
+      url = "http://"
+      persistOnError = "false"
+      headername = "" # Name of the header key to add to the HTTP header
+      secretname = "" # Name of the secret for the header value in the SecretStore
+      secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPut]
       [Writable.Pipeline.Functions.HTTPPut.Parameters]
-        url = "http://"
-        mimeType = "" #OPTIONAL - default application/json
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
+      url = "http://"
+      mimeType = "" #OPTIONAL - default application/json
+      persistOnError = "false"
+      headername = "" # Name of the header key to add to the HTTP header
+      secretname = "" # Name of the secret for the header value in the SecretStore
+      secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPutJSON]
       [Writable.Pipeline.Functions.HTTPPutJSON.Parameters]
-        url = "http://"
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
+      url = "http://"
+      persistOnError = "false"
+      headername = "" # Name of the header key to add to the HTTP header
+      secretname = "" # Name of the secret for the header value in the SecretStore
+      secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.HTTPPutXML]
       [Writable.Pipeline.Functions.HTTPPutXML.Parameters]
-        url = "http://"
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
+      url = "http://"
+      persistOnError = "false"
+      headername = "" # Name of the header key to add to the HTTP header
+      secretname = "" # Name of the secret for the header value in the SecretStore
+      secretpath = "" # Path to the secret for the header value in the SecretStore
     [Writable.Pipeline.Functions.MQTTSecretSend]
       [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
-        brokeraddress = "tcps://localhost:8883"
-        topic = "mytopic"
-        secretpath = "/mqtt"
-        clientid = "myclientid"
-        qos="0"
-        autoreconnect="false"
-        retain="false"
-        skipverify = "false"
-        authmode = "none"
-        persistOnError = "false"
+      brokeraddress = "tcps://localhost:8883"
+      topic = "mytopic"
+      secretpath = "/mqtt"
+      clientid = "myclientid"
+      qos="0"
+      autoreconnect="false"
+      retain="false"
+      skipverify = "false"
+      authmode = "none"
+      persistOnError = "false"
 
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports and MQTT exports with
 # new MQTTSecretSend function when not using security services, i.e. Vault
   [Writable.InsecureSecrets]
     [Writable.InsecureSecrets.DB]
-        path = "redisdb"
-        [Writable.InsecureSecrets.DB.Secrets]
-            username = ""
-            password = ""
+    path = "redisdb"
+      [Writable.InsecureSecrets.DB.Secrets]
+      username = ""
+      password = ""
     [Writable.InsecureSecrets.http]
-        path = "http"
-        [Writable.InsecureSecrets.http.Secrets]
-            headervalue = "<put your value here>"
+    path = "http"
+      [Writable.InsecureSecrets.http.Secrets]
+      headervalue = "<put your value here>"
     [Writable.InsecureSecrets.mqtt]
-        path = "mqtt"
-        [Writable.InsecureSecrets.mqtt.Secrets]
-            username = ""
-            password = ""
-            cacert = ""
-            clientcert = ""
-            clientkey = ""
+    path = "mqtt"
+      [Writable.InsecureSecrets.mqtt.Secrets]
+      username = ""
+      password = ""
+      cacert = ""
+      clientcert = ""
+      clientkey = ""
     [Writable.InsecureSecrets.AES]
-      path = "aes"
+    path = "aes"
       [Writable.InsecureSecrets.AES.Secrets]
-        key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+      key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
 
 [Service]
 BootTimeout = "30s"
@@ -191,17 +191,16 @@ Timeout = "30s"
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
-  Type = 'vault'
-  Host = 'localhost'
-  Port = 8200
-  Path = '/v1/secret/edgex/app-service-sample/'
-  Protocol = 'http'
-  RootCaCertPath = ''
-  ServerName = ''
-  TokenFile = '/tmp/edgex/secrets/app-service-sample/secrets-token.json'
-  AdditionalRetryAttempts = 10
-  RetryWaitPeriod = "1s"
-
+Type = 'vault'
+Host = 'localhost'
+Port = 8200
+Path = '/v1/secret/edgex/app-service-sample/'
+Protocol = 'http'
+RootCaCertPath = ''
+ServerName = ''
+TokenFile = '/tmp/edgex/secrets/app-service-sample/secrets-token.json'
+AdditionalRetryAttempts = 10
+RetryWaitPeriod = "1s"
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
@@ -211,18 +210,17 @@ Timeout = "30s"
   Host = "localhost"
   Port = 48080
 
-[Binding]
+[Trigger]
 Type="edgex-messagebus"
 SubscribeTopics="events, edgex/events"
 PublishTopic="example"
-
-[MessageBus]
-Type = "zero"
-    [MessageBus.SubscribeHost]
-        Host = "localhost"
-        Port = 5563
-        Protocol = "tcp"
-    [MessageBus.PublishHost]
-        Host = "*"
-        Port = 5565
-        Protocol = "tcp"
+  [Trigger.EdgexMessageBus]
+  Type = "zero"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 5563
+    Protocol = "tcp"
+    [Trigger.EdgexMessageBus.PublishHost]
+    Host = "*"
+    Port = 5565
+    Protocol = "tcp"
