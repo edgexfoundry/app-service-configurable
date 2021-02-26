@@ -1,88 +1,74 @@
 [Writable]
-  LogLevel = "INFO"
+LogLevel = "INFO"
 
-  # The Pipeline section allows the functions pipeline to be specified via configuration
   [Writable.Pipeline]
-    # If True, the incoming data to the functions pipeline will be []byte, i.e not marshaled to an Event
-    # This is useful when the incoming data isn't an EdgeX Event.
-    UseTargetTypeOfByteArray = false
-
-    # ExecutionOrder specifies which functions to run and the order to run them.
-    # All functions listed must have an entry below in the Pipeline.Functions section
-    ExecutionOrder = "FilterByDeviceName, TransformToXML, SetOutputData"
-
-    # The Pipeline.Functions sections define the parameter configuration for each specific function.
-    # These function names must match a function define in the configurable package of the SDK.
-    # See the Built-In Transforms/Functions section of the SDK"s README for complete list.
-    # Some functions do not require any parameters, but still must be listed.
-    # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
-    # dynamic changes from Consul.
+  UseTargetTypeOfByteArray = false
+  ExecutionOrder = "FilterByDeviceName, TransformToXML, SetOutputData"
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-        ProfileNames = ""
-        FilterOut = "false"
+      ProfileNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = "Random-Float-Device,Random-Integer-Device"
-        FilterOut = "false"
+      DeviceNames = "Random-Float-Device,Random-Integer-Device"
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-        ResourceNames = "RandomValue_Int8, RandomValue_Int64"
-        FilterOut = "false"
+      ResourceNames = "RandomValue_Int8, RandomValue_Int64"
+      FilterOut = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
-        tags=""
+      tags=""
     [Writable.Pipeline.Functions.TransformToXML]
       [Writable.Pipeline.Functions.TransformToXML.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.TransformToJSON]
       [Writable.Pipeline.Functions.TransformToJSON.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithGZIP]
       [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.CompressWithZLIB]
       [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.MarkAsPushed]
       [Writable.Pipeline.Functions.MarkAsPushed.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
+      NoOp = "" # Must have at least one parameter for function to be populated in Consul
     [Writable.Pipeline.Functions.EncryptWithAES]
       [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
-        Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
-        InitVector = "123456789012345678901234567890"
-        SecretPath = ""
-        SecretName = ""
+      Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+      InitVector = "123456789012345678901234567890"
+      SecretPath = ""
+      SecretName = ""
     [Writable.Pipeline.Functions.SetOutputData]
       [Writable.Pipeline.Functions.SetOutputData.Parameters]
-        ResponseContentType = ""
+      ResponseContentType = ""
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
-        DeviceName = ""
-        ReadingName = ""
+      DeviceName = ""
+      ReadingName = ""
     [Writable.Pipeline.Functions.HTTPPost]
       [Writable.Pipeline.Functions.HTTPPost.Parameters]
-        url = "http://"
-        mimeType = "" #OPTIONAL - default application/json
+      url = "http://"
+      mimeType = "" #OPTIONAL - default application/json
     [Writable.Pipeline.Functions.HTTPPostJSON]
       [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
-        url = "http://"
+      url = "http://"
     [Writable.Pipeline.Functions.HTTPPostXML]
       [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
-        url = "http://"
+      url = "http://"
     [Writable.Pipeline.Functions.MQTTSecretSend]
       [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
-        brokeraddress = "tcps://localhost:8883"
-        topic = "mytopic"
-        secretpath = "mqtt"
-        clientid = "myclientid"
-        qos="0"
-        autoreconnect="false"
-        retain="false"
-        skipverify = "false"
-        authmode = "none"
-        persistOnError = "false"
-
+      brokeraddress = "tcps://localhost:8883"
+      topic = "mytopic"
+      secretpath = "mqtt"
+      clientid = "myclientid"
+      qos="0"
+      autoreconnect="false"
+      retain="false"
+      skipverify = "false"
+      authmode = "none"
+      persistOnError = "false"
 
 [Service]
 BootTimeout = "30s"
@@ -106,6 +92,6 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-[Binding]
+[Trigger]
 Type="http"
 

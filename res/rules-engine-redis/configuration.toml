@@ -1,32 +1,33 @@
 [Writable]
   LogLevel = "INFO"
+
   [Writable.Pipeline]
-    ExecutionOrder = "SetOutputData"
+  ExecutionOrder = "SetOutputData"
 
-    [Writable.Pipeline.Functions.SetOutputData]
-      [Writable.Pipeline.Functions.SetOutputData.Parameters]
-        ResponseContentType = ""
-    [Writable.Pipeline.Functions.FilterByProfileName]
-      [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-        ProfileNames = ""
-        FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByDeviceName]
-      [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = ""
-        FilterOut = "false"
-    [Writable.Pipeline.Functions.FilterByResourceName]
-      [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-        ResourceNames = ""
-        FilterOut = "false"
+  [Writable.Pipeline.Functions.SetOutputData]
+    [Writable.Pipeline.Functions.SetOutputData.Parameters]
+    ResponseContentType = ""
+  [Writable.Pipeline.Functions.FilterByProfileName]
+    [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
+    ProfileNames = ""
+    FilterOut = "false"
+  [Writable.Pipeline.Functions.FilterByDeviceName]
+    [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
+    DeviceNames = ""
+    FilterOut = "false"
+  [Writable.Pipeline.Functions.FilterByResourceName]
+    [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
+    ResourceNames = ""
+    FilterOut = "false"
 
-    # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
-    # security services, i.e. Vault
-    [Writable.InsecureSecrets]
-      [Writable.InsecureSecrets.DB]
-        path = "redisdb"
+  # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
+  # security services, i.e. Vault
+  [Writable.InsecureSecrets]
+    [Writable.InsecureSecrets.DB]
+    path = "redisdb"
       [Writable.InsecureSecrets.DB.Secrets]
-        username = ""
-        Password = ""
+      username = ""
+      Password = ""
 
 [Service]
 BootTimeout = "30s"
@@ -50,13 +51,6 @@ Type = "consul"
   Host = "localhost"
   Port = 48080
 
-[Database]
-Type = "redisdb"
-Host = "localhost"
-Port = 6379
-Timeout = "30s"
-Password = ""
-
 # SecretStore is needed for the Redis DB passord for RedisStreams as the MessageBus
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
@@ -71,25 +65,20 @@ ServerName = ''
 TokenFile = '/tmp/edgex/secrets/edgex-application-service/secrets-token.json'
 AdditionalRetryAttempts = 10
 RetryWaitPeriod = "1s"
-
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
-[Binding]
+[Trigger]
 Type="edgex-messagebus"
 SubscribeTopics="events, edgex/events"
 PublishTopic="rules-events"
-
-[MessageBus]
-Type = "redisstreams"
-    [MessageBus.SubscribeHost]
-        Host = "localhost"
-        Port = 6379
-        Protocol = "redis"
-    [MessageBus.PublishHost]
-        Host = "localhost"
-        Port = 6379
-        Protocol = "redis"
-    [MessageBus.Optional]
-        Password ="password"
-
+  [Trigger.EdgexMessageBus]
+  Type = "redisstreams"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
+    [Trigger.EdgexMessageBus.PublishHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
