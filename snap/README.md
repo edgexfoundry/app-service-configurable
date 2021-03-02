@@ -86,10 +86,10 @@ sudo snap install edgex-app-service-configurable edgex-app-service-configurable_
 **Note** – you must ensure that any configuration values that might cause conflict between the multiple instances (e.g. port, log file path, …) must be modified before enabling the snap’s service.
 
 ### Secret Store Usage
-Some profile configuration.toml files specify configuration which requires Secret Store (aka Vault) support, however this snap doesn't yet fully support secure secrets without manual intervention (see below). The snap can also be configured to use insecure secrets as can be done via docker-compose by setting the option ```security-secret-store=false```. Ex.
+Some profile configuration.toml files specify configuration which requires Secret Store (aka Vault) support, however this snap doesn't yet fully support secure secrets without manual intervention (see below). The snap can also be configured to use insecure secrets as can be done via docker-compose by setting the option ```security-secret-store=off```. Ex.
 
 ```
-sudo snap set edgex-app-service-configurable security-secret-store=false
+sudo snap set edgex-app-service-configurable security-secret-store=off
 ```
 
 ### Manually configure the Secret Store (aka Vault) token
