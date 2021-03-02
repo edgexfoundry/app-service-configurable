@@ -3,7 +3,7 @@ LogLevel = "INFO"
 
   [Writable.Pipeline]
   UseTargetTypeOfByteArray = false
-  ExecutionOrder = "FilterByDeviceName, TransformToXML, SetOutputData"
+  ExecutionOrder = "FilterByDeviceName, Transform, SetOutputData"
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
       ProfileNames = ""
@@ -18,24 +18,16 @@ LogLevel = "INFO"
       FilterOut = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
-      tags=""
-    [Writable.Pipeline.Functions.TransformToXML]
-      [Writable.Pipeline.Functions.TransformToXML.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.TransformToJSON]
-      [Writable.Pipeline.Functions.TransformToJSON.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.CompressWithGZIP]
-      [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.CompressWithZLIB]
-      [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.MarkAsPushed]
-      [Writable.Pipeline.Functions.MarkAsPushed.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.EncryptWithAES]
-      [Writable.Pipeline.Functions.EncryptWithAES.Parameters]
+      Tags=""
+    [Writable.Pipeline.Functions.Transform]
+      [Writable.Pipeline.Functions.Transform.Parameters]
+      Type = "xml"
+    [Writable.Pipeline.Functions.Compress]
+      [Writable.Pipeline.Functions.Compress.Parameters]
+      Algorithm = "gzip"
+    [Writable.Pipeline.Functions.Encrypt]
+      [Writable.Pipeline.Functions.Encrypt.Parameters]
+      Algorithm = "aes"
       Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
       InitVector = "123456789012345678901234567890"
       SecretPath = ""
@@ -47,28 +39,23 @@ LogLevel = "INFO"
       [Writable.Pipeline.Functions.PushToCore.Parameters]
       DeviceName = ""
       ReadingName = ""
-    [Writable.Pipeline.Functions.HTTPPost]
-      [Writable.Pipeline.Functions.HTTPPost.Parameters]
-      url = "http://"
-      mimeType = "" #OPTIONAL - default application/json
-    [Writable.Pipeline.Functions.HTTPPostJSON]
-      [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
-      url = "http://"
-    [Writable.Pipeline.Functions.HTTPPostXML]
-      [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
-      url = "http://"
-    [Writable.Pipeline.Functions.MQTTSecretSend]
-      [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
-      brokeraddress = "tcps://localhost:8883"
-      topic = "mytopic"
-      secretpath = "mqtt"
-      clientid = "myclientid"
-      qos="0"
-      autoreconnect="false"
-      retain="false"
-      skipverify = "false"
-      authmode = "none"
-      persistOnError = "false"
+    [Writable.Pipeline.Functions.HTTPExport]
+      [Writable.Pipeline.Functions.HTTPExport.Parameters]
+      Method = "post"
+      Url = "http://"
+      MimeType = "" #OPTIONAL - default application/json
+    [Writable.Pipeline.Functions.MQTTExport]
+      [Writable.Pipeline.Functions.MQTTExport.Parameters]
+      BrokerAddress = "tcps://localhost:8883"
+      Topic = "mytopic"
+      SecretPath = "mqtt"
+      ClientId = "myclientid"
+      QOS="0"
+      AutoReconnect="false"
+      Retain="false"
+      SkipVerify = "false"
+      AuthMode = "none"
+      PersistOnError = "false"
 
 [Service]
 BootTimeout = "30s"
