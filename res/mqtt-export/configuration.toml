@@ -7,19 +7,7 @@ LogLevel = "INFO"
   MaxRetryCount = 10
 
   [Writable.Pipeline]
-  ExecutionOrder = "TransformToJSON, MQTTSecretSend"
-    [Writable.Pipeline.Functions.TransformToXML]
-      [Writable.Pipeline.Functions.TransformToXML.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.TransformToJSON]
-      [Writable.Pipeline.Functions.TransformToJSON.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.CompressWithGZIP]
-      [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
-    [Writable.Pipeline.Functions.CompressWithZLIB]
-      [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
-      NoOp = "" # Must have at least one parameter for function to be populated in Consul
+  ExecutionOrder = "Transform, MQTTExport"
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
       ProfileNames = ""
@@ -32,21 +20,39 @@ LogLevel = "INFO"
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
       ResourceNames = ""
       FilterOut = "false"
-    [Writable.Pipeline.Functions.MQTTSecretSend]
-      [Writable.Pipeline.Functions.MQTTSecretSend.Parameters]
-      brokeraddress = "tcp://broker.hivemq.com:1883" # Hive Public Test Broker
-      topic = "edgex-export"
-      secretpath = "mqtt"
-      clientid = "MQTT-Export"
-      qos="0"
-      autoreconnect="true"
-      retain="false"
-      skipverify = "false"
-      authmode = "none"
-      persistOnError = "false"
+    [Writable.Pipeline.Functions.Transform]
+      [Writable.Pipeline.Functions.Transform.Parameters]
+      Type = "json"
+    [Writable.Pipeline.Functions.Compress]
+      [Writable.Pipeline.Functions.Compress.Parameters]
+      Algorithm = "gzip"
+    [Writable.Pipeline.Functions.Encrypt]
+      [Writable.Pipeline.Functions.Encrypt.Parameters]
+      Algorithm = "aes" # currently can be only be 'aes'
+      Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+      InitVector = "123456789012345678901234567890"
+      SecretPath = ""
+      SecretName = ""
+    [Writable.Pipeline.Functions.Batch]
+      [Writable.Pipeline.Functions.Batch.Parameters]
+      Mode = "bytimecount" # can be 'bycount', 'bytime' or 'bytimecount'
+      BatchThreshold = "30"
+      TimeInterval = "60s"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
-      tags=""
+      Tags=""
+    [Writable.Pipeline.Functions.MQTTExport]
+      [Writable.Pipeline.Functions.MQTTExport.Parameters]
+      BrokerAddress = "tcp://broker.hivemq.com:1883" # Hive Public Test Broker
+      Topic = "edgex-export"
+      SecretPath = "mqtt"
+      ClientId = "MQTT-Export"
+      QOS="0"
+      AutoReconnect="true"
+      Retain="false"
+      SkipVerify = "false"
+      AuthMode = "none"
+      PersistOnError = "false"
 
 # InsecureSecrets are required for Store and Forward DB access and for authenticated MQTT exports with
 # new MQTTSecretSend function when not using security services, i.e. Vault

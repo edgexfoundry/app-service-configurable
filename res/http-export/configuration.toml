@@ -7,63 +7,50 @@
   MaxRetryCount = 10
 
   [Writable.Pipeline]
-    UseTargetTypeOfByteArray = false
-    ExecutionOrder = "FilterByDeviceName, TransformToJSON, HTTPPostJSON"
-      [Writable.Pipeline.Functions.TransformToXML]
-        [Writable.Pipeline.Functions.TransformToXML.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
-      [Writable.Pipeline.Functions.TransformToJSON]
-        [Writable.Pipeline.Functions.TransformToJSON.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
-      [Writable.Pipeline.Functions.CompressWithGZIP]
-        [Writable.Pipeline.Functions.CompressWithGZIP.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
-      [Writable.Pipeline.Functions.CompressWithZLIB]
-        [Writable.Pipeline.Functions.CompressWithZLIB.Parameters]
-        NoOp = "" # Must have at least one parameter for function to be populated in Consul
-      [Writable.Pipeline.Functions.FilterByProfileName]
-        [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-        ProfileNames = ""
-        FilterOut = "false"
-      [Writable.Pipeline.Functions.FilterByDeviceName]
-        [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-        DeviceNames = ""
-        FilterOut = "false"
-      [Writable.Pipeline.Functions.FilterByResourceName]
-        [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-        ResourceNames = ""
-        FilterOut = "false"
-      [Writable.Pipeline.Functions.HTTPPostJSON]
-        [Writable.Pipeline.Functions.HTTPPostJSON.Parameters]
-        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
-      [Writable.Pipeline.Functions.HTTPPutJSON]
-        [Writable.Pipeline.Functions.HTTPPutJSON.Parameters]
-        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
-      [Writable.Pipeline.Functions.HTTPPostXML]
-        [Writable.Pipeline.Functions.HTTPPostXML.Parameters]
-        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
-      [Writable.Pipeline.Functions.HTTPPutXML]
-        [Writable.Pipeline.Functions.HTTPPutXML.Parameters]
-        url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
-        persistOnError = "false"
-        headername = "" # Name of the header key to add to the HTTP header
-        secretname = "" # Name of the secret for the header value in the SecretStore
-        secretpath = "" # Path to the secret for the header value in the SecretStore
-      [Writable.Pipeline.Functions.AddTags]
-        [Writable.Pipeline.Functions.AddTags.Parameters]
-        tags=""
+  UseTargetTypeOfByteArray = false
+  ExecutionOrder = "FilterByDeviceName, Transform, HTTPExport"
+    [Writable.Pipeline.Functions.FilterByProfileName]
+      [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
+      ProfileNames = ""
+      FilterOut = "false"
+    [Writable.Pipeline.Functions.FilterByDeviceName]
+      [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
+      DeviceNames = ""
+      FilterOut = "false"
+    [Writable.Pipeline.Functions.FilterByResourceName]
+      [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
+      ResourceNames = ""
+      FilterOut = "false"
+    [Writable.Pipeline.Functions.Transform]
+      [Writable.Pipeline.Functions.Transform.Parameters]
+      Type = "json"
+    [Writable.Pipeline.Functions.Compress]
+      [Writable.Pipeline.Functions.Compress.Parameters]
+      Algorithm = "gzip"
+    [Writable.Pipeline.Functions.Encrypt]
+      [Writable.Pipeline.Functions.Encrypt.Parameters]
+      Algorithm = "aes" # currently can be only be 'aes'
+      Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
+      InitVector = "123456789012345678901234567890"
+      SecretPath = ""
+      SecretName = ""
+    [Writable.Pipeline.Functions.Batch]
+      [Writable.Pipeline.Functions.Batch.Parameters]
+      Mode = "bytimecount" # can be 'bycount', 'bytime' or 'bytimecount'
+      BatchThreshold = "30"
+      TimeInterval = "60s"
+    [Writable.Pipeline.Functions.AddTags]
+      [Writable.Pipeline.Functions.AddTags.Parameters]
+      Tags=""
+    [Writable.Pipeline.Functions.HTTPExport]
+      [Writable.Pipeline.Functions.HTTPExport.Parameters]
+      Method = "post"
+      MimeType = "application/json"
+      Url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
+      PersistOnError = "false"
+      HeaderName = "" # Name of the header key to add to the HTTP header
+      SecretName = "" # Name of the secret for the header value in the SecretStore
+      SecretPath = "" # Path to the secret for the header value in the SecretStore
 
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
 # security services, i.e. Vault
