@@ -14,6 +14,10 @@ LogLevel = "INFO"
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
       DeviceNames = ""
       FilterOut = "false"
+    [Writable.Pipeline.Functions.FilterBySourceName]
+      [Writable.Pipeline.Functions.FilterBySourceName.Parameters]
+      SourceNames = ""
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
       ResourceNames = ""
