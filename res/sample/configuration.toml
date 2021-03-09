@@ -31,6 +31,10 @@ LogLevel = "INFO"
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
       DeviceNames = "Random-Float-Device, Random-Integer-Device"
       FilterOut = "false"
+    [Writable.Pipeline.Functions.FilterBySourceName]
+      [Writable.Pipeline.Functions.FilterBySourceName.Parameters]
+      SourceNames = "Bool, BoolArray"
+      FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
       ResourceNames = "Int64, Float64"
