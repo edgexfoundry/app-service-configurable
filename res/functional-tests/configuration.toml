@@ -3,7 +3,7 @@ LogLevel = "INFO"
 
   [Writable.Pipeline]
   UseTargetTypeOfByteArray = false
-  ExecutionOrder = "FilterByDeviceName, Transform, SetOutputData"
+  ExecutionOrder = "FilterByDeviceName, Transform, SetResponseData"
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
       ProfileNames = ""
@@ -36,8 +36,8 @@ LogLevel = "INFO"
       InitVector = "123456789012345678901234567890"
       SecretPath = ""
       SecretName = ""
-    [Writable.Pipeline.Functions.SetOutputData]
-      [Writable.Pipeline.Functions.SetOutputData.Parameters]
+    [Writable.Pipeline.Functions.SetResponseData]
+      [Writable.Pipeline.Functions.SetResponseData.Parameters]
       ResponseContentType = ""
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]

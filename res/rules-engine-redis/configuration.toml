@@ -2,10 +2,10 @@
   LogLevel = "INFO"
 
   [Writable.Pipeline]
-  ExecutionOrder = "SetOutputData"
+  ExecutionOrder = "SetResponseData"
 
-  [Writable.Pipeline.Functions.SetOutputData]
-    [Writable.Pipeline.Functions.SetOutputData.Parameters]
+  [Writable.Pipeline.Functions.SetResponseData]
+    [Writable.Pipeline.Functions.SetResponseData.Parameters]
     ResponseContentType = ""
   [Writable.Pipeline.Functions.FilterByProfileName]
     [Writable.Pipeline.Functions.FilterByProfileName.Parameters]

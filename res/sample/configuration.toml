@@ -14,7 +14,7 @@ LogLevel = "INFO"
 
   # ExecutionOrder specifies which functions to run and the order to run them.
   # All functions listed must have an entry below in the Pipeline.Functions section
-  ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, Transform, SetOutputData"
+  ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, Transform, SetResponseData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
     # These function names must match a function defined in the configurable package of the SDK.
@@ -63,8 +63,8 @@ LogLevel = "INFO"
       Mode = "bytimecount" # can be 'bycount', 'bytime' or 'bytimecount'
       BatchThreshold = "30"
       TimeInterval = "60s"
-    [Writable.Pipeline.Functions.SetOutputData]
-      [Writable.Pipeline.Functions.SetOutputData.Parameters]
+    [Writable.Pipeline.Functions.SetResponseData]
+      [Writable.Pipeline.Functions.SetResponseData.Parameters]
       ResponseContentType = "application/xml"
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
