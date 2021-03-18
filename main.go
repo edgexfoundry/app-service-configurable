@@ -17,36 +17,39 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/appsdk"
+	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg"
+	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
 )
 
 const (
-	serviceKey = "AppService-" + appsdk.ProfileSuffixPlaceholder
+	serviceKey = "AppService-" + interfaces.ProfileSuffixPlaceholder
 )
 
 func main() {
-	fmt.Println("Starting Configurable Application Service...")
-	edgexSdk := &appsdk.AppFunctionsSDK{ServiceKey: serviceKey}
-	if err := edgexSdk.Initialize(); err != nil {
-		edgexSdk.LoggingClient.Error(fmt.Sprintf("SDK initialization failed: %v\n", err))
+	service, ok := pkg.NewAppService(serviceKey)
+	if !ok {
 		os.Exit(-1)
 	}
 
-	edgexSdk.LoggingClient.Info("Loading Configurable Pipeline...")
+	lc := service.LoggingClient()
 
-	transforms, err := edgexSdk.LoadConfigurablePipeline()
+	lc.Info("Loading Configurable Pipeline...")
+
+	transforms, err := service.LoadConfigurablePipeline()
 	if err != nil {
-		edgexSdk.LoggingClient.Error("failed to create function pipeline from configuration: " + err.Error())
+		lc.Errorf("failed to create function pipeline from configuration: %s", err.Error())
 		os.Exit(-1)
 	}
 
-	edgexSdk.SetFunctionsPipeline(transforms...)
+	if err = service.SetFunctionsPipeline(transforms...); err != nil {
+		lc.Errorf("Unable to Set the Functions Pipeline: %s", err.Error())
+		os.Exit(-1)
+	}
 
-	if err := edgexSdk.MakeItRun(); err != nil {
-		edgexSdk.LoggingClient.Error("MakeItRun returned error: ", err.Error())
+	if err = service.MakeItRun(); err != nil {
+		lc.Errorf("MakeItRun returned error: %s", err.Error())
 		os.Exit(-1)
 	}
 
