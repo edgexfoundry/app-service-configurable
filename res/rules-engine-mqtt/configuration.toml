@@ -33,13 +33,11 @@ Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "AppService-rules-engine using MQTT message bus has Started"
 Timeout = "5s"
-ConfigAccessTokenFile = '/tmp/edgex/secrets/AppService-rules-engine-mqtt/consul-token' # ignored in non-secure mode
 
 [Registry]
 Host = "localhost"
 Port = 8500
 Type = "consul"
-AccessTokenFile = '/tmp/edgex/secrets/AppService-rules-engine-mqtt/consul-token' # ignored in non-secure mode
 
 [Clients]
   [Clients.edgex-core-data]
@@ -69,3 +67,21 @@ PublishTopic="rules-events"
     AutoReconnect  = "true"
     ConnectTimeout = "30" # Seconds
     SkipCertVerify = "false"
+
+# SecretStore is required when Store and Forward is enabled and running with security
+# so Database credentials can be pulled from Vault. Also now require when running with secure Consul
+# Note when running in docker from compose file set the following environment variables:
+#   - SecretStore_Host: edgex-vault
+[SecretStore]
+Type = 'vault'
+Host = 'localhost'
+Port = 8200
+Path = '/v1/secret/edgex/app-rules-engine-mqtt/'
+Protocol = 'http'
+RootCaCertPath = ''
+ServerName = ''
+TokenFile = '/tmp/edgex/secrets/app-rules-engine-mqtt/secrets-token.json'
+AdditionalRetryAttempts = 10
+RetryWaitPeriod = "1s"
+  [SecretStore.Authentication]
+  AuthType = 'X-Vault-Token'
