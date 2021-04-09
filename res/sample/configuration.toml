@@ -127,13 +127,11 @@ Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "Sample Configurable Application Service Started"
 Timeout = "5s"
-ConfigAccessTokenFile = '/tmp/edgex/secrets/AppService-sample/consul-token' # ignored in non-secure mode
 
 [Registry]
 Host = "localhost"
 Port = 8500
 Type = "consul"
-AccessTokenFile = '/tmp/edgex/secrets/AppService-sample/consul-token' # ignored in non-secure mode
 
 # Database is require when Store and Forward is enabled
 [Database]
@@ -143,18 +141,18 @@ Port = 6379
 Timeout = "30s"
 
 # SecretStore is required when Store and Forward is enabled and running with security
-# so Database credentials can be pulled from Vault.
+# so Database credentials can be pulled from Vault. Also now require when running with secure Consul
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
 Type = 'vault'
 Host = 'localhost'
 Port = 8200
-Path = '/v1/secret/edgex/app-service-sample/'
+Path = '/v1/secret/edgex/app-sample/'
 Protocol = 'http'
 RootCaCertPath = ''
 ServerName = ''
-TokenFile = '/tmp/edgex/secrets/app-service-sample/secrets-token.json'
+TokenFile = '/tmp/edgex/secrets/app-sample/secrets-token.json'
 AdditionalRetryAttempts = 10
 RetryWaitPeriod = "1s"
   [SecretStore.Authentication]

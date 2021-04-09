@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	serviceKey = "AppService-" + interfaces.ProfileSuffixPlaceholder
+	serviceKey = "app-" + interfaces.ProfileSuffixPlaceholder
 )
 
 func main() {

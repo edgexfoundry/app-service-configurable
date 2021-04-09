@@ -85,13 +85,11 @@ Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "AppServiceConfigurable-mqtt-export has Started"
 Timeout = "5s"
-ConfigAccessTokenFile = '/tmp/edgex/secrets/AppService-mqtt-export/consul-token' # ignored in non-secure mode
 
 [Registry]
 Host = "localhost"
 Port = 8500
 Type = "consul"
-AccessTokenFile = '/tmp/edgex/secrets/AppService-mqtt-export/consul-token' # ignored in non-secure mode
 
 # Database is require when Store and Forward is enabled
 # Note when running in docker from compose file set the following environment variables:
@@ -103,18 +101,18 @@ Port = 6379
 Timeout = "30s"
 
 # SecretStore is required when Store and Forward is enabled and running with security
-# so Database credentials can be pulled from Vault.
+# so Database credentials can be pulled from Vault. Also now require when running with secure Consul
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
 Type = 'vault'
 Host = 'localhost'
 Port = 8200
-Path = '/v1/secret/edgex/app-service-mqtt-export/'
+Path = '/v1/secret/edgex/app-mqtt-export/'
 Protocol = 'http'
 RootCaCertPath = ''
 ServerName = ''
-TokenFile = '/tmp/edgex/secrets/app-service-mqtt-export/secrets-token.json'
+TokenFile = '/tmp/edgex/secrets/app-mqtt-export/secrets-token.json'
 AdditionalRetryAttempts = 10
 RetryWaitPeriod = "1s"
   [SecretStore.Authentication]

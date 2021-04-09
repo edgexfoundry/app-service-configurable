@@ -43,13 +43,11 @@ Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "AppService-rules-engine using Redis Streams Message Bus has Started"
 Timeout = "5s"
-ConfigAccessTokenFile = '/tmp/edgex/secrets/AppService-rules-engine-redis/consul-token' # ignored in non-secure mode
 
 [Registry]
 Host = "localhost"
 Port = 8500
 Type = "consul"
-AccessTokenFile = '/tmp/edgex/secrets/AppService-rules-engine-redis/consul-token' # ignored in non-secure mode
 
 [Clients]
   [Clients.edgex-core-data]
@@ -57,18 +55,19 @@ AccessTokenFile = '/tmp/edgex/secrets/AppService-rules-engine-redis/consul-token
   Host = "localhost"
   Port = 48080
 
-# SecretStore is needed for the Redis DB passord for RedisStreams as the MessageBus
+# SecretStore is required when Store and Forward is enabled and running with security
+# so Database credentials can be pulled from Vault. Also now require when running with secure Consul
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
 Type = 'vault'
 Host = 'localhost'
 Port = 8200
-Path = '/v1/secret/edgex/appservice/'
+Path = '/v1/secret/edgex/app-rules-engine-redis/'
 Protocol = 'http'
 RootCaCertPath = ''
 ServerName = ''
-TokenFile = '/tmp/edgex/secrets/edgex-application-service/secrets-token.json'
+TokenFile = '/tmp/edgex/secrets/app-rules-engine-redis/secrets-token.json'
 AdditionalRetryAttempts = 10
 RetryWaitPeriod = "1s"
   [SecretStore.Authentication]
