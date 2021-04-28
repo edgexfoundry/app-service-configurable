@@ -133,7 +133,9 @@ Host = "localhost"
 Port = 8500
 Type = "consul"
 
-# Database is require when Store and Forward is enabled
+# Database is require when Store and Forward is enabled or when using Redis for the Messagebus
+# Note when running in docker from compose file set the following environment variables:
+# - Database_Host: edgex-redis
 [Database]
 Type = "redisdb"
 Host = "localhost"
