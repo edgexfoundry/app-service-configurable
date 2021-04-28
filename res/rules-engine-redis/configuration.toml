@@ -49,6 +49,14 @@ Host = "localhost"
 Port = 8500
 Type = "consul"
 
+# Database is require when Redis is used for secure message bus
+# Type is used as the secret name when getting credentials from the Secret Store
+[Database]
+Type = "redisdb"
+Host = "localhost"
+Port = 6379
+Timeout = "30s"
+
 [Clients]
   [Clients.edgex-core-data]
   Protocol = "http"
