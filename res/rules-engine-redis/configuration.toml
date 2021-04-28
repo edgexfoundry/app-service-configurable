@@ -83,7 +83,7 @@ RetryWaitPeriod = "1s"
 
 [Trigger]
 Type="edgex-messagebus"
-SubscribeTopics="events, edgex/events"
+SubscribeTopics="edgex/events/#"
 PublishTopic="rules-events"
   [Trigger.EdgexMessageBus]
   Type = "redisstreams"
