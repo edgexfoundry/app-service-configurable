@@ -22,6 +22,13 @@ LogLevel = "INFO"
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
       ResourceNames = ""
       FilterOut = "false"
+  # InsecureSecrets are required for Redis is used for message bus
+  [Writable.InsecureSecrets]
+    [Writable.InsecureSecrets.DB]
+    path = "redisdb"
+      [Writable.InsecureSecrets.DB.Secrets]
+      username = ""
+      password = ""
 
 [Service]
 BootTimeout = "30s"
@@ -31,13 +38,21 @@ ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/
 Port = 50001
 Protocol = "http"
 ReadMaxLimit = 100
-StartupMsg = "AppService-rules-engine using ZMQ Message Bus has Started"
+StartupMsg = "App Service for rules engine has Started"
 Timeout = "5s"
 
 [Registry]
 Host = "localhost"
 Port = 8500
 Type = "consul"
+
+# Database is require when Redis is used for message bus
+# Type is used as the secret name when getting credentials from the Secret Store
+[Database]
+Type = "redisdb"
+Host = "localhost"
+Port = 6379
+Timeout = "30s"
 
 [Clients]
   [Clients.edgex-core-data]
@@ -47,19 +62,18 @@ Type = "consul"
 
 [Trigger]
 Type="edgex-messagebus"
-SubscribeTopics="edgex/events"
+SubscribeTopics="edgex/events/#"
 PublishTopic="rules-events"
-
-[Trigger.EdgexMessageBus]
-Type = "zero"
-  [Trigger.EdgexMessageBus.SubscribeHost]
-  Host = "localhost"
-  Port = 5563
-  Protocol = "tcp"
-  [Trigger.EdgexMessageBus.PublishHost]
-  Host = "*"
-  Port = 5566
-  Protocol = "tcp"
+  [Trigger.EdgexMessageBus]
+  Type = "redisstreams"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
+    [Trigger.EdgexMessageBus.PublishHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
 
 # SecretStore is required when Store and Forward is enabled and running with security
 # so Database credentials can be pulled from Vault. Also now require when running with secure Consul

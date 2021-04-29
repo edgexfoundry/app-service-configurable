@@ -168,15 +168,15 @@ RetryWaitPeriod = "1s"
 
 [Trigger]
 Type="edgex-messagebus"
-SubscribeTopics="edgex/events"
+SubscribeTopics="edgex/events/#"
 PublishTopic="example"
   [Trigger.EdgexMessageBus]
-  Type = "zero"
+  Type = "redisstreams"
     [Trigger.EdgexMessageBus.SubscribeHost]
     Host = "localhost"
-    Port = 5563
-    Protocol = "tcp"
+    Port = 6379
+    Protocol = "redis"
     [Trigger.EdgexMessageBus.PublishHost]
-    Host = "*"
-    Port = 5565
-    Protocol = "tcp"
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
