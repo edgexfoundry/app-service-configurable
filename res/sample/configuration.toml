@@ -171,7 +171,7 @@ Type="edgex-messagebus"
 SubscribeTopics="edgex/events/#"
 PublishTopic="example"
   [Trigger.EdgexMessageBus]
-  Type = "redisstreams"
+  Type = "redis"
     [Trigger.EdgexMessageBus.SubscribeHost]
     Host = "localhost"
     Port = 6379
@@ -180,3 +180,6 @@ PublishTopic="example"
     Host = "localhost"
     Port = 6379
     Protocol = "redis"
+    [Trigger.EdgexMessageBus.Optional]
+    authmode = 'usernamepassword'  # required for redis messagebus (secure or insecure).
+    secretname = 'redisdb'
