@@ -16,6 +16,7 @@ GOFLAGS=-ldflags "-X github.com/edgexfoundry/app-functions-sdk-go/v2/internal.SD
 GIT_SHA=$(shell git rev-parse HEAD)
 
 build:
+	go mod tidy
 	$(GO) build $(GOFLAGS) -o $(MICROSERVICE)
 
 # NOTE: This is only used for local development. Jenkins CI does not use this make target
