@@ -128,8 +128,11 @@ RetryWaitPeriod = "1s"
 Type="edgex-messagebus"
 SubscribeTopics="edgex/events/#"
   [Trigger.EdgexMessageBus]
-  Type = "redisstreams"
+  Type = "redis"
     [Trigger.EdgexMessageBus.SubscribeHost]
     Host = "localhost"
     Port = 6379
     Protocol = "redis"
+    [Trigger.EdgexMessageBus.Optional]
+    authmode = 'usernamepassword'  # required for redis messagebus (secure or insecure).
+    secretname = 'redisdb'
