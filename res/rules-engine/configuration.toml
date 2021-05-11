@@ -54,43 +54,6 @@ Host = "localhost"
 Port = 6379
 Timeout = "30s"
 
-[Clients]
-  [Clients.edgex-core-data]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 48080
-
-[Trigger]
-Type="edgex-messagebus"
-SubscribeTopics="edgex/events/#"
-PublishTopic="rules-events"
-  [Trigger.EdgexMessageBus]
-  Type = "redis"
-    [Trigger.EdgexMessageBus.SubscribeHost]
-    Host = "localhost"
-    Port = 6379
-    Protocol = "redis"
-    [Trigger.EdgexMessageBus.PublishHost]
-    Host = "localhost"
-    Port = 6379
-    Protocol = "redis"
-    [Trigger.EdgexMessageBus.Optional]
-    authmode = 'usernamepassword'  # required for redis messagebus (secure or insecure).
-    secretname = 'redisdb'
-    # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
-    # Client Identifiers
-    ClientId ="core-data"
-    # Connection information
-    Qos          =  "0" # Quality of Sevice values are 0 (At most once), 1 (At least once) or 2 (Exactly once)
-    KeepAlive    =  "10" # Seconds (must be 2 or greater)
-    Retained     = "false"
-    AutoReconnect  = "true"
-    ConnectTimeout = "5" # Seconds
-    # TLS configuration - Only used if Cert/Key file or Cert/Key PEMblock are specified
-    SkipCertVerify = "false"
-
-
-
 # SecretStore is required when Store and Forward is enabled and running with security
 # so Database credentials can be pulled from Vault. Also now require when running with secure Consul
 # Note when running in docker from compose file set the following environment variables:
@@ -108,3 +71,38 @@ AdditionalRetryAttempts = 10
 RetryWaitPeriod = "1s"
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
+
+[Clients]
+  [Clients.edgex-core-data]
+  Protocol = "http"
+  Host = "localhost"
+  Port = 48080
+
+[Trigger]
+Type="edgex-messagebus"
+  [Trigger.EdgexMessageBus]
+  Type = "redis"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
+    SubscribeTopics="edgex/events/#"
+    [Trigger.EdgexMessageBus.PublishHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
+    PublishTopic="rules-events"
+    [Trigger.EdgexMessageBus.Optional]
+    authmode = 'usernamepassword'  # required for redis messagebus (secure or insecure).
+    secretname = 'redisdb'
+    # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
+    # Client Identifiers
+    ClientId ="core-data"
+    # Connection information
+    Qos          =  "0" # Quality of Sevice values are 0 (At most once), 1 (At least once) or 2 (Exactly once)
+    KeepAlive    =  "10" # Seconds (must be 2 or greater)
+    Retained     = "false"
+    AutoReconnect  = "true"
+    ConnectTimeout = "5" # Seconds
+    # TLS configuration - Only used if Cert/Key file or Cert/Key PEMblock are specified
+    SkipCertVerify = "false"
