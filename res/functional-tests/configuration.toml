@@ -78,7 +78,7 @@ Port = 8500
 Type = "consul"
 
 [Clients]
-  [Clients.edgex-core-data]
+  [Clients.core-data]
   Protocol = "http"
   Host = "localhost"
   Port = 48080
