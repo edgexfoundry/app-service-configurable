@@ -81,7 +81,7 @@ Type = "consul"
   [Clients.core-data]
   Protocol = "http"
   Host = "localhost"
-  Port = 58880
+  Port = 59880
 
 # SecretStore is required when Store and Forward is enabled and running with security
 # so Database credentials can be pulled from Vault. Also now require when running with secure Consul
