@@ -80,7 +80,7 @@ BootTimeout = "30s"
 CheckInterval = "10s"
 Host = "localhost"
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
-Port = 50002
+Port = 59703
 Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "AppServiceConfigurable-mqtt-export has Started"
@@ -122,7 +122,7 @@ RetryWaitPeriod = "1s"
   [Clients.core-data]
   Protocol = "http"
   Host = "localhost"
-  Port = 48080
+  Port = 58880
 
 [Trigger]
 Type="edgex-messagebus"

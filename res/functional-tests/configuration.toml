@@ -66,7 +66,7 @@ BootTimeout = "30s"
 CheckInterval = "10s"
 Host = "localhost"
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
-Port = 48095
+Port = 59705
 Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "Configurable Application Service Started"
@@ -81,7 +81,7 @@ Type = "consul"
   [Clients.core-data]
   Protocol = "http"
   Host = "localhost"
-  Port = 48080
+  Port = 58880
 
 # SecretStore is required when Store and Forward is enabled and running with security
 # so Database credentials can be pulled from Vault. Also now require when running with secure Consul
