@@ -74,7 +74,7 @@ BootTimeout = "30s"
 CheckInterval = "10s"
 Host = "localhost"
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
-Port = 50003
+Port = 59704
 Protocol = "http"
 ReadMaxLimit = 100
 StartupMsg = "AppServiceConfigurable-http-export has Started"
@@ -116,7 +116,7 @@ RetryWaitPeriod = "1s"
   [Clients.core-data]
   Protocol = "http"
   Host = "localhost"
-  Port = 48080
+  Port = 59880
 
 [Trigger]
 Type="edgex-messagebus"
