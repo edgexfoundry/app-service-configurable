@@ -60,6 +60,8 @@ LogLevel = "INFO"
       SkipVerify = "false"
       AuthMode = "none"
       PersistOnError = "false"
+      KeepAlive = "" # Empty value means use default setting
+      ConnectionTimeout = "" # Empty value means use default setting
 
 [Service]
 HealthCheckInterval = "10s"
