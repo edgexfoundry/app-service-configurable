@@ -60,11 +60,18 @@ LogLevel = "INFO"
       SkipVerify = "false"
       AuthMode = "none"
       PersistOnError = "false"
+      KeepAlive = "" # Empty value means use default setting
+      ConnectionTimeout = "" # Empty value means use default setting
 
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"
 Port = 59705
+ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
+StartupMsg = "app-functional-tests Service Started"
+MaxResultCount = 0 # Not curently used by App Services.
+MaxRequestSize = 0 # Not curently used by App Services.
+RequestTimeout = "5s"
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
 StartupMsg = "app-functional-tests Service Started"
 MaxResultCount = 0 # Not curently used by App Services.

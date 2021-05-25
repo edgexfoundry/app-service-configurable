@@ -47,12 +47,14 @@ LogLevel = "INFO"
       Tags=""
     [Writable.Pipeline.Functions.MQTTExport]
       [Writable.Pipeline.Functions.MQTTExport.Parameters]
-      BrokerAddress = "tcp://broker.hivemq.com:1883" # Hive Public Test Broker
+      BrokerAddress = "tcp://localhost:1883" # Hive Public Test Broker
       Topic = "edgex-export"
       SecretPath = "mqtt"
       ClientId = "MQTT-Export"
       QOS="0"
-      AutoReconnect="true"
+      AutoReconnect="false"
+      KeepAlive = "" # Empty indicates to use default value
+      ConnectTimeout = "" # Empty indicates to use default value
       Retain="false"
       SkipVerify = "false"
       AuthMode = "none"
@@ -78,7 +80,7 @@ LogLevel = "INFO"
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"
-Port = 59703
+Port = 59733
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
 StartupMsg = "app-mqtt-export has Started"
 MaxResultCount = 0 # Not curently used by App Services.
