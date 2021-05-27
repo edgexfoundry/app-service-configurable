@@ -80,7 +80,7 @@ LogLevel = "INFO"
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"
-Port = 59733
+Port = 59703
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
 StartupMsg = "app-mqtt-export has Started"
 MaxResultCount = 0 # Not curently used by App Services.
