@@ -61,13 +61,11 @@ Timeout = "30s"
 Type = 'vault'
 Host = 'localhost'
 Port = 8200
-Path = '/v1/secret/edgex/app-rules-engine/'
+Path = 'app-rules-engine/'
 Protocol = 'http'
 RootCaCertPath = ''
 ServerName = ''
 TokenFile = '/tmp/edgex/secrets/app-rules-engine/secrets-token.json'
-AdditionalRetryAttempts = 10
-RetryWaitPeriod = "1s"
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
