@@ -53,7 +53,7 @@
       # Url can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
       PersistOnError = "false"
-      ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next next export function executes.
+      ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
       ReturnInputData = "false"  # For chained multi destination exports if true, passes the input data to next export function.
       HeaderName = "header" # Name of the header key to add to the HTTP header
       SecretName = "api-key" # Name of the secret for the header value in the SecretStore
@@ -67,7 +67,7 @@
       # Url can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Url = "https://3ff26601-1945-41e3-96b8-27cf446df696.mock.pstmn.io" # Postman mock service (different link than above)
       PersistOnError = "false"
-      ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next next export function executes.
+      ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
       ReturnInputData = "false"  # For chained multi destination exports if true, passing the input data to next export function
       HeaderName = "header" # Name of the header key to add to the HTTP header
       SecretName = "api-key" # Name of the secret for the header value in the SecretStore
