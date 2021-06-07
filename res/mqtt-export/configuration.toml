@@ -48,6 +48,7 @@ LogLevel = "INFO"
     [Writable.Pipeline.Functions.MQTTExport]
       [Writable.Pipeline.Functions.MQTTExport.Parameters]
       BrokerAddress = "tcp://localhost:1883" # Hive Public Test Broker
+      # Topic can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Topic = "edgex-export"
       SecretPath = "mqtt"
       ClientId = "MQTT-Export"

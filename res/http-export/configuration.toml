@@ -8,7 +8,7 @@
 
   [Writable.Pipeline]
   UseTargetTypeOfByteArray = false
-  ExecutionOrder = "FilterByDeviceName, Transform, HTTPExport"
+  ExecutionOrder = "HTTPExport"
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
       ProfileNames = ""
@@ -50,12 +50,28 @@
       [Writable.Pipeline.Functions.HTTPExport.Parameters]
       Method = "post"
       MimeType = "application/json"
+      # Url can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
       PersistOnError = "false"
-      HeaderName = "" # Name of the header key to add to the HTTP header
-      SecretName = "" # Name of the secret for the header value in the SecretStore
-      SecretPath = "" # Path to the secret for the header value in the SecretStore
-
+      ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
+      ReturnInputData = "false"  # For chained multi destination exports if true, passes the input data to next export function.
+      HeaderName = "header" # Name of the header key to add to the HTTP header
+      SecretName = "api-key" # Name of the secret for the header value in the SecretStore
+      SecretPath = "http" # Path to the secret for the header value in the SecretStore
+    # Partial name matching allows multiple instances of same function (configured differently) to be in the function pipeline.
+    # This supports chaining export functions to export to multiple destinations. Name must start with name that matches built in function.
+    [Writable.Pipeline.Functions.HTTPExport2]
+      [Writable.Pipeline.Functions.HTTPExport2.Parameters]
+      Method = "post"
+      MimeType = "application/json"
+      # Url can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
+      Url = "https://3ff26601-1945-41e3-96b8-27cf446df696.mock.pstmn.io" # Postman mock service (different link than above)
+      PersistOnError = "false"
+      ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
+      ReturnInputData = "false"  # For chained multi destination exports if true, passing the input data to next export function
+      HeaderName = "header" # Name of the header key to add to the HTTP header
+      SecretName = "api-key" # Name of the secret for the header value in the SecretStore
+      SecretPath = "http" # Path to the secret for the header value in the SecretStore
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
 # security services, i.e. Vault
   [Writable.InsecureSecrets]
