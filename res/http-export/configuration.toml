@@ -55,9 +55,9 @@
       PersistOnError = "false"
       ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
       ReturnInputData = "false"  # For chained multi destination exports if true, passes the input data to next export function.
-      HeaderName = "header" # Name of the header key to add to the HTTP header
-      SecretName = "api-key" # Name of the secret for the header value in the SecretStore
-      SecretPath = "http" # Path to the secret for the header value in the SecretStore
+      HeaderName = "" # Name of the header key to add to the HTTP header
+      SecretName = "" # Name of the secret for the header value in the SecretStore
+      SecretPath = "" # Path to the secret for the header value in the SecretStore
     # Partial name matching allows multiple instances of same function (configured differently) to be in the function pipeline.
     # This supports chaining export functions to export to multiple destinations. Name must start with name that matches built in function.
     [Writable.Pipeline.Functions.HTTPExport2]
@@ -69,9 +69,9 @@
       PersistOnError = "false"
       ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
       ReturnInputData = "false"  # For chained multi destination exports if true, passing the input data to next export function
-      HeaderName = "header" # Name of the header key to add to the HTTP header
-      SecretName = "api-key" # Name of the secret for the header value in the SecretStore
-      SecretPath = "http" # Path to the secret for the header value in the SecretStore
+      HeaderName = "" # Name of the header key to add to the HTTP header
+      SecretName = "" # Name of the secret for the header value in the SecretStore
+      SecretPath = "" # Path to the secret for the header value in the SecretStore
 # InsecureSecrets are required for Store and Forward DB access and for authenticated HTTP exports when not using
 # security services, i.e. Vault
   [Writable.InsecureSecrets]
