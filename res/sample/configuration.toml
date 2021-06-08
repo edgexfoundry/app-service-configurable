@@ -68,8 +68,11 @@ LogLevel = "INFO"
       ResponseContentType = "application/xml"
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
+      ProfileName = ""
       DeviceName = ""
-      ReadingName = ""
+      ResourceName = ""
+      ValueType = ""
+      MediaType = ""  # Require only when ValueType=Binary
     [Writable.Pipeline.Functions.HTTPExport]
       [Writable.Pipeline.Functions.HTTPExport.Parameters]
       Method = "post" # can be 'post' or 'put'
