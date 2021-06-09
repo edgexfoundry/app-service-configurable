@@ -6,8 +6,11 @@ LogLevel = "INFO"
   ExecutionOrder = "PushToCore"
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
-      DeviceName = ""
-      ReadingName = ""
+      ProfileName = "MyProfile"
+      DeviceName = "MyDevice"
+      ResourceName = "SomeResource"
+      ValueType = "String"
+      MediaType = ""  # Required only when ValueType=Binary
 
 [Service]
 HealthCheckInterval = "10s"
