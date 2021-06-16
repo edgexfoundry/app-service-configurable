@@ -43,37 +43,14 @@ apps:
     plugs: [network, network-bind]
 
 parts:
-  go:
-    plugin: nil
-    source: snap/local
-    build-packages: [curl]
-    override-build: |
-      # use dpkg architecture to figure out our target arch
-      # note - we specifically don't use arch
-      case "$(dpkg --print-architecture)" in
-        amd64)
-          FILE_NAME=go1.16.4.linux-amd64.tar.gz
-          FILE_HASH=7154e88f5a8047aad4b80ebace58a059e36e7e2e4eb3b383127a28c711b4ff59
-          ;;
-        arm64)
-          FILE_NAME=go1.16.4.linux-arm64.tar.gz
-          FILE_HASH=8b18eb05ddda2652d69ab1b1dd1f40dd731799f43c6a58b512ad01ae5b5bba21
-          ;;
-      esac
-      # download the archive, failing on ssl cert problems
-      curl https://dl.google.com/go/$FILE_NAME -O
-      echo "$FILE_HASH $FILE_NAME" > sha256
-      sha256sum -c sha256 | grep OK
-      tar -C $SNAPCRAFT_STAGE -xf go*.tar.gz --strip-components=1
-    prime:
-      - "-*"
 
   app-service-config:
     source: .
     plugin: make
     build-packages: [gcc, git, libzmq3-dev, pkg-config]
+    build-snaps:
+      - go/1.16/stable
     stage-packages: [libzmq5]
-    after: [go]
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "1.2.0-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
