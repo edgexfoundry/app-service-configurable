@@ -47,6 +47,8 @@ apps:
       - bin/startup-env-var.sh
       - bin/security-secret-store-env-var.sh
     daemon: simple
+    passthrough:
+      install-mode: disable
     plugs: [network, network-bind]
 
 parts:
@@ -88,3 +90,12 @@ parts:
   config-common:
     plugin: dump
     source: snap/local/runtime-helpers
+
+  hooks:
+    source: snap/local/hooks
+    plugin: make
+    override-build: |
+      cd $SNAPCRAFT_PART_SRC
+      make build
+      install -DT ./cmd/configure/configure "$SNAPCRAFT_PART_INSTALL/snap/hooks/configure"
+      install -DT ./cmd/install/install "$SNAPCRAFT_PART_INSTALL/snap/hooks/install"
