@@ -70,10 +70,12 @@ TokenFile = '/tmp/edgex/secrets/app-rules-engine/secrets-token.json'
   AuthType = 'X-Vault-Token'
 
 [Clients]
-  [Clients.core-data]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 59880
+  # Used for version check on start-up
+  [Clients.core-metadata]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 59881
+
 
 [Trigger]
 Type="edgex-messagebus"
