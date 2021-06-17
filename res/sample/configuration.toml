@@ -180,11 +180,33 @@ TokenFile = '/tmp/edgex/secrets/app-sample/secrets-token.json'
   [SecretStore.Authentication]
   AuthType = 'X-Vault-Token'
 
+# Note Core Metadata is the only required client as it is now used for the version check
+# The other clients are only needed if the client intrface is being used by one of the configured functions.
 [Clients]
+  # Used for version check on start-up
+  # Also used for DeviceSevice, DeviceProfile and Device clients, which are not currently used by any configurable functions
+  [Clients.core-metadata]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 59881
+
+  # Used for Event client which is used by PushToCoreData function
   [Clients.core-data]
-  Protocol = "http"
-  Host = "localhost"
+  Protocol = 'http'
+  Host = 'localhost'
   Port = 59880
+
+  # Used for Command client, which is not currently used by any configurable functions
+  [Clients.core-command]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 59882
+
+  # Used for Notification and Subscription client, which are not currently used by any configurable functions
+  [Clients.support-notifications]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 59860
 
 [Trigger]
 Type="edgex-messagebus"
