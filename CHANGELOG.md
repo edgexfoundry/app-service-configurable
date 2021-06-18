@@ -1,6 +1,6 @@
 <a name="2.0.0"></a>
 
-## [2.0.0] - 2021-06-30
+## [2.0.0] - Ireland - 2021-06-30 (Not Compatible with 1.x releases)
 ### Change Logs for EdgeX Dependencies
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/master/CHANGELOG.md)
@@ -172,7 +172,7 @@
 - standardize dockerfiles ([#160](https://github.com/edgexfoundry/app-service-configurable/issues/160)) ([#29a5207](https://github.com/edgexfoundry/app-service-configurable/commits/29a5207))
 
 <a name="v1.3.1"></a>
-## [v1.3.1] - 2021-02-08
+## [v1.3.1] Hanoi - 2021-02-08 (Compatible with all V1 Releases)
 ### Bug Fixes 🐛
 - Upgrade to go-mod-messaging with ZMQ fix for Hanoi ([#181](https://github.com/edgexfoundry/app-service-configurable/issues/181)) ([#e7b814b](https://github.com/edgexfoundry/app-service-configurable/commits/e7b814b))
 - **snap:** allow disabling of secret-store via config hook ([#180](https://github.com/edgexfoundry/app-service-configurable/issues/180)) ([#1818c95](https://github.com/edgexfoundry/app-service-configurable/commits/1818c95))
@@ -180,7 +180,7 @@
 - Update to use released SDK for 1.3.1 dot release ([#184](https://github.com/edgexfoundry/app-service-configurable/issues/184)) ([#072b184](https://github.com/edgexfoundry/app-service-configurable/commits/072b184))
 
 <a name="v1.3.0"></a>
-## [v1.3.0] - 2020-11-18
+## [v1.3.0] Hanoi - 2020-11-18 (Compatible with all V1 Releases)
 ### Features ✨
 - Add ResponseContentType to SetOutputData ([#134](https://github.com/edgexfoundry/app-service-configurable/issues/134)) ([#958790d](https://github.com/edgexfoundry/app-service-configurable/commits/958790d))
 - Add ability to use PUT method for HTTP Export in configurable pipeline ([#129](https://github.com/edgexfoundry/app-service-configurable/issues/129)) ([#36f96dc](https://github.com/edgexfoundry/app-service-configurable/commits/36f96dc))
@@ -206,7 +206,7 @@
 
 <a name="v1.2.0"></a>
 
-## [v1.2.0] - 2020-06-11
+## [v1.2.0] Geneva - 2020-06-11 (Compatible with all V1 Releases)
 ### Features ✨
 - upgrade to app-functions-sdk-go v1.2.0 ([#81](https://github.com/edgexfoundry/app-service-configurable/issues/81)) ([#9e5891b](https://github.com/edgexfoundry/app-service-configurable/commits/9e5891b))
 - Add ability to Filter functions to reverse the logic to filter out specified names ([#78](https://github.com/edgexfoundry/app-service-configurable/issues/78)) ([#18accf3](https://github.com/edgexfoundry/app-service-configurable/commits/18accf3))
@@ -218,7 +218,7 @@
 - add semantic.yml for commit linting ([#76](https://github.com/edgexfoundry/app-service-configurable/issues/76)) ([#04d8ebe](https://github.com/edgexfoundry/app-service-configurable/commits/04d8ebe))
 
 <a name="v1.1.0"></a>
-## [v1.1.0] - 2020-05-12
+## [v1.1.0] - Fuji - 2020-05-12 (Compatible with all V1 Releases)
 ### Features ✨
 - Update to latest SDK for latest features and fixes and tweaks ([#72](https://github.com/edgexfoundry/app-service-configurable/issues/72)) ([#3c0b3bd](https://github.com/edgexfoundry/app-service-configurable/commits/3c0b3bd))
 - Updated profiles for latest security config and to latest SDK ([#65fcb17](https://github.com/edgexfoundry/app-service-configurable/commits/65fcb17))
@@ -237,7 +237,7 @@
 - **go.mod:** update sdk version for latest features ([#f0de623](https://github.com/edgexfoundry/app-service-configurable/commits/f0de623))
 
 <a name="v1.0.0"></a>
-## v1.0.0 - 2019-11-12
+## [v1.0.0] - Edinburgh - 2019-11-12
 ### Bug
 - **StoreForward:** Add missing configuration for Vault Integration for DB credentials ([#4c28d98](https://github.com/edgexfoundry/app-service-configurable/commits/4c28d98))
 ### Snap
