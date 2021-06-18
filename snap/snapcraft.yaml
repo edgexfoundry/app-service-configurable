@@ -62,7 +62,9 @@ parts:
     stage-packages: [libzmq5]
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version "1.2.0-$(date +%Y%m%d)+$(git rev-parse --short HEAD)"
+      cd $SNAPCRAFT_PROJECT_DIR
+      GIT_VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
+      snapcraftctl set-version ${GIT_VERSION}
     override-build: |
       cd $SNAPCRAFT_PART_SRC
       make build
