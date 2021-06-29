@@ -29,8 +29,9 @@ confinement: strict
 
 # edinburgh release is epoch 1
 # fuji release is epoch 2
-# geneva release is epoch 3
-epoch: 3
+# geneva/hanoi releases were epoch 3
+# ireland is epoch 4
+epoch: 4
 
 slots:
   edgex-secretstore-token:
