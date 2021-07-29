@@ -1,5 +1,11 @@
 <a name="2.0.0"></a>
 
+## [2.0.1] - Ireland - 2021-07-28 (Not Compatible with 1.x releases)
+
+### Change Logs for EdgeX Dependencies
+
+- [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/master/CHANGELOG.md)
+
 ## [2.0.0] - Ireland - 2021-06-30 (Not Compatible with 1.x releases)
 ### Change Logs for EdgeX Dependencies
 
