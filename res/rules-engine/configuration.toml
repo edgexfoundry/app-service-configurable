@@ -96,7 +96,7 @@ Type="edgex-messagebus"
     secretname = 'redisdb'
     # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
     # Client Identifiers
-    ClientId ="core-data"
+    ClientId ="app-rules-engine"
     # Connection information
     Qos          =  "0" # Quality of Sevice values are 0 (At most once), 1 (At least once) or 2 (Exactly once)
     KeepAlive    =  "10" # Seconds (must be 2 or greater)
