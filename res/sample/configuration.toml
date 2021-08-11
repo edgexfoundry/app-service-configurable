@@ -24,8 +24,7 @@ LogLevel = "INFO"
     # dynamic changes from Consul.
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-      # TODO: Remove 'Unknown' once V1 events no longer supported.
-      ProfileNames = "Random-Float-Device, Random-Integer-Device, Unknown"
+      ProfileNames = "Random-Float-Device, Random-Integer-Device"
       FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
@@ -47,20 +46,20 @@ LogLevel = "INFO"
       Rule = "{ \"and\" : [{\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"==\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} ] }"
     [Writable.Pipeline.Functions.Transform]
       [Writable.Pipeline.Functions.Transform.Parameters]
-      Type = "xml" # can be 'xml' or 'json'
+      Type = "xml" # can be "xml" or "json"
     [Writable.Pipeline.Functions.Compress]
       [Writable.Pipeline.Functions.Compress.Parameters]
-      Algorithm = "gzip" # can be 'gzip' or 'zlib'
+      Algorithm = "gzip" # can be "gzip" or "zlib"
     [Writable.Pipeline.Functions.Encrypt]
       [Writable.Pipeline.Functions.Encrypt.Parameters]
-      Algorithm = "aes" # currently can be only be 'aes'
+      Algorithm = "aes" # currently can be only be "aes"
       Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
       InitVector = "123456789012345678901234567890"
       SecretPath = ""
       SecretName = ""
     [Writable.Pipeline.Functions.Batch]
       [Writable.Pipeline.Functions.Batch.Parameters]
-      Mode = "bytimecount" # can be 'bycount', 'bytime' or 'bytimecount'
+      Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
       BatchThreshold = "30"
       TimeInterval = "60s"
     [Writable.Pipeline.Functions.SetResponseData]
@@ -75,9 +74,9 @@ LogLevel = "INFO"
       MediaType = ""  # Required only when ValueType=Binary
     [Writable.Pipeline.Functions.HTTPExport]
       [Writable.Pipeline.Functions.HTTPExport.Parameters]
-      Method = "post" # can be 'post' or 'put'
-      MimeType = "" #OPTIONAL - defaults to 'application/json' if not set
-      # Url can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
+      Method = "post" # can be "post" or "put"
+      MimeType = "" #OPTIONAL - defaults to "application/json" if not set
+      # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Url = "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
       PersistOnError = "false"
       ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
@@ -89,9 +88,9 @@ LogLevel = "INFO"
     # This supports chaining export functions to export to multiple destinations. Name must start with name that matches built in function.
     [Writable.Pipeline.Functions.HTTPExport2]
       [Writable.Pipeline.Functions.HTTPExport2.Parameters]
-      Method = "post" # can be 'post' or 'put'
-      MimeType = "" #OPTIONAL - defaults to 'application/json' if not set
-      # Url can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
+      Method = "post" # can be "post" or "put"
+      MimeType = "" #OPTIONAL - defaults to "application/json" if not set
+      # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Url = "https://3ff26601-1945-41e3-96b8-27cf446df696.mock.pstmn.io" # Postman mock service (different link than above)
       PersistOnError = "false"
       ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send eror so next export function executes.
@@ -102,7 +101,7 @@ LogLevel = "INFO"
     [Writable.Pipeline.Functions.MQTTExport]
       [Writable.Pipeline.Functions.MQTTExport.Parameters]
       BrokerAddress = "tcps://localhost:8883"
-      # Topic can have place holders in the form '{key-name}' that are replaced with matching Context values. Error occurs if no value match place holder(s).
+      # Topic can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Topic = "mytopic"
       SecretPath = "/mqtt"
       ClientId = "myclientid"
@@ -169,16 +168,16 @@ Timeout = "30s"
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
-Type = 'vault'
-Host = 'localhost'
+Type = "vault"
+Host = "localhost"
 Port = 8200
-Path = 'app-sample/'
-Protocol = 'http'
-RootCaCertPath = ''
-ServerName = ''
-TokenFile = '/tmp/edgex/secrets/app-sample/secrets-token.json'
+Path = "app-sample/"
+Protocol = "http"
+RootCaCertPath = ""
+ServerName = ""
+TokenFile = "/tmp/edgex/secrets/app-sample/secrets-token.json"
   [SecretStore.Authentication]
-  AuthType = 'X-Vault-Token'
+  AuthType = "X-Vault-Token"
 
 # Note Core Metadata is the only required client as it is now used for the version check
 # The other clients are only needed if the client intrface is being used by one of the configured functions.
@@ -186,26 +185,26 @@ TokenFile = '/tmp/edgex/secrets/app-sample/secrets-token.json'
   # Used for version check on start-up
   # Also used for DeviceSevice, DeviceProfile and Device clients, which are not currently used by any configurable functions
   [Clients.core-metadata]
-  Protocol = 'http'
-  Host = 'localhost'
+  Protocol = "http"
+  Host = "localhost"
   Port = 59881
 
   # Used for Event client which is used by PushToCoreData function
   [Clients.core-data]
-  Protocol = 'http'
-  Host = 'localhost'
+  Protocol = "http"
+  Host = "localhost"
   Port = 59880
 
   # Used for Command client, which is not currently used by any configurable functions
   [Clients.core-command]
-  Protocol = 'http'
-  Host = 'localhost'
+  Protocol = "http"
+  Host = "localhost"
   Port = 59882
 
   # Used for Notification and Subscription client, which are not currently used by any configurable functions
   [Clients.support-notifications]
-  Protocol = 'http'
-  Host = 'localhost'
+  Protocol = "http"
+  Host = "localhost"
   Port = 59860
 
 [Trigger]
@@ -223,8 +222,8 @@ Type="edgex-messagebus"
     Protocol = "redis"
     PublishTopic="example"
     [Trigger.EdgexMessageBus.Optional]
-    authmode = 'usernamepassword'  # required for redis messagebus (secure or insecure).
-    secretname = 'redisdb'
+    authmode = "usernamepassword"  # required for redis messagebus (secure or insecure).
+    secretname = "redisdb"
     # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
     # Client Identifiers
     ClientId ="app-sample"
