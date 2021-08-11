@@ -4,7 +4,6 @@ debug
 *.exe
 app-service-configurable
 .vscode
-go.sum
 coverage.out
 logs/
 .idea
