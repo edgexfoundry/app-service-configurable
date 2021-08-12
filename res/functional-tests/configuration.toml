@@ -81,8 +81,8 @@ Type = "consul"
 [Clients]
   # Used for version check on start-up
   [Clients.core-metadata]
-  Protocol = 'http'
-  Host = 'localhost'
+  Protocol = "http"
+  Host = "localhost"
   Port = 59881
 
   # Used for Event client which is used by PushToCoreData function
@@ -96,16 +96,16 @@ Type = "consul"
 # Note when running in docker from compose file set the following environment variables:
 #   - SecretStore_Host: edgex-vault
 [SecretStore]
-Type = 'vault'
-Host = 'localhost'
+Type = "vault"
+Host = "localhost"
 Port = 8200
-Path = 'app-functional-tests/'
-Protocol = 'http'
-RootCaCertPath = ''
-ServerName = ''
-TokenFile = '/tmp/edgex/secrets/app-functional-tests/secrets-token.json'
+Path = "app-functional-tests/"
+Protocol = "http"
+RootCaCertPath = ""
+ServerName = ""
+TokenFile = "/tmp/edgex/secrets/app-functional-tests/secrets-token.json"
   [SecretStore.Authentication]
-  AuthType = 'X-Vault-Token'
+  AuthType = "X-Vault-Token"
 
 [Trigger]
 Type="http"
