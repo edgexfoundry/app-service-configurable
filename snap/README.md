@@ -51,11 +51,12 @@ The App Service Configurable application service allows a variety of use cases t
 /var/snap/edgex-app-service-configurable/current/config/res/
 
 ### Configuration Overrides
-While it's possible on Ubuntu Core to provide additional profiles via gadget snap content interface, quite often only minor changes to
-existing profiles are required. These changes can be accomplished via support for EdgeX environment variable configuration overrides via
-the snap's configure hook. If the service has already been started, setting one of these overrides currently requires the
-service to be restarted via the command-line or snapd's REST API. If the overrides are provided via the snap configuration defaults
-capability of a gadget snap, the overrides will be picked up when the services are first started.
+While it's possible to manually edit the profile-specific ```configuration.toml``` files (found in ```$SNAP_DATA/config/res/<profile>```)
+prior to enabling the service, quite often only minor changes to existing profiles are required. These changes can be accomplished via
+support for EdgeX environment variable configuration overrides via the snap's configure hook. If the service has already been started,
+setting one of these overrides currently requires the service to be restarted via the command-line or snapd's REST API. If the overrides
+are provided via the snap configuration defaults capability of a gadget snap, the overrides will be picked up when the services are first
+started.
 
 The following syntax is used to specify service-specific configuration overrides:
 
