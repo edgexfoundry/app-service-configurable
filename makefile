@@ -18,6 +18,9 @@ GIT_SHA=$(shell git rev-parse HEAD)
 build:
 	$(GO) build $(GOFLAGS) -o $(MICROSERVICE)
 
+tidy:
+	go mod tidy
+
 # NOTE: This is only used for local development. Jenkins CI does not use this make target
 docker:
 	docker build \

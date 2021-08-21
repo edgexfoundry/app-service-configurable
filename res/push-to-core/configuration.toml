@@ -4,6 +4,8 @@ LogLevel = "INFO"
   [Writable.Pipeline]
   UseTargetTypeOfByteArray = true
   ExecutionOrder = "PushToCore"
+
+  [Writable.Pipeline.Functions]
     [Writable.Pipeline.Functions.PushToCore]
       [Writable.Pipeline.Functions.PushToCore.Parameters]
       ProfileName = "MyProfile"
