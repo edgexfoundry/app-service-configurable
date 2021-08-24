@@ -18,6 +18,8 @@ LogLevel = "INFO"
 
   # Pipeline.PerTopicPipelines sections allow for multiple pipleline to be defined to get executed when the specified
   # Topic match the incoming topic. The Id must be unique, but the Topic does not.
+  # See https://docs.edgexfoundry.org/2.1/microservices/application/AppServiceConfigurable/#pipeline-per-topic
+  # for complete details on Pipeline Per Topic.
   [Writable.Pipeline.PerTopicPipelines]
     [Writable.Pipeline.PerTopicPipelines.float]
       Id = "float-pipeline"
