@@ -9,6 +9,8 @@
   [Writable.Pipeline]
   UseTargetTypeOfByteArray = false
   ExecutionOrder = "HTTPExport"
+
+  [Writable.Pipeline.Functions]
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
       ProfileNames = ""

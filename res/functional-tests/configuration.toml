@@ -4,6 +4,8 @@ LogLevel = "INFO"
   [Writable.Pipeline]
   UseTargetTypeOfByteArray = false
   ExecutionOrder = "FilterByDeviceName, Transform, SetResponseData"
+
+  [Writable.Pipeline.Functions]
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
       ProfileNames = ""

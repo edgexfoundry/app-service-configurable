@@ -14,7 +14,21 @@ LogLevel = "INFO"
 
   # ExecutionOrder specifies which functions to run and the order to run them.
   # All functions listed must have an entry below in the Pipeline.Functions section
-  ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, Transform, SetResponseData"
+  ExecutionOrder = "FilterByProfileName, FilterByDeviceName, FilterByResourceName, TransformXml, SetResponseData"
+
+  # Pipeline.PerTopicPipelines sections allow for multiple pipleline to be defined to get executed when the specified
+  # Topic match the incoming topic. The Id must be unique, but the Topic does not.
+  # See https://docs.edgexfoundry.org/2.1/microservices/application/AppServiceConfigurable/#pipeline-per-topic
+  # for complete details on Pipeline Per Topic.
+  [Writable.Pipeline.PerTopicPipelines]
+    [Writable.Pipeline.PerTopicPipelines.float]
+      Id = "float-pipeline"
+      Topic = "edgex/events/device/#/Random-Float-Device/#"
+      ExecutionOrder = "TransformJson, SetResponseData"
+    [Writable.Pipeline.PerTopicPipelines.int8]
+      Id = "int8-pipeline"
+      Topic = "edgex/events/device/#/#/Int8"
+      ExecutionOrder = "TransformXml, Compress, SetResponseData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
     # These function names must match a function defined in the configurable package of the SDK.
@@ -22,21 +36,22 @@ LogLevel = "INFO"
     # Some functions do not require any parameters, but still must be listed.
     # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
     # dynamic changes from Consul.
+  [Writable.Pipeline.Functions]
     [Writable.Pipeline.Functions.FilterByProfileName]
       [Writable.Pipeline.Functions.FilterByProfileName.Parameters]
-      ProfileNames = "Random-Float-Device, Random-Integer-Device"
+      ProfileNames = "Random-Integer-Device"
       FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByDeviceName]
       [Writable.Pipeline.Functions.FilterByDeviceName.Parameters]
-      DeviceNames = "Random-Float-Device, Random-Integer-Device"
+      DeviceNames = "Random-Integer-Device"
       FilterOut = "false"
     [Writable.Pipeline.Functions.FilterBySourceName]
       [Writable.Pipeline.Functions.FilterBySourceName.Parameters]
-      SourceNames = "Bool, BoolArray"
+      SourceNames = "Int8, Int16 Int32, Int64"
       FilterOut = "false"
     [Writable.Pipeline.Functions.FilterByResourceName]
       [Writable.Pipeline.Functions.FilterByResourceName.Parameters]
-      ResourceNames = "Int64, Float64"
+      ResourceNames = "Int8, Int16, Int32, Int64"
       FilterOut = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
@@ -44,9 +59,12 @@ LogLevel = "INFO"
     [Writable.Pipeline.Functions.JSONLogic]
       [Writable.Pipeline.Functions.JSONLogic.Parameters]
       Rule = "{ \"and\" : [{\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"==\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} ] }"
-    [Writable.Pipeline.Functions.Transform]
-      [Writable.Pipeline.Functions.Transform.Parameters]
+    [Writable.Pipeline.Functions.TransformXml]
+      [Writable.Pipeline.Functions.TransformXml.Parameters]
       Type = "xml" # can be "xml" or "json"
+    [Writable.Pipeline.Functions.TransformJson]
+      [Writable.Pipeline.Functions.TransformJson.Parameters]
+      Type = "json" # can be "xml" or "json"
     [Writable.Pipeline.Functions.Compress]
       [Writable.Pipeline.Functions.Compress.Parameters]
       Algorithm = "gzip" # can be "gzip" or "zlib"

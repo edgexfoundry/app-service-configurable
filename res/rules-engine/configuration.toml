@@ -3,6 +3,8 @@ LogLevel = "INFO"
 
   [Writable.Pipeline]
   ExecutionOrder = "SetResponseData"
+
+  [Writable.Pipeline.Functions]
     [Writable.Pipeline.Functions.SetResponseData]
       [Writable.Pipeline.Functions.SetResponseData.Parameters]
       ResponseContentType = ""

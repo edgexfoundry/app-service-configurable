@@ -37,15 +37,27 @@ func main() {
 
 	lc.Info("Loading Configurable Pipeline...")
 
-	transforms, err := service.LoadConfigurablePipeline()
+	configuredPipelines, err := service.LoadConfigurableFunctionPipelines()
 	if err != nil {
-		lc.Errorf("failed to create function pipeline from configuration: %s", err.Error())
+		lc.Errorf("failed to load configured function pipelines: %s", err.Error())
 		os.Exit(-1)
 	}
 
-	if err = service.SetFunctionsPipeline(transforms...); err != nil {
-		lc.Errorf("Unable to Set the Functions Pipeline: %s", err.Error())
-		os.Exit(-1)
+	lc.Debugf("Found %d configured pipeline(s)", len(configuredPipelines))
+
+	for _, pipeline := range configuredPipelines {
+		switch pipeline.Id {
+		case interfaces.DefaultPipelineId:
+			if err = service.SetFunctionsPipeline(pipeline.Transforms...); err != nil {
+				lc.Errorf("Unable to Set Default Functions Pipeline: %s", pipeline.Id, err.Error())
+				os.Exit(-1)
+			}
+		default:
+			if err = service.AddFunctionsPipelineForTopic(pipeline.Id, pipeline.Topic, pipeline.Transforms...); err != nil {
+				lc.Errorf("Unable to Add Functions Pipeline for pipeline id '%s': %s", pipeline.Id, err.Error())
+				os.Exit(-1)
+			}
+		}
 	}
 
 	if err = service.MakeItRun(); err != nil {
