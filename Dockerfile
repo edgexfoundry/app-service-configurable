@@ -36,7 +36,7 @@ ARG MAKE="make build"
 RUN $MAKE
 
 #final stage
-FROM alpine:3.12
+FROM alpine:3.14
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
   copyright='Copyright (c) 2021: Intel'
 LABEL Name=app-service-configurable Version=${VERSION}
