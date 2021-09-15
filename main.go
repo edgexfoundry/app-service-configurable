@@ -48,12 +48,12 @@ func main() {
 	for _, pipeline := range configuredPipelines {
 		switch pipeline.Id {
 		case interfaces.DefaultPipelineId:
-			if err = service.SetFunctionsPipeline(pipeline.Transforms...); err != nil {
+			if err = service.SetDefaultFunctionsPipeline(pipeline.Transforms...); err != nil {
 				lc.Errorf("Unable to Set Default Functions Pipeline: %s", pipeline.Id, err.Error())
 				os.Exit(-1)
 			}
 		default:
-			if err = service.AddFunctionsPipelineForTopic(pipeline.Id, pipeline.Topic, pipeline.Transforms...); err != nil {
+			if err = service.AddFunctionsPipelineForTopics(pipeline.Id, pipeline.Topics, pipeline.Transforms...); err != nil {
 				lc.Errorf("Unable to Add Functions Pipeline for pipeline id '%s': %s", pipeline.Id, err.Error())
 				os.Exit(-1)
 			}
