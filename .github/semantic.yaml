@@ -4,7 +4,6 @@ titleAndCommits: true
 types:
     - feat
     - fix
-    - improvement
     - docs
     - style
     - refactor
@@ -12,5 +11,4 @@ types:
     - test
     - build
     - ci
-    - chore
     - revert
