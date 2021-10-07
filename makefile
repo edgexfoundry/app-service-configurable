@@ -35,10 +35,12 @@ docker:
 test:
 	$(GO) test -coverprofile=coverage.out ./...
 	$(GO) vet ./...
-	gofmt -l .
-	[ "`gofmt -l .`" = "" ]
+	gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")
+	[ "`gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")`" = "" ]
 	./bin/test-attribution-txt.sh
 
 clean:
 	rm -f $(MICROSERVICE)
 
+vendor:
+	$(GO) mod vendor
