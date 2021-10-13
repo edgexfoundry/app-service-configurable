@@ -61,13 +61,17 @@ parts:
     build-snaps:
       - go/1.16/stable
     stage-packages: [libzmq5]
-    override-pull: |
-      snapcraftctl pull
-      cd $SNAPCRAFT_PROJECT_DIR
-      GIT_VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
-      snapcraftctl set-version ${GIT_VERSION}
     override-build: |
       cd $SNAPCRAFT_PART_SRC
+
+      GIT_VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
+      if [ -z "$GIT_VERSION" ]; then
+        GIT_VERSION="0.0.0"
+      fi
+      snapcraftctl set-version ${GIT_VERSION}
+      echo $GIT_VERSION > ./VERSION
+
+      make tidy
       make build
 
       # install the service binary
