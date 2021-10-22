@@ -166,6 +166,14 @@ StartupMsg = "app-sample has Started"
 MaxResultCount = 0 # Not curently used by App Services.
 MaxRequestSize = 0 # Not curently used by App Services.
 RequestTimeout = "5s"
+  [Service.CORSConfiguration]
+  EnableCORS = false
+  CORSAllowCredentials = false
+  CORSAllowedOrigin = "https://localhost"
+  CORSAllowedMethods = "GET, POST, PUT, PATCH, DELETE"
+  CORSAllowedHeaders = "Authorization, Accept, Accept-Language, Content-Language, Content-Type, X-Correlation-ID"
+  CORSExposeHeaders = "Cache-Control, Content-Language, Content-Length, Content-Type, Expires, Last-Modified, Pragma, X-Correlation-ID"
+  CORSMaxAge = 3600
 
 [Registry]
 Host = "localhost"
