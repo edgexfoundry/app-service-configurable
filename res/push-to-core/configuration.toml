@@ -62,6 +62,8 @@ Path = "app-push-to-core/"
 Protocol = "http"
 RootCaCertPath = ""
 ServerName = ""
+SecretsFile = ""
+DisableScrubSecretsFile = false
 TokenFile = "/tmp/edgex/secrets/app-push-to-core/secrets-token.json"
   [SecretStore.Authentication]
   AuthType = "X-Vault-Token"

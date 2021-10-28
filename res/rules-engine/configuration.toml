@@ -75,6 +75,8 @@ Path = "app-rules-engine/"
 Protocol = "http"
 RootCaCertPath = ""
 ServerName = ""
+SecretsFile = ""
+DisableScrubSecretsFile = false
 TokenFile = "/tmp/edgex/secrets/app-rules-engine/secrets-token.json"
   [SecretStore.Authentication]
   AuthType = "X-Vault-Token"

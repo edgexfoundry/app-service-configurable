@@ -88,6 +88,8 @@ Path = "app-external-mqtt-trigger/"
 Protocol = "http"
 RootCaCertPath = ""
 ServerName = ""
+SecretsFile = ""
+DisableScrubSecretsFile = false
 TokenFile = "/tmp/edgex/secrets/app-external-mqtt-trigger/secrets-token.json"
   [SecretStore.Authentication]
   AuthType = "X-Vault-Token"
