@@ -131,6 +131,8 @@ Path = "app-http-export/"
 Protocol = "http"
 RootCaCertPath = ""
 ServerName = ""
+SecretsFile = ""
+DisableScrubSecretsFile = false
 TokenFile = "/tmp/edgex/secrets/app-http-export/secrets-token.json"
   [SecretStore.Authentication]
   AuthType = "X-Vault-Token"
