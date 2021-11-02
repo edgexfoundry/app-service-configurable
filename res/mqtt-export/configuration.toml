@@ -34,11 +34,9 @@ LogLevel = "INFO"
       Algorithm = "gzip"
     [Writable.Pipeline.Functions.Encrypt]
       [Writable.Pipeline.Functions.Encrypt.Parameters]
-      Algorithm = "aes" # currently can be only be "aes"
-      Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
-      InitVector = "123456789012345678901234567890"
-      SecretPath = ""
-      SecretName = ""
+      Algorithm = "aes256" # "aes" has been Deprecated. Please use "aes256"
+      SecretPath = "aes"
+      SecretName = "key"
     [Writable.Pipeline.Functions.Batch]
       [Writable.Pipeline.Functions.Batch.Parameters]
       Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
@@ -50,7 +48,6 @@ LogLevel = "INFO"
     [Writable.Pipeline.Functions.MQTTExport]
       [Writable.Pipeline.Functions.MQTTExport.Parameters]
       BrokerAddress = "tcp://localhost:1883" # Hive Public Test Broker
-      # Topic can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Topic = "edgex-export"
       SecretPath = "mqtt"
       ClientId = "MQTT-Export"

@@ -35,11 +35,9 @@
       Algorithm = "gzip"
     [Writable.Pipeline.Functions.Encrypt]
       [Writable.Pipeline.Functions.Encrypt.Parameters]
-      Algorithm = "aes" # currently can be only be "aes"
-      Key = "aquqweoruqwpeoruqwpoeruqwpoierupqoweiurpoqwiuerpqowieurqpowieurpoqiweuroipwqure"
-      InitVector = "123456789012345678901234567890"
-      SecretPath = ""
-      SecretName = ""
+      Algorithm = "aes256" # "aes" has been Deprecated. Please use "aes256"
+      SecretPath = "aes"
+      SecretName = "key"
     [Writable.Pipeline.Functions.Batch]
       [Writable.Pipeline.Functions.Batch.Parameters]
       Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
