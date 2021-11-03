@@ -52,8 +52,8 @@ github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21/go.mod h1
 github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFPTqq+I=
 github.com/eclipse/paho.mqtt.golang v1.3.5 h1:sWtmgNxYM9P2sP+xEItMozsR3w0cqZFlqnNN1bdl41Y=
 github.com/eclipse/paho.mqtt.golang v1.3.5/go.mod h1:eTzb4gxwwyWpqBUHGQZ4ABAV7+Jgm1PklsYT/eo8Hcc=
-github.com/edgexfoundry/app-functions-sdk-go/v2 v2.0.2-dev.39 h1:h6zrR8+5FiOqqIE26NAr1mngzc7Cs+tWJ4conMTuKKo=
-github.com/edgexfoundry/app-functions-sdk-go/v2 v2.0.2-dev.39/go.mod h1:fyQAOXXa+M/YZIRrmnhRFdE7YSbHVg76GyJDybxeH+M=
+github.com/edgexfoundry/app-functions-sdk-go/v2 v2.0.2-dev.40 h1:247OGIUkyz5jHIBLK/4cfL7MKqTRywIRXum0/XUOCEI=
+github.com/edgexfoundry/app-functions-sdk-go/v2 v2.0.2-dev.40/go.mod h1:fyQAOXXa+M/YZIRrmnhRFdE7YSbHVg76GyJDybxeH+M=
 github.com/edgexfoundry/go-mod-bootstrap/v2 v2.0.1-dev.20 h1:bjaf9LAD1OQz82ZL9rzCNOcxVj1ijfO886Ya0gHe4AI=
 github.com/edgexfoundry/go-mod-bootstrap/v2 v2.0.1-dev.20/go.mod h1:9rbN64DcS1miLP6qMLlYRUcpdtgPhFNIYadlwthVXQ8=
 github.com/edgexfoundry/go-mod-configuration/v2 v2.0.1-dev.5 h1:icE1aVlX7I3SJ0qPqZJchCr2JLe2TMRZlUMIM2qoivo=
