@@ -4,13 +4,13 @@
 
 App-Service-Configurable is provided as an easy way to get started with processing data flowing through EdgeX.
 
-For documentation please visit https://docs.edgexfoundry.org/1.2/microservices/application/AppServiceConfigurable/.
+For latest documentation please visit https://docs.edgexfoundry.org and navigate to **Microservices** (On top menu) then **Application Service -> App Service Configurable** (On left side menu)
 
-For a list of examples please visit https://docs.edgexfoundry.org/1.2/examples/AppServiceExamples/
+For a list of examples please visit https://docs.edgexfoundry.org and navigate to **Example and Tutorials** (On top menu) then **Application Services** tab and follow the link in the description.
 
 ## Build Prerequisites
 
-Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/master/README.md).
+Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md).
 
 ## Versioning
 
@@ -18,5 +18,5 @@ Please refer to the EdgeX Foundry [versioning policy](https://wiki.edgexfoundry.
 
 ## Long Term Support
 
-Please refer to the EdgeX Foundry [LTS policy](https://wiki.edgexfoundry.org/display/FA/Long+Term+Support) for information on support of EdgeX releases. The EdgeX community does not offer support on any non-LTS release outside of the latest release.
- 
+Please refer to the EdgeX Foundry [LTS policy](https://wiki.edgexfoundry.org/pages/viewpage.action?pageId=69173332#LongTermSupport(v2)-LTS) for information on support of EdgeX releases. The EdgeX community does not offer support on any non-LTS release outside of the latest release.
+
