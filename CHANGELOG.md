@@ -1,12 +1,10 @@
 <a name="2.0.0"></a>
 
-## 
-
-### Change Logs for EdgeX Dependencies
+## Change Logs for EdgeX Dependencies
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
-## [v2.1.0] - Jakarta - 2021-11-17 (Not Compatible with 1.x releases)
+## [v2.1.0] - Jakarta - 2021-11-17 (Only compatible with the 2.x releases)
 
 ### Features ✨
 
