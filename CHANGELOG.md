@@ -1,12 +1,35 @@
 <a name="2.0.0"></a>
 
+## Change Logs for EdgeX Dependencies
+
+- [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
+
+## [v2.1.0] - Jakarta - 2021-11-17 (Only compatible with the 2.x releases)
+
+### Features ✨
+
+- Add new Secrets File config settings to profiles ([#345](https://github.com/edgexfoundry/app-service-configurable/issues/345)) ([#329a187](https://github.com/edgexfoundry/app-service-configurable/commits/329a187))
+- Add CORS capability ([#342](https://github.com/edgexfoundry/app-service-configurable/issues/342)) ([#c489e49](https://github.com/edgexfoundry/app-service-configurable/commits/c489e49))
+- Add external-mqtt-trigger configuration file for TAF test ([#338](https://github.com/edgexfoundry/app-service-configurable/issues/338)) ([#2fab480](https://github.com/edgexfoundry/app-service-configurable/commits/2fab480))
+- Update for SDK multi-topics per pipeline ([#323](https://github.com/edgexfoundry/app-service-configurable/issues/323)) ([#de5cd0c](https://github.com/edgexfoundry/app-service-configurable/commits/de5cd0c))
+- Enable Pipeline Per Topic capability in configurable pipelines. ([#313](https://github.com/edgexfoundry/app-service-configurable/issues/313)) ([#3f87ca8](https://github.com/edgexfoundry/app-service-configurable/commits/3f87ca8))
+
+### Bug Fixes 🐛
+
+- Add/Fix optional MQTT MessageBus settings ([#305](https://github.com/edgexfoundry/app-service-configurable/issues/305)) ([#2474bfb](https://github.com/edgexfoundry/app-service-configurable/commits/2474bfb))
+
+### Code Refactoring ♻
+
+- Clean up TOML quotes and add LF MD files ([#f597c7f](https://github.com/edgexfoundry/app-service-configurable/commits/f597c7f))
+
 ## [2.0.1] - Ireland - 2021-07-28 (Not Compatible with 1.x releases)
 
-### Change Logs for EdgeX Dependencies
+### Bug Fixes 🐛
 
-- [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/master/CHANGELOG.md)
+- Fixes from SDK
 
 ## [2.0.0] - Ireland - 2021-06-30 (Not Compatible with 1.x releases)
+
 ### Change Logs for EdgeX Dependencies
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/master/CHANGELOG.md)
