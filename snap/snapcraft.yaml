@@ -1,5 +1,5 @@
 name: edgex-app-service-configurable
-base: core18
+base: core20
 adopt-info: app-service-config
 license: Apache-2.0
 summary:   The reference EdgeX App Service Configurable
@@ -10,10 +10,7 @@ description: |
   with processing data flowing through EdgeX. This service leverages the
   App Functions SDK and provides a way for developers to use configuration
   instead of having to compile standalone services to utilize built in
-  functions in the SDK. For a full list of supported/built-in functions
-  view the documentation located here:
-
-  https://docs.edgexfoundry.org/1.2/microservices/application/ApplServices/
+  functions in the SDK.
 
   Initially the daemon in the snap is disabled - this allows the configuration
   to be modified and provided to app-service-config in
@@ -48,8 +45,7 @@ apps:
       - bin/startup-env-var.sh
       - bin/security-secret-store-env-var.sh
     daemon: simple
-    passthrough:
-      install-mode: disable
+    install-mode: disable
     plugs: [network, network-bind]
 
 parts:
