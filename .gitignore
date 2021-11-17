@@ -8,4 +8,3 @@ coverage.out
 logs/
 .idea
 VERSION
-vendor/
