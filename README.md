@@ -12,6 +12,15 @@ For a list of examples please visit https://docs.edgexfoundry.org and navigate t
 
 Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md).
 
+## Running the EdgeX App Service Configurable Service as a Snap
+EdgeX App Service Configurable is also available as a snap package. Install the snap with the following command:
+```bash
+sudo snap install edgex-app-service-configurable
+````
+For more details on the EdgeX App Service Configurable Snap, including installation, configuration, please refer to [EdgeX App Service Configurable Snap](https://github.com/edgexfoundry/app-service-configurable/tree/main/snap).
+
+For more details on deploying EdgeX with Snaps, viewing logs, security services, please check [Getting Started with Snap](https://docs.edgexfoundry.org/2.0/getting-started/Ch-GettingStartedSnapUsers/).
+
 ## Versioning
 
 Please refer to the EdgeX Foundry [versioning policy](https://wiki.edgexfoundry.org/pages/viewpage.action?pageId=21823969) for information on how EdgeX services are released and how EdgeX services are compatible with one another.  Specifically, device services (and the associated SDK), application services (and the associated app functions SDK), and client tools (like the EdgeX CLI and UI) can have independent minor releases, but these services must be compatible with the latest major release of EdgeX.

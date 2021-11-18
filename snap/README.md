@@ -30,10 +30,10 @@ The latest stable version of the snap can be installed using:
 $ sudo snap install edgex-app-service-configurable
 ```
 
-The 2.0 (Ireland) release of the snap can be instaing using:
+The 2.1 (Jakarta) release of the snap can be instaing using:
 
 ```bash
-$ sudo snap install edgex-app-service-configurable --channel=2.0
+$ sudo snap install edgex-app-service-configurable --channel=2.1
 ```
 
 The latest development version of the snap can be installed using:
@@ -101,7 +101,7 @@ $ sudo snap set edgex-app-service-configurable profile=mqtt-export
 
 In addition to instructing the service to read a different configuration file, the profile will also be used to name the service when it registers itself to the system.
 
-**Note** - currently the only two profiles available for Ireland (2.0) are http-export and mqtt-export.
+**Note** - currently the only two profiles available for Jakarta (2.1) are http-export and mqtt-export.
 
 ## Service Environment Configuration Overrides
 **Note** - all of the configuration options below must be specified with the prefix: 'env.'
