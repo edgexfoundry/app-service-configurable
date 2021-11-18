@@ -21,25 +21,25 @@ The snap is published in the snap store at https://snapcraft.io/edgex-app-servic
 You can see the current revisions available for your machine's architecture by running the command:
 
 ```bash
-$ snap info edgex-app-service-configurable
+snap info edgex-app-service-configurable
 ```
 
 The latest stable version of the snap can be installed using:
 
 ```bash
-$ sudo snap install edgex-app-service-configurable
+sudo snap install edgex-app-service-configurable
 ```
 
 The 2.1 (Jakarta) release of the snap can be instaing using:
 
 ```bash
-$ sudo snap install edgex-app-service-configurable --channel=2.1
+sudo snap install edgex-app-service-configurable --channel=2.1
 ```
 
 The latest development version of the snap can be installed using:
 
 ```bash
-$ sudo snap install edgex-app-service-configurable --edge
+sudo snap install edgex-app-service-configurable --edge
 ```
 
 **Note** - the snap has only been tested on Ubuntu Core, Desktop, and Server.
@@ -51,7 +51,7 @@ The App Service Configurable application service allows a variety of use cases t
 /var/snap/edgex-app-service-configurable/current/config/res/
 
 ### Configuration Overrides
-While it's possible to manually edit the profile-specific ```configuration.toml``` files (found in ```$SNAP_DATA/config/res/<profile>```)
+While it's possible to manually edit the profile-specific `configuration.toml` files (found in `$SNAP_DATA/config/res/<profile>`)
 prior to enabling the service, quite often only minor changes to existing profiles are required. These changes can be accomplished via
 support for EdgeX environment variable configuration overrides via the snap's configure hook. If the service has already been started,
 setting one of these overrides currently requires the service to be restarted via the command-line or snapd's REST API. If the overrides
@@ -60,19 +60,25 @@ started.
 
 The following syntax is used to specify service-specific configuration overrides:
 
-```env.<stanza>.<config option>```
+```
+env.<stanza>.<config option>
+```
 
 For instance, to setup an override of the service's Port use:
 
-```$ sudo snap set env.service.port=2112```
+```bash
+sudo snap set env.service.port=2112
+```
 
 And restart the service:
 
-```$ sudo snap restart edgex-app-service-configurable```
+```bash
+sudo snap restart edgex-app-service-configurable
+```
 
 **Note** - at this time changes to configuration values in the [Writable] section are not supported.
 
-For details on the mapping of configuration options to Config options, please refer to "Service Environment Configuration Overrides".
+For details on the mapping of configuration options to Config options, please refer to [Service Environment Configuration Overrides](#service-environment-configuration-overrides) below.
 
 ### Startup environment variables
 
@@ -81,13 +87,13 @@ EdgeX services by default wait 60s for dependencies (e.g. Core Data) to become a
 To change the default startup duration (60 seconds), for a service to complete the startup, aka bootstrap, phase of execution by using the following command:
 
 ```bash
-$ sudo snap set edgex-app-service-configurable startup-duration=60
+sudo snap set edgex-app-service-configurable startup-duration=60
 ```
 
 The following environment variable overrides the retry startup interval or sleep time before a failure is retried during the start-up, aka bootstrap, phase of execution by using the following command:
 
 ```bash
-$ sudo snap set edgex-app-service-configurable startup-interval=1
+sudo snap set edgex-app-service-configurable startup-interval=1
 ```
 
 **Note** - Should the environment variables be modified after the service has started, the service must be restarted.
@@ -95,8 +101,8 @@ $ sudo snap set edgex-app-service-configurable startup-interval=1
 ### Profiles
 There are a number of sub-directories in the snap's configuration directory, these sub-directories are referred to as profiles. Before you can start the service, you must select one of them, using the `snap set` command (or via snapd's REST API). For example, to use the mqtt-export profile you would run:
 
-```
-$ sudo snap set edgex-app-service-configurable profile=mqtt-export
+```bash
+sudo snap set edgex-app-service-configurable profile=mqtt-export
 ```
 
 In addition to instructing the service to read a different configuration file, the profile will also be used to name the service when it registers itself to the system.
@@ -104,7 +110,7 @@ In addition to instructing the service to read a different configuration file, t
 **Note** - currently the only two profiles available for Jakarta (2.1) are http-export and mqtt-export.
 
 ## Service Environment Configuration Overrides
-**Note** - all of the configuration options below must be specified with the prefix: 'env.'
+**Note** - all of the configuration options below must be specified with the prefix: `env.`
 
 ```
 [Service]
