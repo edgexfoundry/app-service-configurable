@@ -1,4 +1,3 @@
-GO=go
 HOOKS=cmd/configure/configure cmd/install/install
 
 tidy:
@@ -7,15 +6,15 @@ tidy:
 build: tidy $(HOOKS)
 
 cmd/configure/configure:
-	$(GO) build -o $@ ./cmd/configure
+	go build -o $@ ./cmd/configure
 
 cmd/install/install:
-	$(GO) build -o $@ ./cmd/install
+	go build -o $@ ./cmd/install
 
 # TODO: fixup unit testing
 test:
-	$(GO) test -coverprofile=coverage.out ./...
-	$(GO) vet ./...
+	go test -coverprofile=coverage.out ./...
+	go vet ./...
 	gofmt -l .
 	[ "`gofmt -l .`" = "" ]
 

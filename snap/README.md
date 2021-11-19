@@ -119,6 +119,10 @@ service.max-request-size        // Service.MaxRequestSize
 service.startup-msg             // Service.StartupMsg
 service.request-timeout         // Service.RequestTimeout
 
+[SecretStore]
+secret-store.secrets-file               // SecretStore.SecretsFile
+secret-store.disable-scrub-secrets-file // SecretStore.DisableScrubSecretsFile
+
 [Clients.core-command]
 clients.core-command.port       // Clients.core-command.Port
 
