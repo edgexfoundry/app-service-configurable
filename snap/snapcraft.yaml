@@ -35,7 +35,13 @@ slots:
     interface: content
     content: edgex-secretstore-token
     source:
-      write: [$SNAP_DATA/app-http-export, $SNAP_DATA/app-mqtt-export, $SNAP_DATA/app-external-mqtt-trigger, $SNAP_DATA/app-functional-tests]
+      write: 
+        - $SNAP_DATA/app-http-export
+        - $SNAP_DATA/app-mqtt-export
+        - $SNAP_DATA/app-external-mqtt-trigger
+        - $SNAP_DATA/app-functional-tests
+        - $SNAP_DATA/app-push-to-core
+        - $SNAP_DATA/app-rules-engine
 
 apps:
   app-service-configurable:
