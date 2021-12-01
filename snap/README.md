@@ -47,33 +47,32 @@ $ sudo snap install edgex-app-service-configurable --edge
 ## Using the EdgeX App Service Configurable snap
 
 The App Service Configurable application service allows a variety of use cases to be met by simply providing configuration (vs. writing code). For more information about this service, please refer to the README. As with device-mqtt, this service is disabled when first installed, as a profile must first be selected (see below) before the service is started. As with other EdgeX snaps, the `configuration.toml` files are found in the snap’s writable area:
-### Using a content interface to set app service configuration
+### Using a content interface to set app configuration
 
-The `app-service-config` content interface allows another snap to seed this application snap 
-with configuration files under the `$SNAP_DATA/config/app-service-configurable/res` directory.
+The `app-config` content interface allows another snap to seed this application snap 
+with configuration files under the `$SNAP_DATA/config` directory.
 
-Note that the `app-service-config` content interface does NOT support seeding of the Secret Store Token
+Note that the `app-config` content interface does NOT support seeding of the Secret Store Token
 because that file is expected at a different path.
 
 To use, create a new snap with a directory containing the configuration files.
 Your `snapcraft.yaml` file then needs to define a slot with read access to the directory you are sharing.
 
-/var/snap/edgex-app-service-configurable/current/config/res/
 ```
 slots:
-  app-service-config:
-    interface: content  
-    content: app-service-config
-    read:
-      - $SNAP/config
+  app-service-configurable:
+    interface: content
+    source:
+      read: 
+        - $SNAP/app-service-configurable/res
 ```
 
-where `$SNAP/config` is configuration directory your snap is providing to the application snap.
+where `$SNAP/app-service-configurable/res` is configuration directory your snap is providing to the application snap.
 
 Then connect the plug in the application snap to the slot in your snap, which will replace the configuration in the application snap. Do this with:
 
 ```bash
-sudo snap connect edgex-app-service-configurable:app-service-config your-snap:app-service-config
+sudo snap connect edgex-app-service-configurable:app-config your-snap:app-service-configurable
 ```
 
 This needs to be done before the application service is started for the first time. Once you have set the configuration the application service can be started and it will then be configured using the settings you provided:

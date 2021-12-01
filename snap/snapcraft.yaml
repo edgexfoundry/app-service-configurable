@@ -49,10 +49,9 @@ apps:
     plugs: [network, network-bind]
 
 plugs:
-  app-service-config:
+  app-config:
     interface: content
-    content: app-service-config
-    target: $SNAP_DATA/config/app-service-configurable/res
+    target: $SNAP_DATA/config
 
 parts:
   app-service-config:
