@@ -121,8 +121,7 @@ sudo snap set edgex-app-service-configurable profile=mqtt-export
 ```
 
 In addition to instructing the service to read a different configuration file, the profile will also be used to name the service when it registers itself to the system.
-
-**Note** - currently the only two profiles available for Jakarta (2.1) are http-export and mqtt-export.
+For details on currently available profiles, please see [here](https://github.com/edgexfoundry/app-service-configurable/tree/main/res).
 
 ## Service Environment Configuration Overrides
 **Note** - all of the configuration options below must be specified with the prefix: `env.`
