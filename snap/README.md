@@ -47,8 +47,15 @@ $ sudo snap install edgex-app-service-configurable --edge
 ## Using the EdgeX App Service Configurable snap
 
 The App Service Configurable application service allows a variety of use cases to be met by simply providing configuration (vs. writing code). For more information about this service, please refer to the README. As with device-mqtt, this service is disabled when first installed, as a profile must first be selected (see below) before the service is started. As with other EdgeX snaps, the `configuration.toml` files are found in the snap’s writable area:
+### Using a content interface to set app configuration
 
-/var/snap/edgex-app-service-configurable/current/config/res/
+The `app-config` content interface allows another snap to seed this application snap 
+with configuration files under the `$SNAP_DATA/config` directory.
+
+Note that the `app-config` content interface does NOT support seeding of the Secret Store Token
+because that file is expected at a different path.
+
+Please refer to [edgex-config-provider](https://github.com/canonical/edgex-config-provider), for an example and further instructions.
 
 ### Configuration Overrides
 While it's possible to manually edit the profile-specific ```configuration.toml``` files (found in ```$SNAP_DATA/config/res/<profile>```)
@@ -118,6 +125,10 @@ service.max-result-count        // Service.MaxResultCount
 service.max-request-size        // Service.MaxRequestSize
 service.startup-msg             // Service.StartupMsg
 service.request-timeout         // Service.RequestTimeout
+
+[SecretStore]
+secret-store.secrets-file               // SecretStore.SecretsFile
+secret-store.disable-scrub-secrets-file // SecretStore.DisableScrubSecretsFile
 
 [Clients.core-command]
 clients.core-command.port       // Clients.core-command.Port

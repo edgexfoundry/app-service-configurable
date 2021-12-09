@@ -54,8 +54,12 @@ apps:
     install-mode: disable
     plugs: [network, network-bind]
 
-parts:
+plugs:
+  app-config:
+    interface: content
+    target: $SNAP_DATA/config
 
+parts:
   app-service-config:
     source: .
     plugin: make
