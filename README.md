@@ -12,6 +12,16 @@ For a list of examples please visit https://docs.edgexfoundry.org and navigate t
 
 Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md).
 
+## Packaging
+
+This component is packaged as docker image and snap.
+
+For docker, please refer to the [Dockerfile](Dockerfile) and [Docker Compose Builder](https://github.com/edgexfoundry/edgex-compose/tree/main/compose-builder) scripts.
+
+For the snap, refer to the [snap](snap) directory.
+
+The details of the EdgeX release artifacts are available [here](https://docs.edgexfoundry.org/2.1/design/adr/devops/0010-Release-Artifacts).
+
 ## Versioning
 
 Please refer to the EdgeX Foundry [versioning policy](https://wiki.edgexfoundry.org/pages/viewpage.action?pageId=21823969) for information on how EdgeX services are released and how EdgeX services are compatible with one another.  Specifically, device services (and the associated SDK), application services (and the associated app functions SDK), and client tools (like the EdgeX CLI and UI) can have independent minor releases, but these services must be compatible with the latest major release of EdgeX.
