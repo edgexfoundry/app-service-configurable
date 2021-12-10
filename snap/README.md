@@ -116,6 +116,16 @@ sudo snap restart edgex-app-service-configurable
 For details on the mapping of configuration options to Config options, 
 please refer to [Service Environment Configuration Overrides](#service-environment-configuration-overrides) section below.
 
+### Using a content interface to set app configuration
+
+The `app-config` content interface allows another snap to seed this application snap 
+with configuration files under the `$SNAP_DATA/config` directory.
+
+Note that the `app-config` content interface does NOT support seeding of the Secret Store Token
+because that file is expected at a different path.
+
+Please refer to [edgex-config-provider](https://github.com/canonical/edgex-config-provider), for an example and further instructions.
+
 ### Autostart
 By default, the edgex-app-service-configurable disables its service on install, 
 as the expectation is that the default profile configuration files will be customized, 
@@ -168,6 +178,10 @@ service.max-result-count        // Service.MaxResultCount
 service.max-request-size        // Service.MaxRequestSize
 service.startup-msg             // Service.StartupMsg
 service.request-timeout         // Service.RequestTimeout
+
+[SecretStore]
+secret-store.secrets-file               // SecretStore.SecretsFile
+secret-store.disable-scrub-secrets-file // SecretStore.DisableScrubSecretsFile
 
 [Clients.core-command]
 clients.core-command.port       // Clients.core-command.Port
