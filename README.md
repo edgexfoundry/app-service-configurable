@@ -12,15 +12,15 @@ For a list of examples please visit https://docs.edgexfoundry.org and navigate t
 
 Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md).
 
-## Build Instructions
+## Packaging
 
-#### Running the app service configurable service with docker
+This component is packaged as docker image and snap.
 
-app service configurable's docker images can be launched with docker-compose. Please refer to [EdgeX Docker Compose](https://github.com/edgexfoundry/edgex-compose/blob/main/README.md).
+For docker, please refer to the [Dockerfile](Dockerfile) and [Docker Compose Builder](https://github.com/edgexfoundry/edgex-compose/tree/main/compose-builder) scripts.
 
-#### Running the edgex app service configurable service as a snap
+For the snap, refer to the [snap](snap) directory.
 
-For details on the EdgeX App Service Configurable Snap, including installation, configuration, please refer to [EdgeX App Service Configurable Snap](https://github.com/edgexfoundry/app-service-configurable/tree/main/snap).
+The details of the EdgeX release artifacts are available [here](https://docs.edgexfoundry.org/2.1/design/adr/devops/0010-Release-Artifacts).
 
 ## Versioning
 
