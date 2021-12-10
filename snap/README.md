@@ -17,7 +17,7 @@ However for full security confinement, the snap should be installed on an
 Ubuntu 18.04 LTS or later (Desktop or Server), or a system running Ubuntu Core 18 or later.
 
 ### Installing EdgeX App Service Configurable as a snap
-The snap is published in the snap store as [edgex-app-service-configurable snap](https://snapcraft.io/edgex-app-service-configurable).
+The snap is published in the snap store as [edgex-app-service-configurable](https://snapcraft.io/edgex-app-service-configurable).
 See the current revisions available for your machine's architecture:
 
 ```bash
@@ -54,7 +54,7 @@ as a profile must first be selected before the service is started.
 See [profile](#profiles) section below.
 
 For more information about this service, 
-please refer to the [EdgeX App Service Configurable README](/../jakarta/README.md).
+please refer to the [EdgeX App Service Configurable README](../README.md).
 
 ### Profiles
 There are a number of sub-directories in the snap's configuration directory, 
@@ -69,7 +69,7 @@ sudo snap set edgex-app-service-configurable profile=mqtt-export
 
 In addition to instructing the service to read a different configuration file, 
 the profile will also be used to name the service when it registers itself to the system.
-For details on currently available profiles, please see [here](/../jakarta/res).
+For details on currently available profiles, please see [here](../res).
 
 The `configuration.toml` files are found in the snap’s writable area: 
 ```
@@ -79,7 +79,7 @@ The `configuration.toml` files are found in the snap’s writable area:
 The service can then be started as follows. The `--enable` option
 ensures that as well as starting the service now, it will be automatically started on boot:
 ```bash
-sudo snap start --enable edgex-app-service-configurable.app-service-configurable
+sudo snap start --enable edgex-app-service-configurable
 ```
 **Note** - Should the environment variables be modified after the service has started, 
 the service must be restarted.
@@ -119,9 +119,9 @@ please refer to [Service Environment Configuration Overrides](#service-environme
 ### Autostart
 By default, the edgex-app-service-configurable disables its service on install, 
 as the expectation is that the default profile configuration files will be customized, 
-and thus this behavior allows the profile `configuration.toml` files in [$SNAP_DATA](https://snapcraft.io/docs/environment-variables) to be modified before the service is first started.
+and thus this behavior allows the profile `configuration.toml` files in [`$SNAP_DATA`](https://snapcraft.io/docs/environment-variables) to be modified before the service is first started.
 
-This behavior can be overridden by setting the `autostart` configuration setting to "true". 
+This behavior can be overridden by setting the `autostart` configuration setting to `true`. 
 This is useful when configuration and/or device profiles are being provided via configuration or gadget snap content interface.
 
 **Note** - this option is typically set from a gadget snap.
@@ -137,7 +137,7 @@ and if it exceeds the systemd default limits,
 then it might be left in a failed state. 
 This situation might be more likely on constrained hardware (e.g. RPi).
 
-This snap, therefore, implements a basic retry loop with a maximum `start-up duration` and `startup-interval`. 
+This snap, therefore, implements a basic retry loop with a maximum `startup-duration` and `startup-interval`. 
 If the dependent services are not available, 
 the service sleeps for the defined interval and then tries again up to a maximum duration. 
 EdgeX services wait for dependencies (e.g. core-data) to become available and will exit after reaching the maximum duration if the dependencies aren't met. 
