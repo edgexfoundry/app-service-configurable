@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.17
 
-require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.10
+require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.12
 
 require (
 	bitbucket.org/bertimus9/systemstat v0.0.0-20180207000608-0eeff89b0690 // indirect
