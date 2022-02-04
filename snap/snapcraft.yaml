@@ -86,11 +86,11 @@ parts:
 
   metadata:
     plugin: nil
-    build-packages: [wget]
+    build-packages: [curl]
     override-pull: |
       # download the metadata in AppStream format
-      # this is temp URL pending PR https://github.com/canonical/edgex-snap-metadata/pull/4
-      wget https://raw.githubusercontent.com/farshidtz/edgex-snap-metadata/appstream/edgex-app-service-configurable.metainfo.xml
+      curl --silent --show-error --location --remote-name \
+        https://raw.githubusercontent.com/canonical/edgex-snap-metadata/appstream/edgex-app-service-configurable.metainfo.xml
 
       # get the version from git tag
       cd $SNAPCRAFT_PROJECT_DIR
