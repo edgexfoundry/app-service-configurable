@@ -13,7 +13,7 @@ confinement: strict
 # 1: edinburgh
 # 2: fuji
 # 3: geneva, hanoi
-# 4: ireland
+# 4: ireland, jakarta
 epoch: 4
 
 slots:
@@ -57,6 +57,9 @@ parts:
     override-build: |
       cd $SNAPCRAFT_PART_SRC
 
+      # the version is needed for the build
+      cat ./VERSION
+
       make tidy
       make build
 
@@ -80,20 +83,23 @@ parts:
       install -DT "./LICENSE" \
          "$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable/LICENSE"
 
-  config-common:
+  runtime-helpers:
     plugin: dump
     source: snap/local/runtime-helpers
 
   metadata:
     plugin: nil
-    build-packages: [curl]
-    override-pull: |
-      # download the metadata in AppStream format
-      curl --silent --show-error --location --remote-name \
-        https://raw.githubusercontent.com/canonical/edgex-snap-metadata/appstream/edgex-app-service-configurable.metainfo.xml
+    source: https://github.com/canonical/edgex-snap-metadata.git
+    source-branch: appstream
+    source-depth: 1
+    override-build: |
+      # install the icon at the default internal path
+      install -DT edgex-snap-icon.png \
+        $SNAPCRAFT_PART_INSTALL/meta/gui/icon.png      
 
-      # get the version from git tag
+      # change to this project's repo to get the version
       cd $SNAPCRAFT_PROJECT_DIR
+
       if git describe ; then
         VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
       else
@@ -102,6 +108,8 @@ parts:
       
       # write version to file for the build
       echo $VERSION > ./VERSION
+
+      # set the version of this snap
       snapcraftctl set-version $VERSION
     parse-info: [edgex-app-service-configurable.metainfo.xml]
 
