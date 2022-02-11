@@ -1,22 +1,8 @@
 name: edgex-app-service-configurable
 base: core20
-adopt-info: app-service-config
 license: Apache-2.0
-summary:   The reference EdgeX App Service Configurable
-title: EdgeX App Service Configurable
-description: |
-  The reference EdgeX app-service-configurable is built using the App
-  Functions SDK. This service is provided as an easy way to get started
-  with processing data flowing through EdgeX. This service leverages the
-  App Functions SDK and provides a way for developers to use configuration
-  instead of having to compile standalone services to utilize built in
-  functions in the SDK.
+adopt-info: metadata
 
-  Initially the daemon in the snap is disabled - this allows the configuration
-  to be modified and provided to app-service-config in
-  "$SNAP_DATA/config/app-service-configurable/res" before starting.
-
-# TODO: add armhf when the project supports this
 architectures:
   - build-on: amd64
   - build-on: arm64
@@ -24,10 +10,10 @@ architectures:
 grade: stable
 confinement: strict
 
-# edinburgh release is epoch 1
-# fuji release is epoch 2
-# geneva/hanoi releases were epoch 3
-# ireland is epoch 4
+# 1: edinburgh
+# 2: fuji
+# 3: geneva, hanoi
+# 4: ireland, jakarta
 epoch: 4
 
 slots:
@@ -61,6 +47,7 @@ plugs:
 
 parts:
   app-service-config:
+    after: [metadata]
     source: .
     plugin: make
     build-packages: [gcc, git, libzmq3-dev, pkg-config]
@@ -70,12 +57,8 @@ parts:
     override-build: |
       cd $SNAPCRAFT_PART_SRC
 
-      GIT_VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
-      if [ -z "$GIT_VERSION" ]; then
-        GIT_VERSION="0.0.0"
-      fi
-      snapcraftctl set-version ${GIT_VERSION}
-      echo $GIT_VERSION > ./VERSION
+      # the version is needed for the build
+      cat ./VERSION
 
       make tidy
       make build
@@ -100,9 +83,35 @@ parts:
       install -DT "./LICENSE" \
          "$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable/LICENSE"
 
-  config-common:
+  runtime-helpers:
     plugin: dump
     source: snap/local/runtime-helpers
+
+  metadata:
+    plugin: nil
+    source: https://github.com/canonical/edgex-snap-metadata.git
+    source-branch: appstream
+    source-depth: 1
+    override-build: |
+      # install the icon at the default internal path
+      install -DT edgex-snap-icon.png \
+        $SNAPCRAFT_PART_INSTALL/meta/gui/icon.png      
+
+      # change to this project's repo to get the version
+      cd $SNAPCRAFT_PROJECT_DIR
+
+      if git describe ; then
+        VERSION=$(git describe --tags --abbrev=0 | sed 's/v//')
+      else
+        VERSION="0.0.0"
+      fi
+      
+      # write version to file for the build
+      echo $VERSION > ./VERSION
+
+      # set the version of this snap
+      snapcraftctl set-version $VERSION
+    parse-info: [edgex-app-service-configurable.metainfo.xml]
 
   hooks:
     source: snap/local/hooks
