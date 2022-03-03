@@ -52,8 +52,8 @@ github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21/go.mod h1
 github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFPTqq+I=
 github.com/eclipse/paho.mqtt.golang v1.3.5 h1:sWtmgNxYM9P2sP+xEItMozsR3w0cqZFlqnNN1bdl41Y=
 github.com/eclipse/paho.mqtt.golang v1.3.5/go.mod h1:eTzb4gxwwyWpqBUHGQZ4ABAV7+Jgm1PklsYT/eo8Hcc=
-github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.25 h1:lCGOmF71u9bcpASQ1uxnyVHs5CFlfOO9ckPiyrAGSZ8=
-github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.25/go.mod h1:uvv7Yiox1zhC/l3gGJ6zYHcjQ4MnXU97fOJofGO15cU=
+github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.26 h1:VDvikPrLsgLZz+7sMP7blcv5neo3qNlK8DJMNr3RdA8=
+github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.26/go.mod h1:R00/eoOGZhj4R+/ViTRmbS2gOrxYIV+U6Ib61VEBeUM=
 github.com/edgexfoundry/go-mod-bootstrap/v2 v2.0.1-dev.28 h1:OmQM+of8gO1cANcAqDOLwo58M9QOZtsMlajkgWcEesk=
 github.com/edgexfoundry/go-mod-bootstrap/v2 v2.0.1-dev.28/go.mod h1:12Szn7YDPPoQLkO2FDaBJkH4/W7Q28CmTv3GRxRfwxo=
 github.com/edgexfoundry/go-mod-configuration/v2 v2.1.0 h1:wiLtHYo1QxImARJZt7TYj88cUhq1ANh8se4TBvFsYvw=
@@ -129,6 +129,7 @@ github.com/golang/protobuf v1.4.3/go.mod h1:oDoupMAO8OvCJWAcko0GGGIgR6R6ocIYbsSw
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.2/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
 github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
+github.com/gomodule/redigo v1.8.8/go.mod h1:7ArFNvsTjH8GMMzB4uy1snslv2BwmginuMs06a1uzZE=
 github.com/gomodule/redigo v2.0.0+incompatible h1:K/R+8tc58AaqLkqG2Ol3Qk+DR/TlNuhuh457pBFPtt0=
 github.com/gomodule/redigo v2.0.0+incompatible/go.mod h1:B4C85qUVwatsJoIUNIfCRsp7qO0iAmpGFZ4EELWSbC4=
 github.com/google/btree v0.0.0-20180813153112-4030bb1f1f0c h1:964Od4U6p2jUkFxvCydnIczKteheJEzHRToSGK3Bnlw=
