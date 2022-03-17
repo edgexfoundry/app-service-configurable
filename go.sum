@@ -52,8 +52,8 @@ github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21/go.mod h1
 github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFPTqq+I=
 github.com/eclipse/paho.mqtt.golang v1.3.5 h1:sWtmgNxYM9P2sP+xEItMozsR3w0cqZFlqnNN1bdl41Y=
 github.com/eclipse/paho.mqtt.golang v1.3.5/go.mod h1:eTzb4gxwwyWpqBUHGQZ4ABAV7+Jgm1PklsYT/eo8Hcc=
-github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.29 h1:nwR8vbOyQZXA/wIRsKRPfYIpwwhcL0hw701CfmElQyQ=
-github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.29/go.mod h1:R00/eoOGZhj4R+/ViTRmbS2gOrxYIV+U6Ib61VEBeUM=
+github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.30 h1:JOPzKOGLNanEIyJ1Y7t9aWs8s/FLtOVmHhtAKUkr/3E=
+github.com/edgexfoundry/app-functions-sdk-go/v2 v2.2.0-dev.30/go.mod h1:2WtTb7Ymq00lV2xoEDkZF3uqLnZC2XGQJl131IKR5sc=
 github.com/edgexfoundry/go-mod-bootstrap/v2 v2.0.1-dev.28 h1:OmQM+of8gO1cANcAqDOLwo58M9QOZtsMlajkgWcEesk=
 github.com/edgexfoundry/go-mod-bootstrap/v2 v2.0.1-dev.28/go.mod h1:12Szn7YDPPoQLkO2FDaBJkH4/W7Q28CmTv3GRxRfwxo=
 github.com/edgexfoundry/go-mod-configuration/v2 v2.1.0 h1:wiLtHYo1QxImARJZt7TYj88cUhq1ANh8se4TBvFsYvw=
@@ -330,8 +330,9 @@ github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UV
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
-github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+github.com/stretchr/testify v1.7.1 h1:5TQK59W5E3v0r2duFAb7P95B6hEeOyEnHRa8MjYSMTY=
+github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/x448/float16 v0.8.4 h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
 github.com/x448/float16 v0.8.4/go.mod h1:14CWIYCyZA/cWjXOioeEpHeN/83MdbZDRQHoFcYsOfg=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
