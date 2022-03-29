@@ -16,5 +16,5 @@
 
 edgeXBuildGoApp (
     project: 'app-service-configurable',
-    buildSnap: true
+    buildSnap: false
 )
