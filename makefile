@@ -18,11 +18,12 @@ SDKVERSION=$(shell cat ./go.mod | grep 'github.com/edgexfoundry/app-functions-sd
 
 MICROSERVICE=app-service-configurable
 GOFLAGS=-ldflags "-X github.com/edgexfoundry/app-functions-sdk-go/v2/internal.SDKVersion=$(SDKVERSION) -X github.com/edgexfoundry/app-functions-sdk-go/v2/internal.ApplicationVersion=$(APPVERSION)" -trimpath -mod=readonly
+CGOFLAGS=-ldflags "-linkmode=external -X github.com/edgexfoundry/edgex-go.Version=$(VERSION)" -trimpath -mod=readonly -buildmode=pie
 
 GIT_SHA=$(shell git rev-parse HEAD)
 
 build:
-	$(GO) build $(GOFLAGS) -o $(MICROSERVICE)
+	$(GO) build $(CGOFLAGS) -o $(MICROSERVICE)
 
 tidy:
 	go mod tidy
