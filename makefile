@@ -26,7 +26,7 @@ build:
 	$(GO) build $(CGOFLAGS) -o $(MICROSERVICE)
 
 tidy:
-	go mod tidy
+	go mod tidy -compat=1.17
 
 # NOTE: This is only used for local development. Jenkins CI does not use this make target
 docker:
