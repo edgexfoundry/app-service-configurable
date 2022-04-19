@@ -204,6 +204,14 @@ DisableScrubSecretsFile = false
 TokenFile = "/tmp/edgex/secrets/app-sample/secrets-token.json"
   [SecretStore.Authentication]
   AuthType = "X-Vault-Token"
+  [SecretStore.RuntimeTokenProvider]
+  Enabled = false
+  Protocol = "https"
+  Host = "localhost"
+  Port = 59841
+  TrustDomain = "edgexfoundry.org"
+  EndpointSocket = "/tmp/edgex/secrets/spiffe/public/api.sock"
+  RequiredSecrets = "redisdb"
 
 # Note Core Metadata is the only required client as it is now used for the version check
 # The other clients are only needed if the client intrface is being used by one of the configured functions.
