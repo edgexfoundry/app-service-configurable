@@ -25,6 +25,8 @@ import (
 	"strings"
 
 	hooks "github.com/canonical/edgex-snap-hooks/v2"
+	"github.com/canonical/edgex-snap-hooks/v2/log"
+	"github.com/canonical/edgex-snap-hooks/v2/options"
 )
 
 var cli *hooks.CtlCli = hooks.NewSnapCtl()
@@ -68,7 +70,12 @@ func main() {
 	if err = hooks.Init(debug, "edgex-app-service-configurable"); err != nil {
 		fmt.Println(fmt.Sprintf("edgex-asc:configure: initialization failure: %v", err))
 		os.Exit(1)
+	}
 
+	log.SetComponentName("configure")
+	if err := options.ProcessAppConfig("app-service-configurable"); err != nil {
+		hooks.Error(fmt.Sprintf("could not process options: %v", err))
+		os.Exit(1)
 	}
 
 	prof, err = cli.Config(hooks.ProfileConfig)
