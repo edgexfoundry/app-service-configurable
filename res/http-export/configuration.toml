@@ -89,6 +89,15 @@
       [Writable.InsecureSecrets.AES.Secrets]
       key = "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
 
+  [Writable.Telemetry]
+  Interval = "30s"
+  PublishTopicPrefix  = "edgex/telemetry" # /<service-name>/<metric-name> will be added to this Publish Topic prefix
+    [Writable.Telemetry.Metrics] # All service's metric names must be present in this list.
+    MessagesReceived = false
+    PipelineMessagesProcessed = false
+    PipelineMessageProcessingTime = false
+    [Writable.Telemetry.Tags]
+
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"
