@@ -14,6 +14,11 @@ LogLevel = "INFO"
       ValueType = "String"
       MediaType = ""  # Required only when ValueType=Binary
 
+  # Reporting metrics requires the "edgex-messagebus" Trigger.
+  # Since this profile uses "http" trigger the metrics can not be reported.
+  [Writable.Telemetry]
+  Interval = "0s" # Disables reporting
+
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"

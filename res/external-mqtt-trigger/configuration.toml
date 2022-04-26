@@ -44,6 +44,11 @@ LogLevel = "INFO"
       clientcert = ""
       clientkey = ""
 
+  # Reporting metrics requires the "edgex-messagebus" Trigger.
+  # Since this profile uses "external-mqtt" trigger the metrics can not be reported.
+  [Writable.Telemetry]
+  Interval = "0s" # Disables reporting
+
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"

@@ -69,6 +69,11 @@ LogLevel = "INFO"
       [Writable.InsecureSecrets.AES.Secrets]
       key = "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
 
+  # Reporting metrics requires the "edgex-messagebus" Trigger.
+  # Since this profile uses "http" trigger the metrics can not be reported.
+  [Writable.Telemetry]
+  Interval = "0s" # Disables reporting
+
 [Service]
 HealthCheckInterval = "10s"
 Host = "localhost"
