@@ -1,0 +1,133 @@
+[Writable]
+  LogLevel = "INFO"
+
+  [Writable.StoreAndForward]
+  Enabled = false
+  RetryInterval = "5m"
+  MaxRetryCount = 10
+
+  [Writable.Pipeline]
+  UseTargetTypeOfMetric  = true
+  ExecutionOrder = "ToLineProtocol, HTTPExport"
+
+  [Writable.Pipeline.Functions]
+    [Writable.Pipeline.Functions.ToLineProtocol]
+      [Writable.Pipeline.Functions.ToLineProtocol.Parameters]
+      Tags = "" # option commas seperated list of addtional tags to add to the metric in to for "tag:value,..."
+    # Currently Batching doesn't provide the batched data in the proper format, i.e. lines
+    [Writable.Pipeline.Functions.Batch]
+      [Writable.Pipeline.Functions.Batch.Parameters]
+      Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
+      BatchThreshold = "100"
+      TimeInterval = "60s"
+    [Writable.Pipeline.Functions.HTTPExport]
+      [Writable.Pipeline.Functions.HTTPExport.Parameters]
+      Method = "post"
+      MimeType = "raw"
+      Url = "http:/<your-influxdb-host>:8086/api/v2/write?org=<your-org>&bucket=<your-bucket>&precision=ns"
+      HeaderName = "authorization" # Name of the header key to add to the HTTP header
+      SecretName = "token" # Name of the secret for the header value in the SecretStore
+      SecretPath = "influxdb" # Path to the secret for the header value in the SecretStore
+
+  [Writable.InsecureSecrets]
+    [Writable.InsecureSecrets.DB]
+    path = "redisdb"
+      [Writable.InsecureSecrets.DB.Secrets]
+      username = ""
+      password = ""
+    [Writable.InsecureSecrets.influxdb]
+    path = "influxdb"
+      [Writable.InsecureSecrets.influxdb.Secrets]
+      token = "Token <place InfluxDB token here>"
+
+  [Writable.Telemetry]
+  Interval = "0s" # Don't report any metrics as that would be cyclic with this profiles' processing.
+
+[Service]
+HealthCheckInterval = "10s"
+Host = "localhost"
+Port = 59704
+ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
+StartupMsg = "app-metrics-influxdb has Started"
+MaxResultCount = 0 # Not curently used by App Services.
+MaxRequestSize = 0 # Not curently used by App Services.
+RequestTimeout = "5s"
+  [Service.CORSConfiguration]
+  EnableCORS = false
+  CORSAllowCredentials = false
+  CORSAllowedOrigin = "https://localhost"
+  CORSAllowedMethods = "GET, POST, PUT, PATCH, DELETE"
+  CORSAllowedHeaders = "Authorization, Accept, Accept-Language, Content-Language, Content-Type, X-Correlation-ID"
+  CORSExposeHeaders = "Cache-Control, Content-Language, Content-Length, Content-Type, Expires, Last-Modified, Pragma, X-Correlation-ID"
+  CORSMaxAge = 3600
+
+[Registry]
+Host = "localhost"
+Port = 8500
+Type = "consul"
+
+# Database is require when Store and Forward is enabled or when using Redis for the Messagebus
+# Note when running in docker from compose file set the following environment variables:
+# - Database_Host: edgex-redis
+[Database]
+Type = "redisdb"
+Host = "localhost"
+Port = 6379
+Timeout = "30s"
+
+# SecretStore is required when Store and Forward is enabled and running with security
+# so Database credentials can be pulled from Vault. Also now require when running with secure Consul
+# Note when running in docker from compose file set the following environment variables:
+#   - SecretStore_Host: edgex-vault
+[SecretStore]
+Type = "vault"
+Host = "localhost"
+Port = 8200
+Path = "app-metrics-influxdb/"
+Protocol = "http"
+RootCaCertPath = ""
+ServerName = ""
+SecretsFile = ""
+DisableScrubSecretsFile = false
+TokenFile = "/tmp/edgex/secrets/app-metrics-influxdb/secrets-token.json"
+  [SecretStore.Authentication]
+  AuthType = "X-Vault-Token"
+  [SecretStore.RuntimeTokenProvider]
+  Enabled = false
+  Protocol = "https"
+  Host = "localhost"
+  Port = 59841
+  TrustDomain = "edgexfoundry.org"
+  EndpointSocket = "/tmp/edgex/secrets/spiffe/public/api.sock"
+  RequiredSecrets = "redisdb"
+
+[Clients]
+  # Used for version check on start-up
+  [Clients.core-metadata]
+  Protocol = "http"
+  Host = "localhost"
+  Port = 59881
+
+[Trigger]
+Type="edgex-messagebus"
+  [Trigger.EdgexMessageBus]
+  Type = "redis"
+    [Trigger.EdgexMessageBus.SubscribeHost]
+    Host = "localhost"
+    Port = 6379
+    Protocol = "redis"
+    SubscribeTopics="edgex/telemetry/#"
+    [Trigger.EdgexMessageBus.Optional]
+    authmode = "usernamepassword"  # required for redis messagebus (secure or insecure).
+    secretname = "redisdb"
+    # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
+    # Client Identifiers
+    ClientId ="app-metrics-influxdb"
+    # Connection information
+    Qos          =  "0" # Quality of Sevice values are 0 (At most once), 1 (At least once) or 2 (Exactly once)
+    KeepAlive    =  "10" # Seconds (must be 2 or greater)
+    Retained     = "false"
+    AutoReconnect  = "true"
+    ConnectTimeout = "5" # Seconds
+    # TLS configuration - Only used if Cert/Key file or Cert/Key PEMblock are specified
+    SkipCertVerify = "false"
