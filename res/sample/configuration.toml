@@ -78,6 +78,7 @@ LogLevel = "INFO"
       Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
       BatchThreshold = "30"
       TimeInterval = "60s"
+      MergeOnSend = "false"
     [Writable.Pipeline.Functions.SetResponseData]
       [Writable.Pipeline.Functions.SetResponseData.Parameters]
       ResponseContentType = "application/xml"

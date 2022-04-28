@@ -43,6 +43,7 @@
       Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
       BatchThreshold = "30"
       TimeInterval = "60s"
+      MergeOnSend = "false"
     [Writable.Pipeline.Functions.AddTags]
       [Writable.Pipeline.Functions.AddTags.Parameters]
       Tags=""
