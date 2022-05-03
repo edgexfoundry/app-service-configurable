@@ -1,12 +1,14 @@
 # EdgeX App Service Configurable Snap
-[![edgex-app-service-configurable](https://snapcraft.io/edgex-app-service-configurable/badge.svg)](https://snapcraft.io/edgex-app-service-configurable)
+[![edgex-app-service-configurable](https://snapcraft.io/edgex-app-service-configurable/badge.svg)][edgex-app-service-configurable]
 
-This folder contains the snap packaging of the EdgeX App Service Configurable application service.
+This directory contains the snap packaging of the EdgeX App Service Configurable application service.
+
+The snap is built automatically and published on the Snap Store as [edgex-app-service-configurable].
 
 For usage instructions, please refer to [docs](https://docs.edgexfoundry.org/2.2/getting-started/Ch-GettingStartedSnapUsers/#app-service-configurable).
 
-## Build
-To build the snap from source, execute the following command from the top-level directory of this repo:
+## Build from source
+Execute the following command from the top-level directory of this repo:
 ```
 snapcraft
 ```
@@ -21,3 +23,5 @@ If the snap is build locally, the auto connection will not happen. This can be v
 ```bash
 sudo snap connect edgexfoundry:edgex-secretstore-token edgex-app-service-configurable:edgex-secretstore-token 
 ```
+
+[edgex-app-service-configurable]: https://snapcraft.io/edgex-app-service-configurable
