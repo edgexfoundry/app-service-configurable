@@ -5,7 +5,7 @@ This directory contains the snap packaging of the EdgeX App Service Configurable
 
 The snap is built automatically and published on the Snap Store as [edgex-app-service-configurable].
 
-For usage instructions, please refer to [docs](https://docs.edgexfoundry.org/2.2/getting-started/Ch-GettingStartedSnapUsers/#app-service-configurable).
+For usage instructions, please refer to [docs].
 
 ## Build from source
 Execute the following command from the top-level directory of this repo:
@@ -13,24 +13,26 @@ Execute the following command from the top-level directory of this repo:
 snapcraft
 ```
 
-This will create binary snap package with a `.snap` extension which can be installed locally by setting the `--dangerous` flag:
+This will create a snap package file with `.snap` extension. It can be installed locally by setting the `--dangerous` flag:
 ```bash
-sudo snap install --dangerous <snap>.snap
+sudo snap install --dangerous <snap-file>
 ```
 
-Please refer to [snapcraft documentation](https://snapcraft.io/docs) for more details.
+Please refer to [snapcraft overview](https://snapcraft.io/docs/snapcraft-overview) for more details.
 
-### Obtain a secret store token
-When this and the [edgexfoundry] snap are installed from the store, the Secret Store token is provided automatically using the auto-connected `edgex-secretstore-token` [content interface](https://snapcraft.io/docs/content-interface).
+### Obtain a Secret Store token
+The `edgex-secretstore-token` snap slot makes it possible to automatically receive a token from a locally installed platform snap.
 
-If the snap is build locally, the auto connection will not happen. This can be verified by running the `snap connections edgex-app-service-configurable` command.
+If the snap is built and installed locally, the interface will not auto-connect. You can check the status of the connections by running the `snap connections edgex-app-service-configurable` command.
 
-To manually connect and obtain the token:
+To manually connect and obtain a token:
 ```bash
 sudo snap connect edgexfoundry:edgex-secretstore-token edgex-app-service-configurable:edgex-secretstore-token
 ```
 
-To better understand the snap connections, read the [interface management](https://snapcraft.io/docs/interface-management) documentation.
+Please refer to [secret-store-token] docs for details.
 
-[edgexfounndry]: https://snapcraft.io/edgexfoundry
+
 [edgex-app-service-configurable]: https://snapcraft.io/edgex-app-service-configurable
+[docs]: https://docs.edgexfoundry.org/2.2/getting-started/Ch-GettingStartedSnapUsers/#app-service-configurable
+[secret-store-token]: https://docs.edgexfoundry.org/2.2/getting-started/Ch-GettingStartedSnapUsers/#secret-store-token
