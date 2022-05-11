@@ -4,6 +4,50 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
+## [v2.2.0] - Kamakura - 2022-05-11 (Only compatible with the 2.x releases)
+
+### Features ✨
+
+- No ZMQ on windows ([#362](https://github.com/edgexfoundry/app-service-configurable/issues/362)) ([#d12ee3a](https://github.com/edgexfoundry/app-service-configurable/commits/d12ee3a))
+
+  ```
+  BREAKING CHANGE:
+  ZeroMQ no longer supported on native Windows for EdgeX
+  MessageBus
+  ```
+
+- Add new metrics-influxdb profile ([#410](https://github.com/edgexfoundry/app-service-configurable/issues/410)) ([#b8e8d18](https://github.com/edgexfoundry/app-service-configurable/commits/b8e8d18))
+
+- Enable use of common app service metrics ([#409](https://github.com/edgexfoundry/app-service-configurable/issues/409)) ([#4cd65a0](https://github.com/edgexfoundry/app-service-configurable/commits/4cd65a0))
+
+- Enable Delay Start capability  ([#404](https://github.com/edgexfoundry/app-service-configurable/issues/404)) ([#1a526f1](https://github.com/edgexfoundry/app-service-configurable/commits/1a526f1))
+
+- **snap:** use updated environment variable injection ([#407](https://github.com/edgexfoundry/app-service-configurable/issues/407)) ([#df3e4aa](https://github.com/edgexfoundry/app-service-configurable/commits/df3e4aa))
+
+- **snap:** refer content interface to edgex-config-provider repo ([#62cfba0](https://github.com/edgexfoundry/app-service-configurable/commits/62cfba0))
+
+- **snap:** add additional tokens for app-service-configurable profiles ([#361](https://github.com/edgexfoundry/app-service-configurable/issues/361)) ([#adf35ca](https://github.com/edgexfoundry/app-service-configurable/commits/adf35ca))
+
+- **snap:** add content interface `app-service-config` ([#41aa95c](https://github.com/edgexfoundry/app-service-configurable/commits/41aa95c))
+
+### Bug Fixes 🐛
+
+- **snap:** expose parent directory in app-config plug ([#a7da7e3](https://github.com/edgexfoundry/app-service-configurable/commits/a7da7e3))
+
+### Documentation 📖
+
+- **snap:** update snap/README and README  ([#360](https://github.com/edgexfoundry/app-service-configurable/issues/360)) ([#c4eee9a](https://github.com/edgexfoundry/app-service-configurable/commits/c4eee9a))
+- **snap:** Remove usage instructions from readme ([#416](https://github.com/edgexfoundry/app-service-configurable/issues/416)) ([#0ec6f66](https://github.com/edgexfoundry/app-service-configurable/commits/0ec6f66))
+- **snap:** add relevant README for content interface app-service-config ([#bb470c8](https://github.com/edgexfoundry/app-service-configurable/commits/bb470c8))
+
+### Build 👷
+
+- Go 1.17 related changes ([#368](https://github.com/edgexfoundry/app-service-configurable/issues/368)) ([#1b0e324](https://github.com/edgexfoundry/app-service-configurable/commits/1b0e324))
+- enable security hardening ([#396](https://github.com/edgexfoundry/app-service-configurable/issues/396)) ([#e18cf4e](https://github.com/edgexfoundry/app-service-configurable/commits/e18cf4e))
+- **snap:** source metadata from repo ([#380](https://github.com/edgexfoundry/app-service-configurable/issues/380)) ([#426cd0b](https://github.com/edgexfoundry/app-service-configurable/commits/426cd0b))
+- **snap:** add CI workflow, disable jenkins snap build ([#393](https://github.com/edgexfoundry/app-service-configurable/issues/393)) ([#ab4754b](https://github.com/edgexfoundry/app-service-configurable/commits/ab4754b))
+- **snap:** add support for secretsfile config ([#f5409b6](https://github.com/edgexfoundry/app-service-configurable/commits/f5409b6))
+
 ## [v2.1.0] - Jakarta - 2021-11-17 (Only compatible with the 2.x releases)
 
 ### Features ✨
