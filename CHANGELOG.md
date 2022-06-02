@@ -2,7 +2,13 @@
 
 ## Change Logs for EdgeX Dependencies
 
-- [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
+- [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/jakarta/CHANGELOG.md)
+
+## [v2.1.1] - Jakarta - 2021-06-08 (Only compatible with the 2.x releases)
+
+### Bug Fixes 🐛
+
+- see SDK changelog link above
 
 ## [v2.1.0] - Jakarta - 2021-11-17 (Only compatible with the 2.x releases)
 
