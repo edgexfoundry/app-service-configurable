@@ -48,7 +48,7 @@ LogLevel = "INFO"
       Tags=""
     [Writable.Pipeline.Functions.MQTTExport]
       [Writable.Pipeline.Functions.MQTTExport.Parameters]
-      BrokerAddress = "tcp://localhost:1883" # Hive Public Test Broker
+      BrokerAddress = "tcp://localhost:1883"
       Topic = "edgex-export"
       SecretPath = "mqtt"
       ClientId = "MQTT-Export"
@@ -87,8 +87,11 @@ LogLevel = "INFO"
   PublishTopicPrefix  = "edgex/telemetry" # /<service-name>/<metric-name> will be added to this Publish Topic prefix
     [Writable.Telemetry.Metrics] # All service's metric names must be present in this list.
     MessagesReceived = false
-    PipelineMessagesProcessed = false
-    PipelineMessageProcessingTime = false
+    InvalidMessagesReceived = false
+    PipelineMessagesProcessed = false # Pipeline IDs are added as the tag for the metric for each pipeline defined
+    PipelineMessageProcessingTime = false # Pipeline IDs are added as the tag for the metric for each pipeline defined
+    PipelineProcessingErrors = false # Pipeline IDs are added as the tag for the metric for each pipeline defined
+    MqttExportSize = false # BrokerAddress and Topic are added as the tag for this metric for each MqttExport defined
     [Writable.Telemetry.Tags]
 
 [Service]
