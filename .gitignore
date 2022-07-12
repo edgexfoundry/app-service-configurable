@@ -9,3 +9,11 @@ logs/
 .idea
 VERSION
 vendor/
+
+# snap files
+*.snap
+*.assert
+prime/
+stage/
+parts/
+squashfs-root/
