@@ -15,7 +15,7 @@ fi
 # binary name == service name/key
 SERVICE="app-service-configurable"
 ENV_FILE="$SNAP_DATA/config/res/$SERVICE.env"
-TAG="edgex-$SERVICE"
+TAG="edgex-$SERVICE."$(basename "$0")
 
 if [ -f "$ENV_FILE" ]; then
     logger --tag="$TAG" "sourcing $ENV_FILE"
