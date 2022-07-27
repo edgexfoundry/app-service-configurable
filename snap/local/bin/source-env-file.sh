@@ -12,16 +12,10 @@ if [ -n "$EDGEX_STARTUP_INTERVAL" ]; then
   export EDGEX_STARTUP_INTERVAL
 fi
 
-# convert cmdline to string array
-ARGV=($@)
-
-# grab binary path
-BINPATH="${ARGV[0]}"
-
 # binary name == service name/key
-SERVICE=$(basename "$BINPATH")
+SERVICE="app-service-configurable"
 ENV_FILE="$SNAP_DATA/config/res/$SERVICE.env"
-TAG="edgex-$SERVICE."$(basename "$0")
+TAG="edgex-$SERVICE"
 
 if [ -f "$ENV_FILE" ]; then
     logger --tag="$TAG" "sourcing $ENV_FILE"
