@@ -34,7 +34,6 @@ apps:
     command: bin/service-wrapper.sh
     command-chain:
       - bin/source-env-file.sh
-      - bin/security-secret-store-env-var.sh
     daemon: simple
     install-mode: disable
     plugs: [network, network-bind]
@@ -79,7 +78,6 @@ parts:
     organize:
       source-env-file.sh: bin/source-env-file.sh
       service-wrapper.sh: bin/service-wrapper.sh
-      security-secret-store-env-var.sh: bin/security-secret-store-env-var.sh
 
   metadata:
     plugin: nil

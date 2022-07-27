@@ -12,13 +12,21 @@ if [ -n "$EDGEX_STARTUP_INTERVAL" ]; then
   export EDGEX_STARTUP_INTERVAL
 fi
 
-SERVICE_ENV="$SNAP_DATA/config/res/app-service-configurable.env"
-logger "edgex service override: : SERVICE_ENV=$SERVICE_ENV"
+# convert cmdline to string array
+ARGV=($@)
 
-if [ -f "$SERVICE_ENV" ]; then
-    logger "edgex service override: : sourcing $SERVICE_ENV"
+# grab binary path
+BINPATH="${ARGV[0]}"
+
+# binary name == service name/key
+SERVICE=$(basename "$BINPATH")
+ENV_FILE="$SNAP_DATA/config/res/$SERVICE.env"
+TAG="edgex-$SERVICE."$(basename "$0")
+
+if [ -f "$ENV_FILE" ]; then
+    logger --tag="$TAG" "sourcing $ENV_FILE"
     set -o allexport
-    source "$SERVICE_ENV" set
+    source "$ENV_FILE" set
     set +o allexport
 fi
 

@@ -17,7 +17,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	hooks "github.com/canonical/edgex-snap-hooks/v2"
 	"github.com/canonical/edgex-snap-hooks/v2/log"
@@ -40,7 +39,7 @@ func validateProfile(prof string) error {
 
 	_, err := os.Stat(path)
 	if err != nil {
-		return errors.New(fmt.Sprintf("profile %s has no configuration.toml", prof))
+		return fmt.Errorf("profile %s has no configuration.toml", prof)
 	}
 
 	return nil
@@ -56,13 +55,11 @@ func configure() {
 	prof, err := hooks.NewSnapCtl().Config(hooks.ProfileConfig)
 	if err != nil {
 		log.Fatalf("Error reading config 'profile': %v", err)
-		os.Exit(1)
 	}
 
-	validateProfile(prof)
+	err = validateProfile(prof)
 	if err != nil {
 		log.Fatalf("Error validating profile: %v", err)
-		os.Exit(1)
 	}
 
 	log.Info("Processing legacy env options")
