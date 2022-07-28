@@ -19,7 +19,6 @@ epoch: 4
 slots:
   edgex-secretstore-token:
     interface: content
-    content: edgex-secretstore-token
     source:
       write: 
         - $SNAP_DATA/app-http-export
@@ -34,8 +33,7 @@ apps:
     adapter: full
     command: bin/service-wrapper.sh
     command-chain:
-      - bin/startup-env-var.sh
-      - bin/security-secret-store-env-var.sh
+      - bin/source-env-file.sh
     daemon: simple
     install-mode: disable
     plugs: [network, network-bind]
@@ -63,29 +61,23 @@ parts:
       make tidy
       make build
 
-      # install the service binary
-      install -DT "./app-service-configurable" \
-         "$SNAPCRAFT_PART_INSTALL/bin/app-service-configurable"
+      install -DT "./app-service-configurable" "$SNAPCRAFT_PART_INSTALL/bin/app-service-configurable"
 
-      # create config dirs
-      find ./res -maxdepth 1 -type d -exec install -d "$SNAPCRAFT_PART_INSTALL/config/"{} \;
+      RES=$SNAPCRAFT_PART_INSTALL/config
+      mkdir -p $RES
+      cp -r res $RES
+      
+      DOC=$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable
+      mkdir -p $DOC
+      cp Attribution.txt $DOC/Attribution.txt
+      cp LICENSE $DOC/LICENSE
 
-      # replace relative log paths in configuration.toml files with fully qualified paths
-      # prefixed with $SNAP_COMMON
-      find ./res -name "configuration.toml" | \
-          while read fname; do
-               cat "$fname" | sed -e s:\./logs/:\\'$SNAP_COMMON/'\: > \
-              "$SNAPCRAFT_PART_INSTALL/config/$fname"
-          done
-
-      install -DT "./Attribution.txt" \
-         "$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable/Attribution.txt"
-      install -DT "./LICENSE" \
-         "$SNAPCRAFT_PART_INSTALL/usr/share/doc/app-service-configurable/LICENSE"
-
-  runtime-helpers:
+  local-bin:
     plugin: dump
-    source: snap/local/runtime-helpers
+    source: snap/local/bin
+    organize:
+      source-env-file.sh: bin/source-env-file.sh
+      service-wrapper.sh: bin/service-wrapper.sh
 
   metadata:
     plugin: nil
@@ -113,13 +105,12 @@ parts:
       snapcraftctl set-version $VERSION
     parse-info: [edgex-app-service-configurable.metainfo.xml]
 
-  hooks:
-    source: snap/local/hooks
+  helper-go:
+    source: snap/local/helper-go
     plugin: make
     build-snaps:
       - go/1.18/stable
     override-build: |
       cd $SNAPCRAFT_PART_SRC
       make build
-      install -DT ./cmd/configure/configure "$SNAPCRAFT_PART_INSTALL/snap/hooks/configure"
-      install -DT ./cmd/install/install "$SNAPCRAFT_PART_INSTALL/snap/hooks/install"
+      install -DT ./helper-go $SNAPCRAFT_PART_INSTALL/bin/helper-go
