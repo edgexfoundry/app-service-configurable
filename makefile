@@ -1,4 +1,4 @@
-.PHONY: build test clean docker
+.PHONY: build build-nats test clean docker docker-nats vendor set-nats-build-flag
 
 GO=CGO_ENABLED=1 go
 
@@ -25,7 +25,9 @@ CGOFLAGS=-ldflags "-linkmode=external \
 GIT_SHA=$(shell git rev-parse HEAD)
 
 build:
-	$(GO) build $(CGOFLAGS) -o $(MICROSERVICE)
+	$(GO) build -tags "$(BUILD_TAGS)" $(CGOFLAGS) -o $(MICROSERVICE)
+
+build-nats: set-nats-build-flag build
 
 tidy:
 	go mod tidy
@@ -33,6 +35,7 @@ tidy:
 # NOTE: This is only used for local development. Jenkins CI does not use this make target
 docker:
 	docker build \
+		--build-arg BUILD_TAGS=$(BUILD_TAGS) \
 	    --build-arg http_proxy \
 	    --build-arg https_proxy \
 		-f Dockerfile \
@@ -41,12 +44,17 @@ docker:
 		-t edgexfoundry/app-service-configurable:${APPVERSION}-dev \
 		.
 
+docker-nats: set-nats-build-flag docker
+
 test:
 	$(GO) test -coverprofile=coverage.out ./...
 	$(GO) vet ./...
 	gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")
 	[ "`gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")`" = "" ]
 	./bin/test-attribution-txt.sh
+
+set-nats-build-flag:
+    BUILD_TAGS=include_nats_messaging
 
 clean:
 	rm -f $(MICROSERVICE)
