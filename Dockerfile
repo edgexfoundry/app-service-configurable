@@ -21,7 +21,7 @@ FROM ${BASE} AS builder
 ARG ALPINE_PKG_BASE="make git gcc libc-dev libsodium-dev zeromq-dev"
 ARG ALPINE_PKG_EXTRA=""
 
-ARG BUILD_TAGS=""
+ARG ADD_BUILD_TAGS=""
 
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
     copyright='Copyright (c) 2022: Intel'
@@ -33,7 +33,7 @@ COPY go.mod vendor* ./
 RUN [ ! -d "vendor" ] && go mod download all || echo "skipping..."
 
 COPY . .
-ARG MAKE="make -e BUILD_TAGS=$BUILD_TAGS build"
+ARG MAKE="make -e ADD_BUILD_TAGS=$ADD_BUILD_TAGS build"
 RUN $MAKE
 
 #final stage

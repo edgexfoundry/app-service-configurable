@@ -25,7 +25,7 @@ CGOFLAGS=-ldflags "-linkmode=external \
 GIT_SHA=$(shell git rev-parse HEAD)
 
 build:
-	$(GO) build -tags "$(BUILD_TAGS)" $(CGOFLAGS) -o $(MICROSERVICE)
+	$(GO) build -tags "$(ADD_BUILD_TAGS)" $(CGOFLAGS) -o $(MICROSERVICE)
 
 tidy:
 	go mod tidy
@@ -33,7 +33,7 @@ tidy:
 # NOTE: This is only used for local development. Jenkins CI does not use this make target
 docker:
 	docker build \
-		--build-arg BUILD_TAGS=$(BUILD_TAGS) \
+		--build-arg ADD_BUILD_TAGS=$(ADD_BUILD_TAGS) \
 	    --build-arg http_proxy \
 	    --build-arg https_proxy \
 		-f Dockerfile \

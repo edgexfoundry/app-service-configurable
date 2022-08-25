@@ -15,10 +15,10 @@ Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/m
 ## Building
 ```
 make build - builds local binary 
-make -e BUILD_TAGS=include_nats_messaging build - Builds local binary with NATS MessageBus support
+make -e ADD_BUILD_TAGS=include_nats_messaging build - Builds local binary with NATS MessageBus support
 
 make docker - build local docker image
-make -e BUILD_TAGS=include_nats_messaging docker - Builds local docker image with NATS MessageBus support
+make -e ADD_BUILD_TAGS=include_nats_messaging docker - Builds local docker image with NATS MessageBus support
 ```
 ## Packaging
 
