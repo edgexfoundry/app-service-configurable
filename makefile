@@ -1,4 +1,4 @@
-.PHONY: build build-nats test clean docker docker-nats vendor
+.PHONY: build tidy docker test clean vendor
 
 GO=CGO_ENABLED=1 go
 
