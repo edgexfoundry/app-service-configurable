@@ -1,4 +1,4 @@
-.PHONY: build build-nats test clean docker docker-nats vendor set-nats-build-flag
+.PHONY: build build-nats test clean docker docker-nats vendor
 
 GO=CGO_ENABLED=1 go
 
@@ -27,8 +27,6 @@ GIT_SHA=$(shell git rev-parse HEAD)
 build:
 	$(GO) build -tags "$(BUILD_TAGS)" $(CGOFLAGS) -o $(MICROSERVICE)
 
-build-nats: set-nats-build-flag build
-
 tidy:
 	go mod tidy
 
@@ -44,17 +42,12 @@ docker:
 		-t edgexfoundry/app-service-configurable:${APPVERSION}-dev \
 		.
 
-docker-nats: set-nats-build-flag docker
-
 test:
 	$(GO) test -coverprofile=coverage.out ./...
 	$(GO) vet ./...
 	gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")
 	[ "`gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")`" = "" ]
 	./bin/test-attribution-txt.sh
-
-set-nats-build-flag:
-    BUILD_TAGS=include_nats_messaging
 
 clean:
 	rm -f $(MICROSERVICE)

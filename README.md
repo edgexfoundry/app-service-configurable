@@ -12,6 +12,14 @@ For a list of examples please visit https://docs.edgexfoundry.org and navigate t
 
 Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md).
 
+## Building
+```
+make build - builds local binary 
+make -e BUILD_TAGS=include_nats_messaging build - Builds local binary with NATS MessageBus support
+
+make docker - build local docker image
+make -e BUILD_TAGS=include_nats_messaging docker - Builds local docker image with NATS MessageBus support
+```
 ## Packaging
 
 This component is packaged as docker image and snap.
