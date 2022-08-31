@@ -27,6 +27,9 @@ GIT_SHA=$(shell git rev-parse HEAD)
 build:
 	$(GO) build -tags "$(ADD_BUILD_TAGS)" $(CGOFLAGS) -o $(MICROSERVICE)
 
+build-nats:
+	make -e ADD_BUILD_TAGS=include_nats_messaging build
+
 tidy:
 	go mod tidy
 
@@ -41,6 +44,9 @@ docker:
 		-t edgexfoundry/app-service-configurable:$(GIT_SHA) \
 		-t edgexfoundry/app-service-configurable:${APPVERSION}-dev \
 		.
+
+docker-nats:
+	make -C . -e ADD_BUILD_TAGS=include_nats_messaging docker
 
 test:
 	$(GO) test -coverprofile=coverage.out ./...
