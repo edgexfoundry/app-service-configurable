@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.18
 
-require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0-dev.39
+require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0-dev.40
 
 require (
 	bitbucket.org/bertimus9/systemstat v0.0.0-20180207000608-0eeff89b0690 // indirect
@@ -14,7 +14,7 @@ require (
 	github.com/edgexfoundry/go-mod-bootstrap/v2 v2.3.0-dev.16 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v2 v2.2.0 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v2 v2.2.0 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v2 v2.3.0-dev.15 // indirect
+	github.com/edgexfoundry/go-mod-messaging/v2 v2.3.0-dev.16 // indirect
 	github.com/edgexfoundry/go-mod-registry/v2 v2.2.0 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v2 v2.3.0-dev.7 // indirect
 	github.com/fatih/color v1.9.0 // indirect
@@ -47,7 +47,7 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.0 // indirect
-	github.com/nats-io/nats.go v1.16.0 // indirect
+	github.com/nats-io/nats.go v1.17.0 // indirect
 	github.com/nats-io/nkeys v0.3.0 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/pebbe/zmq4 v1.2.7 // indirect
