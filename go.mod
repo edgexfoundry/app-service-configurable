@@ -2,21 +2,21 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.18
 
-require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0-dev.42
+require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0-dev.45
 
 require (
-	bitbucket.org/bertimus9/systemstat v0.0.0-20180207000608-0eeff89b0690 // indirect
+	bitbucket.org/bertimus9/systemstat v0.5.0 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
-	github.com/diegoholiveira/jsonlogic/v3 v3.2.5 // indirect
+	github.com/diegoholiveira/jsonlogic/v3 v3.2.6 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.4.1 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v2 v2.3.0-dev.16 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v2 v2.3.0-dev.17 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v2 v2.2.0 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v2 v2.2.0 // indirect
 	github.com/edgexfoundry/go-mod-messaging/v2 v2.3.0-dev.18 // indirect
 	github.com/edgexfoundry/go-mod-registry/v2 v2.2.0 // indirect
-	github.com/edgexfoundry/go-mod-secrets/v2 v2.3.0-dev.7 // indirect
+	github.com/edgexfoundry/go-mod-secrets/v2 v2.3.0-dev.8 // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.4.0 // indirect
 	github.com/go-kit/log v0.2.0 // indirect
