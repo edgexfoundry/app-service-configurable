@@ -30,7 +30,7 @@ slots:
 plugs:
   app-service-configurable-config:
     interface: content
-    target: $SNAP_DATA/config/app-service-configurable
+    target: $SNAP_DATA/config
 
   # deprecated
   app-config:
