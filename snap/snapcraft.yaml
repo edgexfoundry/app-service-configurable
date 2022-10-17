@@ -27,6 +27,15 @@ slots:
         - $SNAP_DATA/app-functional-tests
         - $SNAP_DATA/app-push-to-core
         - $SNAP_DATA/app-rules-engine
+plugs:
+  app-service-configurable-config:
+    interface: content
+    target: $SNAP_DATA/config
+
+  # deprecated
+  app-config:
+    interface: content
+    target: $SNAP_DATA/config
 
 apps:
   app-service-configurable:
@@ -37,11 +46,6 @@ apps:
     daemon: simple
     install-mode: disable
     plugs: [network, network-bind]
-
-plugs:
-  app-config:
-    interface: content
-    target: $SNAP_DATA/config
 
 parts:
   app-service-config:
