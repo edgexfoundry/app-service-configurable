@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.18
 
-require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0-dev.49
+require github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0-dev.50
 
 require (
 	bitbucket.org/bertimus9/systemstat v0.5.0 // indirect
@@ -11,7 +11,7 @@ require (
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.2.6 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.4.1 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v2 v2.3.0-dev.21 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v2 v2.3.0-dev.22 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v2 v2.2.0 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v2 v2.3.0-dev.18 // indirect
 	github.com/edgexfoundry/go-mod-messaging/v2 v2.3.0-dev.23 // indirect
