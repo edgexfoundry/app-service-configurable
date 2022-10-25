@@ -25,7 +25,7 @@ ARG ADD_BUILD_TAGS=""
 
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
     copyright='Copyright (c) 2022: Intel'
-RUN sed -e 's/dl-cdn[.]alpinelinux.org/dl-4.alpinelinux.org/g' -i~ /etc/apk/repositories
+
 RUN apk add --update --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
 WORKDIR /app
 
