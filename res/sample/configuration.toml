@@ -159,6 +159,7 @@ LogLevel = "INFO"
   Interval = "30s"
   PublishTopicPrefix  = "edgex/telemetry" # /<service-name>/<metric-name> will be added to this Publish Topic prefix
     [Writable.Telemetry.Metrics] # All service's metric names must be present in this list.
+    # Common App Service Metrics
     MessagesReceived = false
     InvalidMessagesReceived = false
     PipelineMessagesProcessed = false # Pipeline IDs are added as the tag for the metric for each pipeline defined
@@ -166,6 +167,11 @@ LogLevel = "INFO"
     PipelineProcessingErrors = false # Pipeline IDs are added as the tag for the metric for each pipeline defined
     HttpExportSize = false # Single metric used for all HTTP Exports
     MqttExportSize = false # BrokerAddress and Topic are added as the tag for this metric for each MqttExport defined
+    # Common Security Service Metrics
+    SecuritySecretsRequested = false
+    SecuritySecretsStored = false
+    SecurityConsulTokensRequested = false
+    SecurityConsulTokenDuration = false
     [Writable.Telemetry.Tags] # Contains the service level tags to be attached to all the service's metrics
 #    Gateway="my-iot-gateway" # Tag must be added here or via Consul Env Override can only chnage existing value, not added new ones.
 
