@@ -55,8 +55,8 @@ Host = "localhost"
 Port = 59706
 ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
 StartupMsg = "app-external-mqtt-trigger has Started"
-MaxResultCount = 0 # Not curently used by App Services.
-MaxRequestSize = 0 # Not curently used by App Services.
+MaxResultCount = 0 # Not currently used by App Services.
+MaxRequestSize = 0 # Not currently used by App Services.
 RequestTimeout = "5s"
   [Service.CORSConfiguration]
   EnableCORS = false
