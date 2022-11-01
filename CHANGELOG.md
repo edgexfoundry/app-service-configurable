@@ -4,6 +4,28 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
+## [v2.3.0] - Levski - 2022-11-09 (Only compatible with the 2.x releases)
+
+### Features ✨
+
+- Add new service metrics to appropriate profiles ([#437](https://github.com/edgexfoundry/app-service-configurable/issues/437)) ([#bef6658](https://github.com/edgexfoundry/app-service-configurable/commits/bef6658))
+- Add NATS configuration ([#460](https://github.com/edgexfoundry/app-service-configurable/issues/460)) ([#47bb9df](https://github.com/edgexfoundry/app-service-configurable/commits/47bb9df))
+- **snap:** add config interface with unique identifier ([#475](https://github.com/edgexfoundry/app-service-configurable/issues/475)) ([#a73b250](https://github.com/edgexfoundry/app-service-configurable/commits/a73b250))
+
+### Documentation
+
+- Update attribution.txt to reference paho license as v2.0 ([#428](https://github.com/edgexfoundry/app-service-configurable/issues/428)) ([#1efec17](https://github.com/edgexfoundry/app-service-configurable/commits/1efec17))
+
+### Code Refactoring ♻
+
+- **snap:** edgex-snap-hooks related upgrade  ([#450](https://github.com/edgexfoundry/app-service-configurable/issues/450)) ([#6216b3a](https://github.com/edgexfoundry/app-service-configurable/commits/6216b3a))
+
+### Build 👷
+
+- Upgrade to Go 1.18 and alpine 3.16 ([#438](https://github.com/edgexfoundry/app-service-configurable/issues/438)) ([#77beed3](https://github.com/edgexfoundry/app-service-configurable/commits/77beed3))
+- Optimize test-attribution-txt.sh to use go.mod, not vendor ([#430](https://github.com/edgexfoundry/app-service-configurable/issues/430)) ([#f853e12](https://github.com/edgexfoundry/app-service-configurable/commits/f853e12))
+- Add NATS convenience build targets ([#463](https://github.com/edgexfoundry/app-service-configurable/issues/463)) ([#f1292a7](https://github.com/edgexfoundry/app-service-configurable/commits/f1292a7))
+
 ## [v2.2.0] - Kamakura - 2022-05-11 (Only compatible with the 2.x releases)
 
 ### Features ✨
