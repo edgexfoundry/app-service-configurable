@@ -61,5 +61,5 @@ EXPOSE 48095
 # SDK initialization failed: Could not load configuration file (./res/configuration.toml)...
 
 ENTRYPOINT ["/app-service-configurable"]
-CMD ["-cp=consul.http://edgex-core-consul:8500", "--registry", "--confdir=/res"]
+CMD ["-cp=consul.http://edgex-core-consul:8500", "--registry"]
 
