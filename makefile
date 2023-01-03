@@ -1,7 +1,5 @@
 .PHONY: build tidy docker test clean vendor
 
-GO=go
-
 # VERSION file is not needed for local development, In the CI/CD pipeline, a temporary VERSION file is written
 # if you need a specific version, just override below
 APPVERSION=$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
@@ -14,11 +12,14 @@ MICROSERVICE=app-service-configurable
 GOFLAGS=-ldflags "-X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.SDKVersion=$(SDKVERSION) \
                    -X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.ApplicationVersion=$(APPVERSION)" \
                    -trimpath -mod=readonly
+GOTESTFLAGS?=-race
 
 GIT_SHA=$(shell git rev-parse HEAD)
 
+# CGO is enabled by default and causes docker builds to fail due to no gcc,
+# but is required for test with -race, so must disable it for the builds only
 build:
-	$(GO) build -tags "$(ADD_BUILD_TAGS)" $(GOFLAGS) -o $(MICROSERVICE)
+	CGO_ENABLED=0 go build -tags "$(ADD_BUILD_TAGS)" $(GOFLAGS) -o $(MICROSERVICE)
 
 build-nats:
 	make -e ADD_BUILD_TAGS=include_nats_messaging build
@@ -42,8 +43,8 @@ docker-nats:
 	make -C . -e ADD_BUILD_TAGS=include_nats_messaging docker
 
 test:
-	$(GO) test -coverprofile=coverage.out ./...
-	$(GO) vet ./...
+	go test $(GOTESTFLAGS) -coverprofile=coverage.out ./...
+	go vet ./...
 	gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")
 	[ "`gofmt -l $$(find . -type f -name '*.go'| grep -v "/vendor/")`" = "" ]
 	./bin/test-attribution-txt.sh
