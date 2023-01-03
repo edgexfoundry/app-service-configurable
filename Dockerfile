@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022 Intel Corporation
+# Copyright (c) 2023 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,10 @@
 ARG BASE=golang:1.18-alpine3.16
 FROM ${BASE} AS builder
 
-ARG ALPINE_PKG_BASE="make git gcc libc-dev libsodium-dev zeromq-dev"
+ARG ALPINE_PKG_BASE="make git"
 ARG ALPINE_PKG_EXTRA=""
 
 ARG ADD_BUILD_TAGS=""
-
-LABEL license='SPDX-License-Identifier: Apache-2.0' \
-    copyright='Copyright (c) 2022: Intel'
 
 RUN apk add --update --no-cache ${ALPINE_PKG_BASE} ${ALPINE_PKG_EXTRA}
 WORKDIR /app
@@ -39,11 +36,11 @@ RUN $MAKE
 #final stage
 FROM alpine:3.16
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
-  copyright='Copyright (c) 2022: Intel'
+  copyright='Copyright (c) 2023: Intel'
 LABEL Name=app-service-configurable Version=${VERSION}
 
 # dumb-init is required as security-bootstrapper uses it in the entrypoint script
-RUN apk add --update --no-cache ca-certificates zeromq dumb-init
+RUN apk add --update --no-cache ca-certificates dumb-init
 
 COPY --from=builder /app/Attribution.txt /Attribution.txt
 COPY --from=builder /app/LICENSE /LICENSE
