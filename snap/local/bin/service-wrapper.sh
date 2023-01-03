@@ -20,5 +20,5 @@ if [ -n "$EDGEX_STARTUP_INTERVAL" ]; then
   export EDGEX_STARTUP_INTERVAL
 fi
 
-$SNAP/bin/app-service-configurable -confdir $SNAP_DATA/config/res $PROFILE_OPT -cp -r
+$SNAP/bin/app-service-configurable -configDir $SNAP_DATA/config/res $PROFILE_OPT -cp -r
 
