@@ -28,7 +28,7 @@ LogLevel = "INFO"
     [Writable.Pipeline.PerTopicPipelines.int8-16]
       Id = "int8-16-pipeline"
       Topics = "edgex/events/device/#/#/Int8, edgex/events/device/#/#/Int16"
-      ExecutionOrder = "TransformXml, Compress, SetResponseData"
+      ExecutionOrder = "TransformXml, SetResponseData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
     # These function names must match a function defined in the configurable package of the SDK.
