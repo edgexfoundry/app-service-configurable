@@ -52,10 +52,9 @@ parts:
     after: [metadata]
     source: .
     plugin: make
-    build-packages: [gcc, git, libzmq3-dev, pkg-config]
+    build-packages: [gcc, git, pkg-config]
     build-snaps:
       - go/1.18/stable
-    stage-packages: [libzmq5]
     override-build: |
       cd $SNAPCRAFT_PART_SRC
 
