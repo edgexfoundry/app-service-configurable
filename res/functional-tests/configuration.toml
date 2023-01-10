@@ -136,5 +136,8 @@ TokenFile = "/tmp/edgex/secrets/app-functional-tests/secrets-token.json"
   EndpointSocket = "/tmp/edgex/secrets/spiffe/public/api.sock"
   RequiredSecrets = "redisdb"
 
+[MessageBus]
+Disabled = true
+
 [Trigger]
 Type="http"
