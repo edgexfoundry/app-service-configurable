@@ -114,6 +114,9 @@ TokenFile = "/tmp/edgex/secrets/app-external-mqtt-trigger/secrets-token.json"
   Host = "localhost"
   Port = 59881
 
+[MessageBus]
+Disabled = true
+
 [Trigger]
 Type="external-mqtt"
   [Trigger.ExternalMqtt]
