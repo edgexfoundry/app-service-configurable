@@ -18,26 +18,32 @@ package main
 
 import (
 	"fmt"
-	hooks "github.com/canonical/edgex-snap-hooks/v2"
-	"github.com/canonical/edgex-snap-hooks/v2/log"
-	"github.com/canonical/edgex-snap-hooks/v2/options"
 	"os"
+
+	"github.com/canonical/edgex-snap-hooks/v3/env"
+	"github.com/canonical/edgex-snap-hooks/v3/log"
+	"github.com/canonical/edgex-snap-hooks/v3/options"
+	"github.com/canonical/edgex-snap-hooks/v3/snapctl"
 )
 
 // validateProfile processes the snap 'profile' configure option, ensuring that the directory
 // and associated configuration.toml file in $SNAP_DATA both exist.
-//
-func validateProfile(prof string) error {
+func validateProfile() error {
+	prof, err := snapctl.Get("profile").Run()
+	if err != nil {
+		return fmt.Errorf("error getting snap option: %v", err)
+	}
+
 	log.Debugf("validateProfile: profile is %s", prof)
 
 	if prof == "" {
 		return nil
 	}
 
-	path := fmt.Sprintf("%s/config/res/%s/configuration.toml", hooks.SnapData, prof)
+	path := fmt.Sprintf("%s/config/res/%s/configuration.toml", env.SnapData, prof)
 	log.Debugf("validateProfile: checking if %s exists", path)
 
-	_, err := os.Stat(path)
+	_, err = os.Stat(path)
 	if err != nil {
 		return fmt.Errorf("profile %s has no configuration.toml", prof)
 	}
@@ -46,44 +52,18 @@ func validateProfile(prof string) error {
 }
 
 func configure() {
-
-	const service = "app-service-configurable"
-
 	log.SetComponentName("configure")
 
-	log.Info("Processing profile")
-	prof, err := hooks.NewSnapCtl().Config(hooks.ProfileConfig)
-	if err != nil {
-		log.Fatalf("Error reading config 'profile': %v", err)
-	}
-
-	err = validateProfile(prof)
-	if err != nil {
+	log.Info("Validating profile configuration")
+	if err := validateProfile(); err != nil {
 		log.Fatalf("Error validating profile: %v", err)
 	}
 
-	log.Info("Processing legacy env options")
-	envJSON, err := hooks.NewSnapCtl().Config(hooks.EnvConfig)
-	if err != nil {
-		log.Fatalf("Reading config 'env' failed: %v", err)
-	}
-	if envJSON != "" {
-		log.Debugf("envJSON: %s", envJSON)
-		err = hooks.HandleEdgeXConfig(service, envJSON, nil)
-		if err != nil {
-			log.Fatalf("HandleEdgeXConfig failed: %v", err)
-		}
+	if err := options.ProcessConfig(app); err != nil {
+		log.Fatalf("Error processing config options: %v", err)
 	}
 
-	log.Info("Processing config options")
-	err = options.ProcessConfig(service)
-	if err != nil {
-		log.Fatalf("could not process config options: %v", err)
-	}
-
-	log.Info("Processing autostart options")
-	err = options.ProcessAutostart(service)
-	if err != nil {
-		log.Fatalf("could not process autostart options: %v", err)
+	if err := options.ProcessAutostart(app); err != nil {
+		log.Fatalf("Error processing autostart options: %v", err)
 	}
 }
