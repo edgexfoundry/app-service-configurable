@@ -19,6 +19,8 @@ import (
 	"os"
 )
 
+const app = "app-service-configurable"
+
 func main() {
 	subCommand := os.Args[1]
 	switch subCommand {
