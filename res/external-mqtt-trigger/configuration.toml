@@ -8,7 +8,7 @@ LogLevel = "INFO"
 
   [Writable.Pipeline]
   ExecutionOrder = "MQTTExport"
-  UseTargetTypeOfByteArray = true
+  TargetType = "raw"
 
   [Writable.Pipeline.Functions]
     [Writable.Pipeline.Functions.MQTTExport]
