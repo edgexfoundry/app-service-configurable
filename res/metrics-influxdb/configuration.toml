@@ -7,7 +7,7 @@
   MaxRetryCount = 10
 
   [Writable.Pipeline]
-  UseTargetTypeOfMetric  = true
+  TargetType = "metric"
   ExecutionOrder = "ToLineProtocol, Batch, HTTPExport"
 
   [Writable.Pipeline.Functions]

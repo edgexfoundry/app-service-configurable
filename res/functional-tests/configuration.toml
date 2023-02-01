@@ -2,7 +2,7 @@
 LogLevel = "INFO"
 
   [Writable.Pipeline]
-  UseTargetTypeOfByteArray = false
+  TargetType = "event"
   ExecutionOrder = "FilterByDeviceName, Transform, SetResponseData"
 
   [Writable.Pipeline.Functions]
