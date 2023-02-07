@@ -259,10 +259,9 @@ TokenFile = "/tmp/edgex/secrets/app-sample/secrets-token.json"
   # If prefer REST, remove below and uncomment above
   UseMessageBus = true
   [Clients.core-command.Topics]
-  QueryRequestTopicPrefix = "edgex/core/commandquery/request"
-  QueryResponseTopic = "edgex/core/commandquery/response"
+  CommandQueryRequestTopicPrefix = "edgex/core/commandquery/request"
   CommandRequestTopicPrefix = "edgex/core/command/request"
-  CommandResponseTopic = "edgex/core/command/response/#"
+  ResponseTopicPrefix = "edgex/response"
 
   # Used for Notification and Subscription client, which are not currently used by any configurable functions
   [Clients.support-notifications]
