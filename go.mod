@@ -2,10 +2,9 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.18
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.0.0-dev.23
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.0.0-dev.25
 
 require (
-	bitbucket.org/bertimus9/systemstat v0.5.0 // indirect
 	github.com/Microsoft/go-winio v0.6.0 // indirect
 	github.com/armon/go-metrics v0.3.10 // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
