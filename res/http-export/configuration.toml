@@ -7,7 +7,6 @@
   MaxRetryCount = 10
 
   [Writable.Pipeline]
-  UseTargetTypeOfByteArray = false
   ExecutionOrder = "HTTPExport"
 
   [Writable.Pipeline.Functions]
