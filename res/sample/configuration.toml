@@ -23,11 +23,11 @@ LogLevel = "INFO"
   [Writable.Pipeline.PerTopicPipelines]
     [Writable.Pipeline.PerTopicPipelines.float]
       Id = "float-pipeline"
-      Topics = "edgex/events/device/#/Random-Float-Device/#"
+      Topics = "edgex/events/device/+/Random-Float-Device/#"
       ExecutionOrder = "TransformJson, SetResponseData"
     [Writable.Pipeline.PerTopicPipelines.int8-16]
       Id = "int8-16-pipeline"
-      Topics = "edgex/events/device/#/#/Int8, edgex/events/device/#/#/Int16"
+      Topics = "edgex/events/device/+/+/Int8, edgex/events/device/+/+/Int16"
       ExecutionOrder = "TransformXml, SetResponseData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
