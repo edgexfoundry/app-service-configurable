@@ -2,13 +2,13 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.18
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.0.0-dev.27
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.0.0-dev.28
 
 require (
 	github.com/Microsoft/go-winio v0.6.0 // indirect
 	github.com/armon/go-metrics v0.3.10 // indirect
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
-	github.com/diegoholiveira/jsonlogic/v3 v3.2.6 // indirect
+	github.com/diegoholiveira/jsonlogic/v3 v3.2.7 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.4.2 // indirect
 	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.0.0-dev.11 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v3 v3.0.0-dev.2 // indirect
