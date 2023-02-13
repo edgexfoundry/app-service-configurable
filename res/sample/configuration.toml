@@ -20,14 +20,16 @@ LogLevel = "INFO"
   # Topic match the incoming topic. The Id must be unique, but the Topic does not.
   # See https://docs.edgexfoundry.org/2.1/microservices/application/AppServiceConfigurable/#pipeline-per-topic
   # for complete details on Pipeline Per Topic.
+  # Note: Device services publish to the 'edgex/events/device/<device-service-name><profile-name>/<device-name>/<source-name>' topic
+  #       Core Data publishes to the 'edgex/events/core/<device-service-name>/<profile-name>/<device-name>/<source-name>' topic
   [Writable.Pipeline.PerTopicPipelines]
     [Writable.Pipeline.PerTopicPipelines.float]
       Id = "float-pipeline"
-      Topics = "edgex/events/device/+/Random-Float-Device/#"
+      Topics = "edgex/events/+/device-virtual/+/Random-Float-Device/#"
       ExecutionOrder = "TransformJson, SetResponseData"
     [Writable.Pipeline.PerTopicPipelines.int8-16]
       Id = "int8-16-pipeline"
-      Topics = "edgex/events/device/+/+/Int8, edgex/events/device/+/+/Int16"
+      Topics = "edgex/events/+/device-virtual/+/+/Int8, edgex/events/+/device-virtual/+/+/Int16"
       ExecutionOrder = "TransformXml, SetResponseData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
