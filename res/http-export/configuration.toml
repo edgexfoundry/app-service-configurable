@@ -91,7 +91,6 @@
 
   [Writable.Telemetry]
   Interval = "30s"
-  PublishTopicPrefix  = "edgex/telemetry" # /<service-name>/<metric-name> will be added to this Publish Topic prefix
     [Writable.Telemetry.Metrics] # All service's metric names must be present in this list.
     # Common App Service Metrics
     MessagesReceived = false
@@ -182,8 +181,6 @@ Port = 6379
 Type = "redis"
 AuthMode = "usernamepassword"  # required for redis messagebus (secure or insecure).
 SecretName = "redisdb"
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/events/#"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-http-export"
@@ -205,4 +202,5 @@ SecretName = "redisdb"
 
 [Trigger]
 Type="edgex-messagebus"
+SubscribeTopics = "edgex/events/#"
 

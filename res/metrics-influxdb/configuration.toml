@@ -116,8 +116,6 @@ Port = 6379
 Type = "redis"
 AuthMode = "usernamepassword"  # required for redis messagebus (secure or insecure).
 SecretName = "redisdb"
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/telemetry/#"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-metrics-influxdb"
@@ -139,3 +137,4 @@ SecretName = "redisdb"
 
 [Trigger]
 Type="edgex-messagebus"
+SubscribeTopics = "edgex/telemetry/#"

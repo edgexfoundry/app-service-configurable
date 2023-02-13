@@ -157,7 +157,6 @@ LogLevel = "INFO"
       key = "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
   [Writable.Telemetry]
   Interval = "30s"
-  PublishTopicPrefix  = "edgex/telemetry" # /<service-name>/<metric-name> will be added to this Publish Topic prefix
     [Writable.Telemetry.Metrics] # All service's metric names must be present in this list.
     # Common App Service Metrics
     MessagesReceived = false
@@ -258,10 +257,6 @@ TokenFile = "/tmp/edgex/secrets/app-sample/secrets-token.json"
   # Only valid if MessageBus Trigger is used
   # If prefer REST, remove below and uncomment above
   UseMessageBus = true
-  [Clients.core-command.Topics]
-  CommandQueryRequestTopicPrefix = "edgex/core/commandquery/request"
-  CommandRequestTopicPrefix = "edgex/core/command/request"
-  ResponseTopicPrefix = "edgex/response"
 
   # Used for Notification and Subscription client, which are not currently used by any configurable functions
   [Clients.support-notifications]
@@ -277,9 +272,6 @@ Port = 6379
 Type = "redis"
 AuthMode = "usernamepassword"  # required for redis messagebus (secure or insecure).
 SecretName = "redisdb"
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/events/#"
-  PublishTopic="sample"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-sample"
@@ -301,4 +293,6 @@ SecretName = "redisdb"
 
 [Trigger]
 Type="edgex-messagebus"
+SubscribeTopics = "edgex/events/#"
+PublishTopic="sample"
 
