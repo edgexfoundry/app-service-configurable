@@ -75,66 +75,8 @@ LogLevel = "INFO"
   Interval = "0s" # Disables reporting
 
 [Service]
-HealthCheckInterval = "10s"
-Host = "localhost"
 Port = 59705
-ServerBindAddr = "" # if blank, uses default Go behavior https://golang.org/pkg/net/#Listen
 StartupMsg = "app-functional-tests Service Started"
-MaxResultCount = 0 # Not currently used by App Services.
-MaxRequestSize = 0 # Not currently used by App Services.
-RequestTimeout = "5s"
-  [Service.CORSConfiguration]
-  EnableCORS = false
-  CORSAllowCredentials = false
-  CORSAllowedOrigin = "https://localhost"
-  CORSAllowedMethods = "GET, POST, PUT, PATCH, DELETE"
-  CORSAllowedHeaders = "Authorization, Accept, Accept-Language, Content-Language, Content-Type, X-Correlation-ID"
-  CORSExposeHeaders = "Cache-Control, Content-Language, Content-Length, Content-Type, Expires, Last-Modified, Pragma, X-Correlation-ID"
-  CORSMaxAge = 3600
-
-[Registry]
-Host = "localhost"
-Port = 8500
-Type = "consul"
-
-[Clients]
-  # Used for version check on start-up
-  [Clients.core-metadata]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 59881
-
-  # Used for Event client which is used by PushToCoreData function
-  [Clients.core-data]
-  Protocol = "http"
-  Host = "localhost"
-  Port = 59880
-
-# SecretStore is required when Store and Forward is enabled and running with security
-# so Database credentials can be pulled from Vault. Also now require when running with secure Consul
-# Note when running in docker from compose file set the following environment variables:
-#   - SecretStore_Host: edgex-vault
-[SecretStore]
-Type = "vault"
-Host = "localhost"
-Port = 8200
-Path = "app-functional-tests/"
-Protocol = "http"
-RootCaCertPath = ""
-ServerName = ""
-SecretsFile = ""
-DisableScrubSecretsFile = false
-TokenFile = "/tmp/edgex/secrets/app-functional-tests/secrets-token.json"
-  [SecretStore.Authentication]
-  AuthType = "X-Vault-Token"
-  [SecretStore.RuntimeTokenProvider]
-  Enabled = false
-  Protocol = "https"
-  Host = "localhost"
-  Port = 59841
-  TrustDomain = "edgexfoundry.org"
-  EndpointSocket = "/tmp/edgex/secrets/spiffe/public/api.sock"
-  RequiredSecrets = "redisdb"
 
 [MessageBus]
 Disabled = true
