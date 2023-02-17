@@ -30,9 +30,11 @@ Port = 59701
 StartupMsg = "app-rules-engine has Started"
 
 [MessageBus]
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/events/#"
-  PublishTopic="rules-events"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-rules-engine"
+
+[Trigger]
+# Note that the MessageBus connection above is used by edgex-messagebus trigger which is the default set in common config
+# Default value for SubscribeTopics is aslo set in common config
+PublishTopic="rules-events"  # Base topic is prepened to this topic when using edgex-messagebus

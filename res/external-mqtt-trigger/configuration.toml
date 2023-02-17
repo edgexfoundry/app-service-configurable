@@ -36,11 +36,11 @@ Disabled = true
 
 [Trigger]
 Type="external-mqtt"
+SubscribeTopics="external-request/#"
+PublishTopic="" # optional if publishing response back to the the External MQTT Broker
   [Trigger.ExternalMqtt]
     Url = "tcp://localhost:1883" #  fully qualified URL to connect to the MQTT broker
-    SubscribeTopics="external-request/#"
-    PublishTopic="" # optional if publishing response back to the the External MQTT Broker
-    ClientId = "external-mqtt-trigger" 
+    ClientId = "external-mqtt-trigger"
     ConnectTimeout = "5s" # 5 seconds
     AutoReconnect = true
     KeepAlive = 10 # Seconds (must be 2 or greater)

@@ -83,8 +83,8 @@ Port = 59704
 StartupMsg = "app-http-export has Started"
 
 [MessageBus]
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/events/#"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-http-export"
+
+# Using default Trigger config from common config

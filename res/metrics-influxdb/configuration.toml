@@ -38,8 +38,10 @@ Port = 59707
 StartupMsg = "app-metrics-influxdb has Started"
 
 [MessageBus]
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/telemetry/#"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-metrics-influxdb"
+
+[Trigger]
+# Note that the MessageBus connection above is used by edgex-messagebus trigger which is the default set in common config
+SubscribeTopics = "telemetry/#" # Base topic is prepened to this topic when using edgex-messagebus
