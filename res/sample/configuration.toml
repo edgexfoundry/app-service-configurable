@@ -17,11 +17,11 @@ LogLevel = "INFO"
   [Writable.Pipeline.PerTopicPipelines]
     [Writable.Pipeline.PerTopicPipelines.float]
       Id = "float-pipeline"
-      Topics = "edgex/events/device/+/Random-Float-Device/#"
+      Topics = "events/device/device-virtual/Random-Float-Device/#"
       ExecutionOrder = "TransformJson, SetResponseData"
     [Writable.Pipeline.PerTopicPipelines.int8-16]
       Id = "int8-16-pipeline"
-      Topics = "edgex/events/device/+/+/Int8, edgex/events/device/+/+/Int16"
+      Topics = "events/device/device-virtual/+/+/Int8, events/device/device-virtual/+/+/Int16"
       ExecutionOrder = "TransformXml, SetResponseData"
 
     # The Pipeline.Functions sections define the parameter configuration for each specific function.
@@ -162,10 +162,6 @@ StartupMsg = "app-sample has Started"
   # Only valid if MessageBus Trigger is used
   # If prefer REST, remove below and uncomment above
   UseMessageBus = true
-  [Clients.core-command.Topics]
-  CommandQueryRequestTopicPrefix = "edgex/core/commandquery/request"
-  CommandRequestTopicPrefix = "edgex/core/command/request"
-  ResponseTopicPrefix = "edgex/response"
 
   # Used for Notification and Subscription client, which are not currently used by any configurable functions
   [Clients.support-notifications]
@@ -175,9 +171,11 @@ StartupMsg = "app-sample has Started"
 
 [MessageBus]
 Disabled = false  # Set to true if not using edgex-messagebus Trigger below and don't want Metrics or Commands via MessageBus
-  [MessageBus.Topics]
-  SubscribeTopics = "edgex/events/#"
-  PublishTopic="sample"
   [MessageBus.Optional]
   # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
   ClientId ="app-sample"
+
+[Trigger]
+# Note that the MessageBus connection above is used by edgex-messagebus trigger which is the default set in common config
+# Default value for SubscribeTopics is aslo set in common config
+PublishTopic="sample"  # Base topic is prepened to this topic when using edgex-messagebus
