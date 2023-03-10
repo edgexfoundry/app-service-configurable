@@ -11,7 +11,7 @@ LogLevel = "INFO"
       BrokerAddress = "tcp://localhost:1883" # Hive Public Test Broker
       # Topic can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
       Topic = "edgex-export"
-      SecretPath = "mqtt"
+      SecretName = "mqtt"
       ClientId = "external-mqtt-export"
       QOS="0"
       AutoReconnect="false"
@@ -47,5 +47,5 @@ PublishTopic="" # optional if publishing response back to the the External MQTT 
     QoS = 0 # Quality of Service 0 (At most once), 1 (At least once) or 2 (Exactly once)
     Retain = true
     SkipCertVerify = false
-    SecretPath = "mqtt-trigger" 
+    SecretName = "mqtt-trigger" 
     AuthMode = "none"

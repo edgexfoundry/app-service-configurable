@@ -30,8 +30,8 @@
     [Writable.Pipeline.Functions.Encrypt]
       [Writable.Pipeline.Functions.Encrypt.Parameters]
       Algorithm = "aes256" # "aes" has been Deprecated. Please use "aes256"
-      SecretPath = "aes"
-      SecretName = "key"
+      SecretName = "aes"
+      SecretValueKey = "key"
     [Writable.Pipeline.Functions.Batch]
       [Writable.Pipeline.Functions.Batch.Parameters]
       Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
@@ -51,8 +51,8 @@
       ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send error so next export function executes.
       ReturnInputData = "false"  # For chained multi destination exports if true, passes the input data to next export function.
       HeaderName = "" # Name of the header key to add to the HTTP header
-      SecretName = "" # Name of the secret for the header value in the SecretStore
-      SecretPath = "" # Path to the secret for the header value in the SecretStore
+      SecretValueKey = "" # The key of the secret stored in the SecretStore
+      SecretName = "" # The name of the secret in the SecretStore
     # Partial name matching allows multiple instances of same function (configured differently) to be in the function pipeline.
     # This supports chaining export functions to export to multiple destinations. Name must start with name that matches built in function.
     [Writable.Pipeline.Functions.HTTPExport2]
@@ -65,17 +65,17 @@
       ContinueOnSendError = "false" # For chained multi destination exports, if true continues after send error so next export function executes.
       ReturnInputData = "false"  # For chained multi destination exports if true, passing the input data to next export function
       HeaderName = "" # Name of the header key to add to the HTTP header
-      SecretName = "" # Name of the secret for the header value in the SecretStore
-      SecretPath = "" # Path to the secret for the header value in the SecretStore
+      SecretValueKey = "" # Name of the secret for the header value in the SecretStore
+      SecretName = "" # Path to the secret for the header value in the SecretStore
 
   [Writable.InsecureSecrets]
     [Writable.InsecureSecrets.http]
-    path = "http"
-      [Writable.InsecureSecrets.http.Secrets]
+    SecretName = "http"
+      [Writable.InsecureSecrets.http.SecretData]
       headervalue = "<put your value here>"
     [Writable.InsecureSecrets.AES]
-    path = "aes"
-      [Writable.InsecureSecrets.AES.Secrets]
+    SecretName = "aes"
+      [Writable.InsecureSecrets.AES.SecretData]
       key = "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
 
 [Service]
