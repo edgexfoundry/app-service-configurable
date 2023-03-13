@@ -21,13 +21,13 @@
       MimeType = "raw"
       Url = "http:/<your-influxdb-host>:8086/api/v2/write?org=<your-org>&bucket=<your-bucket>&precision=ns"
       HeaderName = "authorization" # Name of the header key to add to the HTTP header
-      SecretName = "token" # Name of the secret for the header value in the SecretStore
-      SecretPath = "influxdb" # Path to the secret for the header value in the SecretStore
+      SecretValueKey = "token" # Name of the secret for the header value in the SecretStore
+      SecretName = "influxdb" # Path to the secret for the header value in the SecretStore
 
   [Writable.InsecureSecrets]
     [Writable.InsecureSecrets.influxdb]
-    path = "influxdb"
-      [Writable.InsecureSecrets.influxdb.Secrets]
+    SecretName = "influxdb"
+      [Writable.InsecureSecrets.influxdb.SecretData]
       token = "Token <place InfluxDB token here>"
 
   [Writable.Telemetry]

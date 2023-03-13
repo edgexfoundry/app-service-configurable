@@ -30,8 +30,8 @@ LogLevel = "INFO"
     [Writable.Pipeline.Functions.Encrypt]
       [Writable.Pipeline.Functions.Encrypt.Parameters]
       Algorithm = "aes256" # "aes" has been Deprecated. Please use "aes256"
-      SecretPath = "aes"
-      SecretName = "key"
+      SecretName = "aes"
+      SecretValueKey = "key"
     [Writable.Pipeline.Functions.Batch]
       [Writable.Pipeline.Functions.Batch.Parameters]
       Mode = "bytimecount" # can be "bycount", "bytime" or "bytimecount"
@@ -45,7 +45,7 @@ LogLevel = "INFO"
       [Writable.Pipeline.Functions.MQTTExport.Parameters]
       BrokerAddress = "tcp://localhost:1883"
       Topic = "edgex-export"
-      SecretPath = "mqtt"
+      SecretName = "mqtt"
       ClientId = "MQTT-Export"
       QOS="0"
       AutoReconnect="false"
@@ -58,16 +58,16 @@ LogLevel = "INFO"
 
   [Writable.InsecureSecrets]
     [Writable.InsecureSecrets.mqtt]
-    path = "mqtt"
-      [Writable.InsecureSecrets.mqtt.Secrets]
+    SecretName = "mqtt"
+      [Writable.InsecureSecrets.mqtt.SecretData]
       username = ""
       password = ""
       cacert = ""
       clientcert = ""
       clientkey = ""
     [Writable.InsecureSecrets.AES]
-    path = "aes"
-      [Writable.InsecureSecrets.AES.Secrets]
+    SecretName = "aes"
+      [Writable.InsecureSecrets.AES.SecretData]
       key = "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
 
 [Service]
