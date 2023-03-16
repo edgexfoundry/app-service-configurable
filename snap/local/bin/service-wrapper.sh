@@ -10,15 +10,5 @@ if [ ! -z "$profile" ]; then
     fi
 fi
 
-EDGEX_STARTUP_DURATION=$(snapctl get startup-duration)
-if [ -n "$EDGEX_STARTUP_DURATION" ]; then
-  export EDGEX_STARTUP_DURATION
-fi
-
-EDGEX_STARTUP_INTERVAL=$(snapctl get startup-interval)
-if [ -n "$EDGEX_STARTUP_INTERVAL" ]; then
-  export EDGEX_STARTUP_INTERVAL
-fi
-
-$SNAP/bin/app-service-configurable -configDir $SNAP_DATA/config/res $PROFILE_OPT -cp -r
+$SNAP/bin/app-service-configurable --configDir $SNAP_DATA/config/res --configProvider --registry $PROFILE_OPT
 
