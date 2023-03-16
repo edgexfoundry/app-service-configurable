@@ -10,5 +10,5 @@ if [ ! -z "$profile" ]; then
     fi
 fi
 
-$SNAP/bin/app-service-configurable --configDir $SNAP_DATA/config/res --configProvider --registry $PROFILE_OPT
+$SNAP/bin/app-service-configurable --configDir $SNAP_DATA/config/res $PROFILE_OPT --configProvider --registry
 
