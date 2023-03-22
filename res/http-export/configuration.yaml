@@ -1,0 +1,101 @@
+Writable:
+  LogLevel: "INFO"
+
+  Pipeline:
+    ExecutionOrder: "HTTPExport"
+
+    Functions:
+      FilterByProfileName:
+        Parameters:
+          ProfileNames: ""
+          FilterOut: "false"
+      FilterByDeviceName:
+        Parameters:
+          DeviceNames: ""
+          FilterOut: "false"
+      FilterBySourceName:
+        Parameters:
+          SourceNames: ""
+          FilterOut: "false"
+      FilterByResourceName:
+        Parameters:
+          ResourceNames: ""
+          FilterOut: "false"
+      Transform:
+        Parameters:
+          Type: "json"
+      Compress:
+        Parameters:
+          Algorithm: "gzip"
+      Encrypt:
+        Parameters:
+          Algorithm: "aes256" # "aes" has been Deprecated. Please use "aes256"
+          SecretName: "aes"
+          SecretValueKey: "key"
+      Batch:
+        Parameters:
+          Mode: "bytimecount" # can be "bycount", "bytime" or "bytimecount"
+          BatchThreshold: "30"
+          TimeInterval: "60s"
+          MergeOnSend: "false"
+      AddTags:
+        Parameters:
+          Tags: ""
+      HTTPExport:
+        Parameters:
+          Method: "post"
+          MimeType: "application/json"
+          # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          Url: "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
+          PersistOnError: "false"
+          ContinueOnSendError: "false" # For chained multi destination exports, if true continues after send error so next export function executes.
+          ReturnInputData: "false"  # For chained multi destination exports if true, passes the input data to next export function.
+          HeaderName: "" # Name of the header key to add to the HTTP header
+          SecretValueKey: "" # The key of the secret stored in the SecretStore
+          SecretName: "" # The name of the secret in the SecretStore
+      # Partial name matching allows multiple instances of same function (configured differently) to be in the function pipeline.
+      # This supports chaining export functions to export to multiple destinations. Name must start with name that matches built in function.
+      HTTPExport2:
+        Parameters:
+          Method: "post"
+          MimeType: "application/json"
+          # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          Url: "https://3ff26601-1945-41e3-96b8-27cf446df696.mock.pstmn.io" # Postman mock service (different link than above)
+          PersistOnError: "false"
+          ContinueOnSendError: "false" # For chained multi destination exports, if true continues after send error so next export function executes.
+          ReturnInputData: "false"  # For chained multi destination exports if true, passing the input data to next export function
+          HeaderName: "" # Name of the header key to add to the HTTP header
+          SecretValueKey: "" # Name of the secret for the header value in the SecretStore
+          SecretName: "" # Path to the secret for the header value in the SecretStore
+
+  InsecureSecrets:
+    http:
+      SecretName: "http"
+      SecretData:
+        headervalue: "<put your value here>"
+    AES:
+      SecretName: "aes"
+      SecretData:
+        key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
+
+Service:
+  Host: "localhost"
+  Port: 59704
+  StartupMsg: "app-http-export has Started"
+
+# uncomment when running from command-line in hybrid mode with -cp -o flags
+# Clients:
+#   core-metadata:
+#       Host: "localhost"
+# Registry:
+#   Host: "localhost"
+# Database:
+#   Host: "localhost" 
+
+MessageBus:
+  # Host: localhost # uncomment when running from command-line in hybrid mode
+  Optional:
+  # Default MQTT Specific options that need to be here to enable evnironment variable overrides of them
+    ClientId: "app-http-export"
+
+# Using default Trigger config from common config
