@@ -1,14 +1,8 @@
 #!/bin/bash -e
 
-# convert cmdline to string array
-ARGV=($@)
+SERVICE="app-service-configurable"
+ENV_FILE="$SNAP_DATA/config/overrides.env"
 
-# grab binary path
-BINPATH="${ARGV[0]}"
-
-# binary name == service name/key
-SERVICE=$(basename "$BINPATH")
-ENV_FILE="$SNAP_DATA/config/$SERVICE/overrides.env"
 TAG="edgex-$SERVICE."$(basename "$0")
 
 if [ -f "$ENV_FILE" ]; then
