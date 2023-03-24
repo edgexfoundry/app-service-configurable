@@ -27,7 +27,7 @@ import (
 )
 
 // validateProfile processes the snap 'profile' configure option, ensuring that the directory
-// and associated configuration.toml file in $SNAP_DATA both exist.
+// and associated configuration.yaml file in $SNAP_DATA both exist.
 func validateProfile() error {
 	prof, err := snapctl.Get("profile").Run()
 	if err != nil {
@@ -40,12 +40,12 @@ func validateProfile() error {
 		return nil
 	}
 
-	path := fmt.Sprintf("%s/config/res/%s/configuration.toml", env.SnapData, prof)
+	path := fmt.Sprintf("%s/config/res/%s/configuration.yaml", env.SnapData, prof)
 	log.Debugf("validateProfile: checking if %s exists", path)
 
 	_, err = os.Stat(path)
 	if err != nil {
-		return fmt.Errorf("profile %s has no configuration.toml", prof)
+		return fmt.Errorf("profile %s has no configuration.yaml", prof)
 	}
 
 	return nil

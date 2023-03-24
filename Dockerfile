@@ -55,7 +55,7 @@ EXPOSE 48095
 # or use
 # command: "-profile=<profile>"
 # If not you will recive error:
-# SDK initialization failed: Could not load configuration file (./res/configuration.toml)...
+# SDK initialization failed: Could not load configuration file (./res/configuration.yaml)...
 
 ENTRYPOINT ["/app-service-configurable"]
 CMD ["-cp=consul.http://edgex-core-consul:8500", "--registry"]
