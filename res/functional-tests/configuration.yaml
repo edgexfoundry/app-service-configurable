@@ -33,7 +33,7 @@ Writable:
           Algorithm: "gzip"
       Encrypt:
         Parameters:
-          Algorithm: "aes256" # "aes" has been Deprecated. Please use "aes256"
+          Algorithm: "aes256"
           SecretName: "aes"
           SecretValueKey: "key"
       SetResponseData:
@@ -60,13 +60,11 @@ Writable:
           ConnectionTimeout: "" # Empty value means use default setting
 
   InsecureSecrets:
-    AES:
+    aes:
       SecretName: "aes"
       SecretData:
         key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
 
-  # Reporting metrics requires the "edgex-messagebus" Trigger.
-  # Since this profile uses "http" trigger the metrics can not be reported.
   Telemetry:
     Interval: "0s" # Disables reporting
 
@@ -86,7 +84,7 @@ Service:
 
 MessageBus:
   # Host: localhost # uncomment when running from command-line in hybrid mode
-  Disabled: true
+  Disabled: true  # Set to false to collect metrics 
 
 Trigger:
   Type: "http"

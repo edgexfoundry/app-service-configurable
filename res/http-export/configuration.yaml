@@ -29,7 +29,7 @@ Writable:
           Algorithm: "gzip"
       Encrypt:
         Parameters:
-          Algorithm: "aes256" # "aes" has been Deprecated. Please use "aes256"
+          Algorithm: "aes256"
           SecretName: "aes"
           SecretValueKey: "key"
       Batch:
@@ -46,7 +46,7 @@ Writable:
           Method: "post"
           MimeType: "application/json"
           # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
-          Url: "https://f095cfcd-a3f6-4885-85ea-7157c6afd17e.mock.pstmn.io" # Postman mock service
+          Url: "<put your URL here>"
           PersistOnError: "false"
           ContinueOnSendError: "false" # For chained multi destination exports, if true continues after send error so next export function executes.
           ReturnInputData: "false"  # For chained multi destination exports if true, passes the input data to next export function.
@@ -60,7 +60,7 @@ Writable:
           Method: "post"
           MimeType: "application/json"
           # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
-          Url: "https://3ff26601-1945-41e3-96b8-27cf446df696.mock.pstmn.io" # Postman mock service (different link than above)
+          Url: "<put your URL here>"
           PersistOnError: "false"
           ContinueOnSendError: "false" # For chained multi destination exports, if true continues after send error so next export function executes.
           ReturnInputData: "false"  # For chained multi destination exports if true, passing the input data to next export function
@@ -73,7 +73,7 @@ Writable:
       SecretName: "http"
       SecretData:
         headervalue: "<put your value here>"
-    AES:
+    aes:
       SecretName: "aes"
       SecretData:
         key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"

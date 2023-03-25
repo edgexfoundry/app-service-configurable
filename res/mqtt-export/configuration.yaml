@@ -65,7 +65,7 @@ Writable:
         cacert: ""
         clientcert: ""
         clientkey: ""
-    AES:
+    aes:
       SecretName: "aes"
       SecretData:
         key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"

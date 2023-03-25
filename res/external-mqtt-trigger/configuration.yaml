@@ -22,7 +22,6 @@ Writable:
           AuthMode: "none"
           PersistOnError: "false"
 
-  # Reporting metrics requires the "edgex-messagebus" Trigger.
   # Since this profile uses "external-mqtt" trigger the metrics can not be reported.
   Telemetry:
     Interval: "0s" # Disables reporting
@@ -43,7 +42,7 @@ Service:
 
 MessageBus:
 # Host: localhost # uncomment when running from command-line in hybrid mode
-  Disabled: true
+  Disabled: true  # Set to false to collect metrics 
 
 Trigger:
   Type: "external-mqtt"
