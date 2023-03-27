@@ -22,7 +22,7 @@ Writable:
           AuthMode: "none"
           PersistOnError: "false"
 
-  # Since this profile uses "external-mqtt" trigger the metrics can not be reported.
+  # Metrics can only be reported when the MessageBus (below) is enabled.
   Telemetry:
     Interval: "0s" # Disables reporting
 
@@ -42,7 +42,7 @@ Service:
 
 MessageBus:
 # Host: localhost # uncomment when running from command-line in hybrid mode
-  Disabled: true  # Set to false to collect metrics 
+  Disabled: true  # Set to false when collecting metrics 
 
 Trigger:
   Type: "external-mqtt"
