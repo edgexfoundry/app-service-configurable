@@ -1,0 +1,91 @@
+Writable:
+  LogLevel: "INFO"
+
+  Pipeline:
+    TargetType: "event"
+    ExecutionOrder: "FilterByDeviceName, Transform, SetResponseData"
+
+    Functions:
+      FilterByProfileName:
+        Parameters:
+          ProfileNames: ""
+          FilterOut: "false"
+      FilterByDeviceName:
+        Parameters:
+          DeviceNames: "Random-Float-Device,Random-Integer-Device"
+          FilterOut: "false"
+      FilterBySourceName:
+        Parameters:
+          SourceNames: ""
+          FilterOut: "false"
+      FilterByResourceName:
+        Parameters:
+          ResourceNames: "RandomValue_Int8, RandomValue_Int64"
+          FilterOut: "false"
+      AddTags:
+        Parameters:
+          Tags: ""
+      Transform:
+        Parameters:
+          Type: "xml"
+      Compress:
+        Parameters:
+          Algorithm: "gzip"
+      Encrypt:
+        Parameters:
+          Algorithm: "aes256"
+          SecretName: "aes"
+          SecretValueKey: "key"
+      SetResponseData:
+        Parameters:
+          ResponseContentType: ""
+      HTTPExport:
+        Parameters:
+          Method: "post"
+          Url: "http://"
+          MimeType: "" #OPTIONAL - default application/json
+      MQTTExport:
+        Parameters:
+          BrokerAddress: "tcps://localhost:8883"
+          Topic: "mytopic"
+          SecretName: "mqtt"
+          ClientId: "myclientid"
+          QOS: "0"
+          AutoReconnect: "false"
+          Retain: "false"
+          SkipVerify: "false"
+          AuthMode: "none"
+          PersistOnError: "false"
+          KeepAlive: "" # Empty value means use default setting
+          ConnectionTimeout: "" # Empty value means use default setting
+
+  InsecureSecrets:
+    aes:
+      SecretName: "aes"
+      SecretData:
+        key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
+   
+  # Metrics can only be reported when the MessageBus (below) is enabled.
+  Telemetry:
+    Interval: "0s" # Disables reporting
+
+Service:
+  Host: "localhost"
+  Port: 59705
+  StartupMsg: "app-functional-tests Service Started"
+
+# uncomment when running from command-line in hybrid mode with -cp -o flags
+# Clients:
+#   core-metadata:
+#       Host: "localhost"
+# Registry:
+#   Host: "localhost"
+# Database:
+#   Host: "localhost" 
+
+MessageBus:
+  # Host: localhost # uncomment when running from command-line in hybrid mode
+  Disabled: true  # Set to false when collecting metrics  
+
+Trigger:
+  Type: "http"

@@ -1,0 +1,163 @@
+Writable:
+  LogLevel: "INFO"
+  # The Pipeline section allows the functions pipeline to be specified via configuration
+  Pipeline:
+    # If set, must be one of the three values: raw, metric, event.
+    # If not set it defaults to event
+    TargetType: "event"
+
+    # ExecutionOrder specifies which functions to run and the order to run them.
+    # All functions listed must have an entry below in the Pipeline.Functions section
+    ExecutionOrder: "FilterByProfileName, FilterByDeviceName, FilterByResourceName, TransformXml, SetResponseData"
+
+    # Pipeline.PerTopicPipelines sections allow for multiple pipeline to be defined to get executed when the specified
+    # Topic match the incoming topic. The Id must be unique, but the Topic does not.
+    # See https://docs.edgexfoundry.org/2.1/microservices/application/AppServiceConfigurable/#pipeline-per-topic
+    # for complete details on Pipeline Per Topic.
+    PerTopicPipelines:
+      float:
+        Id: "float-pipeline"
+        Topics: "events/device/device-virtual/Random-Float-Device/#"
+        ExecutionOrder: "TransformJson, SetResponseData"
+      int8-16:
+        Id: "int8-16-pipeline"
+        Topics: "events/device/device-virtual/+/+/Int8, events/device/device-virtual/+/+/Int16"
+        ExecutionOrder: "TransformXml, SetResponseData"
+
+    # The Functions sections define the parameter configuration for each specific function.
+    # These function names must match a function defined in the configurable package of the SDK.
+    # See the Built-In Transforms/Functions section of the SDK"s README for complete list.
+    # Some functions do not require any parameters, but still must be listed.
+    # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
+    # dynamic changes from Consul.
+    Functions:
+      FilterByProfileName:
+        Parameters:
+          ProfileNames: "Random-Integer-Device"
+          FilterOut: "false"
+      FilterByDeviceName:
+        Parameters:
+          DeviceNames: "Random-Integer-Device"
+          FilterOut: "false"
+      FilterBySourceName:
+        Parameters:
+          SourceNames: "Int8, Int16 Int32, Int64"
+          FilterOut: "false"
+      FilterByResourceName:
+        Parameters:
+          ResourceNames: "Int8, Int16, Int32, Int64"
+          FilterOut: "false"
+      AddTags:
+        Parameters:
+          Tags: ""
+      JSONLogic:
+        Parameters:
+          Rule: "{ \"and\" : {\"<\" : [{ \"var\" : \"temp\" }, 110 ]}, {\"::\" : [{ \"var\" : \"sensor.type\" }, \"temperature\" ]} : }"
+      TransformXml:
+        Parameters:
+          Type: "xml" # can be "xml" or "json"
+      TransformJson:
+        Parameters:
+          Type: "json" # can be "xml" or "json"
+      Compress:
+        Parameters:
+          Algorithm: "gzip" # can be "gzip" or "zlib"
+      Encrypt:
+        Parameters:
+          Algorithm: "aes256" 
+          SecretName: "aes"
+          SecretValueKey: "key"
+      Batch:
+        Parameters:
+          Mode: "bytimecount" # can be "bycount", "bytime" or "bytimecount"
+          BatchThreshold: "30"
+          TimeInterval: "60s"
+          MergeOnSend: "false"
+      SetResponseData:
+        Parameters:
+          ResponseContentType: "application/xml"
+      HTTPExport:
+        Parameters:
+          Method: "post" # can be "post" or "put"
+          MimeType: "" #OPTIONAL - defaults to "application/json" if not set
+          # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          Url: "<put your URL here>"
+          PersistOnError: "false"
+          ContinueOnSendError: "false" # For chained multi destination exports, if true continues after send error so next export function executes.
+          ReturnInputData: "false"  # For chained multi destination exports if true, passes the input data to next export function.
+          HeaderName: "" # Name of the header key to add to the HTTP header
+          SecretValueKey: "" # Name of the secret for the header value in the SecretStore
+          SecretName: "" # Path to the secret for the header value in the SecretStore
+      # Partial name matching allows multiple instances of same function (configured differently) to be in the function pipeline.
+      # This supports chaining export functions to export to multiple destinations. Name must start with name that matches built in function.
+      HTTPExport2:
+        Parameters:
+          Method: "post" # can be "post" or "put"
+          MimeType: "" #OPTIONAL - defaults to "application/json" if not set
+          # Url can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          Url: "<put your URL here>"
+          PersistOnError: "false"
+          ContinueOnSendError: "false" # For chained multi destination exports, if true continues after send error so next export function executes.
+          ReturnInputData: "false"  # For chained multi destination exports if true, passing the input data to next export function
+          HeaderName: "" # Name of the header key to add to the HTTP header
+          SecretValueKey: "" # Name of the secret for the header value in the SecretStore
+          SecretName: "" # Path to the secret for the header value in the SecretStore
+      MQTTExport:
+        Parameters:
+          BrokerAddress: "tcps://localhost:8883"
+          # Topic can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          Topic: "mytopic"
+          SecretName: "mqtt"
+          ClientId: "myclientid"
+          QOS: "0"
+          AutoReconnect: "false"
+          KeepAlive: "" # Empty value means use default setting
+          ConnectionTimeout: "" # Empty value means use default setting
+          Retain: "false"
+          SkipVerify: "false"
+          AuthMode: "none"
+          PersistOnError: "false"
+
+# InsecureSecrets are required for  authenticated HTTP exports, MQTT exports and AES  when not using security services, i.e. Vault
+  InsecureSecrets:
+    http:
+      SecretName: "http"
+      SecretData:
+        headervalue: "<put your value here>"
+    mqtt:
+      SecretName: "mqtt"
+      SecretData:
+        username: ""
+        password: ""
+        cacert: ""
+        clientcert: ""
+        clientkey: ""
+    aes:
+      SecretName: "aes"
+      SecretData:
+        key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
+
+Service:
+  Host: "localhost"
+  Port: 59700
+  StartupMsg: "app-sample has Started"
+
+# uncomment when running from command-line in hybrid mode with -cp -o flags
+#Clients:
+#   core-metadata: # Used for version check on start-up comes from Common Config
+#       Host: "localhost"
+# Registry:
+#   Host: "localhost"
+# Database:
+#   Host: "localhost" 
+
+MessageBus:
+  # Host: localhost # uncomment when running from command-line in hybrid mode
+  Disabled: false  # Set to true if not using edgex-messagebus Trigger below and don't want Metrics
+  Optional:
+    ClientId: "app-sample"
+
+Trigger:
+  # Note that the MessageBus connection above is used by edgex-messagebus trigger which is the default set in common config
+  # Default value for SubscribeTopics is aslo set in common config
+  PublishTopic: "sample"  # Base topic is prepened to this topic when using edgex-messagebus

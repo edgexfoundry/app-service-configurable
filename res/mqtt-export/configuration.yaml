@@ -1,0 +1,92 @@
+Writable:
+  LogLevel: "INFO"
+
+  Pipeline:
+    ExecutionOrder: "Transform, MQTTExport"
+
+    Functions:
+      FilterByProfileName:
+        Parameters:
+          ProfileNames: ""
+          FilterOut: "false"
+      FilterByDeviceName:
+        Parameters:
+          DeviceNames: ""
+          FilterOut: "false"
+      FilterBySourceName:
+        Parameters:
+          SourceNames: ""
+          FilterOut: "false"
+      FilterByResourceName:
+        Parameters:
+          ResourceNames: ""
+          FilterOut: "false"
+      Transform:
+        Parameters:
+          Type: "json"
+      Compress:
+        Parameters:
+          Algorithm: "gzip"
+      Encrypt:
+        Parameters:
+          Algorithm: "aes256"
+          SecretName: "aes"
+          SecretValueKey: "key"
+      Batch:
+        Parameters:
+          Mode: "bytimecount" # can be "bycount", "bytime" or "bytimecount"
+          BatchThreshold: "30"
+          TimeInterval: "60s"
+          MergeOnSend: "false"
+      AddTags:
+        Parameters:
+          Tags: ""
+      MQTTExport:
+        Parameters:
+          BrokerAddress: "tcp://localhost:1883"
+          Topic: "edgex-export"
+          SecretName: "mqtt"
+          ClientId: "MQTT-Export"
+          QOS: "0"
+          AutoReconnect: "false"
+          KeepAlive: "" # Empty indicates to use default value
+          ConnectTimeout: "" # Empty indicates to use default value
+          Retain: "false"
+          SkipVerify: "false"
+          AuthMode: "none"
+          PersistOnError: "false"
+
+  InsecureSecrets:
+    mqtt:
+      SecretName: "mqtt"
+      SecretData:
+        username: ""
+        password: ""
+        cacert: ""
+        clientcert: ""
+        clientkey: ""
+    aes:
+      SecretName: "aes"
+      SecretData:
+        key: "217A24432646294A404E635266556A586E3272357538782F413F442A472D4B6150645367566B59703373367639792442264529482B4D6251655468576D5A7134"
+
+Service:
+  Host: "localhost"
+  Port: 59703
+  StartupMsg: "app-mqtt-export has Started"
+
+# uncomment when running from command-line in hybrid mode with -cp -o flags
+# Clients:
+#   core-metadata:
+#       Host: "localhost"
+# Registry:
+#   Host: "localhost"
+# Database:
+#   Host: "localhost" 
+
+MessageBus:
+  # Host: localhost # uncomment when running from command-line in hybrid mode
+  Optional:
+    ClientId: "app-mqtt-export"
+
+# Using default Trigger config from common config
