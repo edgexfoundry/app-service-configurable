@@ -1,5 +1,7 @@
 Writable:
   LogLevel: "INFO"
+  StoreAndForward: 
+    Enabled: false
 
   Pipeline:
     ExecutionOrder: "MQTTExport"
@@ -41,7 +43,7 @@ Service:
 #   Host: "localhost" 
 
 MessageBus:
-# Host: localhost # uncomment when running from command-line in hybrid mode
+  # Host: localhost # uncomment when running from command-line in hybrid mode
   Disabled: true  # Set to false when collecting metrics 
 
 Trigger:
