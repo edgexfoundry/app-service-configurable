@@ -1,6 +1,8 @@
 Writable:
   LogLevel: "INFO"
-
+  StoreAndForward:
+    Enabled: false
+    
   Pipeline:
     TargetType: "metric"
     ExecutionOrder: "ToLineProtocol, Batch, HTTPExport"
