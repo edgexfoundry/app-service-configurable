@@ -4,6 +4,12 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/jakarta/CHANGELOG.md)
 
+## [v2.1.2] - Jakarta - 2023-04-12 (Only compatible with the 2.x releases)
+
+### Bug Fixes 🐛
+
+- see SDK changelog link above
+- 
 ## [v2.1.1] - Jakarta - 2021-06-08 (Only compatible with the 2.x releases)
 
 ### Bug Fixes 🐛
