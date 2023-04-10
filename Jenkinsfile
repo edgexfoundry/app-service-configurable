@@ -16,5 +16,6 @@
 
 edgeXBuildGoApp (
     project: 'app-service-configurable',
+    goVersion: '1.16',
     buildSnap: true
 )
