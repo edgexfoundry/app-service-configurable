@@ -145,18 +145,16 @@ Service:
   StartupMsg: "app-sample has Started"
 
 # uncomment when running from command-line in hybrid mode with -cp -o flags
-Clients:
-  core-metadata: # Used for version check on start-up comes from Common Config
-      Host: "localhost"
-      Port: 59881
-      Protocol: http
-Registry:
-  Host: "localhost"
-Database:
-  Host: "localhost" 
+#Clients:
+#  core-metadata: # Used for version check on start-up comes from Common Config
+#      Host: "localhost"
+#Registry:
+#  Host: "localhost"
+#Database:
+#  Host: "localhost"
 
 MessageBus:
-  Host: localhost # uncomment when running from command-line in hybrid mode
+#  Host: localhost # uncomment when running from command-line in hybrid mode
   Disabled: false  # Set to true if not using edgex-messagebus Trigger below and don't want Metrics
   Optional:
     ClientId: "app-sample"
