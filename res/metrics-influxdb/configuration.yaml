@@ -40,17 +40,7 @@ Service:
   Port: 59707
   StartupMsg: "app-metrics-influxdb has Started"
 
-# uncomment when running from command-line in hybrid mode with -cp -o flags
-# Clients:
-#   core-metadata:
-#       Host: "localhost"
-# Registry:
-#   Host: "localhost"
-# Database:
-#   Host: "localhost" 
-
 MessageBus:
-  # Host: localhost # uncomment when running from command-line in hybrid mode
   Optional:
     ClientId: "app-metrics-influxdb"
 
