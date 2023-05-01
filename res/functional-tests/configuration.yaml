@@ -74,18 +74,8 @@ Service:
   Port: 59705
   StartupMsg: "app-functional-tests Service Started"
 
-# uncomment when running from command-line in hybrid mode with -cp -o flags
-# Clients:
-#   core-metadata:
-#       Host: "localhost"
-# Registry:
-#   Host: "localhost"
-# Database:
-#   Host: "localhost" 
-
 MessageBus:
-  # Host: localhost # uncomment when running from command-line in hybrid mode
-  Disabled: true  # Set to false when collecting metrics  
+  Disabled: true  # Set to false when collecting metrics
 
 Trigger:
   Type: "http"

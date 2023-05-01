@@ -11,7 +11,7 @@ Writable:
       MQTTExport:
         Parameters:
           BrokerAddress: "tcp://localhost:1883" # Hive Public Test Broker
-          # Topic can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          # Topic can have placeholders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
           Topic: "edgex-export"
           SecretName: "mqtt"
           ClientId: "external-mqtt-export"
@@ -33,18 +33,8 @@ Service:
   Port: 59706
   StartupMsg: "app-external-mqtt-trigger has Started"
 
-# uncomment when running from command-line in hybrid mode with -cp -o flags
-# Clients:
-#   core-metadata:
-#       Host: "localhost"
-# Registry:
-#   Host: "localhost"
-# Database:
-#   Host: "localhost" 
-
 MessageBus:
-  # Host: localhost # uncomment when running from command-line in hybrid mode
-  Disabled: true  # Set to false when collecting metrics 
+  Disabled: true  # Set to false when collecting metrics
 
 Trigger:
   Type: "external-mqtt"
