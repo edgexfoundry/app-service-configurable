@@ -15,8 +15,9 @@ confinement: strict
 # 1: edinburgh
 # 2: fuji
 # 3: geneva, hanoi
-# 4: ireland, jakarta
-epoch: 4
+# 4: ireland, jakarta, kamakura, levski
+# 5: minnesota
+epoch: 5
 
 slots:
   edgex-secretstore-token:
