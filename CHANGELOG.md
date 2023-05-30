@@ -4,6 +4,81 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
+## [v3.0.0] Minnesota - 2023-05-31 (Only compatible with the 3.x releases)
+
+### Features ✨
+
+- Remove ZeroMQ MessageBus capability ([#4955b72](https://github.com/edgexfoundry/app-service-configurable/commit/4955b72e7e2333f21a3dea3e923d2a5036ff361a))
+  ```text
+  BREAKING CHANGE: ZeroMQ MessageBus capability no longer available
+  ```
+- Use latest SDK for MessageBus Request API ([#ae4d96f](https://github.com/edgexfoundry/app-service-configurable/commit/ae4d96f51e6c1b0b3f3d1c807dd8827f71e240f6))
+  ```text
+  BREAKING CHANGE: Command Client MessageBus topic configuration changed
+  ```
+- Updates for common config ([#731cbe3](https://github.com/edgexfoundry/app-service-configurable/commit/731cbe338f54dd8dac0167938734c2fced573176))
+  ```text
+  BREAKING CHANGE: configuration file changed to remove common config settings
+  ```
+- Update profiles to use TargetType flag for configurable functions ([#509](https://github.com/edgexfoundry/app-service-configurable/issues/509)) ([#851ef8f](https://github.com/edgexfoundry/app-service-configurable/commits/851ef8f))
+- Enable core-command via message bus ([#505](https://github.com/edgexfoundry/app-service-configurable/issues/505)) ([#aa420e0](https://github.com/edgexfoundry/app-service-configurable/commits/aa420e0))
+
+### Bug Fixes 🐛
+
+- Consume Store and Forward fix in latest SDK ([#555](https://github.com/edgexfoundry/app-service-configurable/issues/555)) ([#f6c79ab](https://github.com/edgexfoundry/app-service-configurable/commits/f6c79ab))
+- **snap:** Refactor to avoid conflicts with readonly config provider directory ([#533](https://github.com/edgexfoundry/app-service-configurable/issues/533)) ([#dd1354e](https://github.com/edgexfoundry/app-service-configurable/commits/dd1354e))
+
+### Code Refactoring ♻
+
+- Use latest SDK for flattened config stem ([#567a951](https://github.com/edgexfoundry/app-service-configurable/commit/567a9513bdf41f4241f3f16eba2134c73a24fbd7))
+  ```text
+  BREAKING CHANGE: Location of service configuration in Consul changed
+  ```
+- Rename command line flags for the sake of consistency ([#cb787cf](https://github.com/edgexfoundry/app-service-configurable/commit/cb787cf93205ab4377f67f508fa24aa232c36287))
+  ```text
+  BREAKING CHANGE: renamed -c/--confdir to -cd/--configDirand -f/--file to -cf/--configFile
+  ```
+- Adjust configuration for reworked MessageBus config ([#fd65586](https://github.com/edgexfoundry/app-service-configurable/commit/fd655868e697ec9388f878b1610694eb9d0dc845))
+  ```text
+  BREAKING CHANGE: MessageBus configuration is now standalone from Trigger
+  ```
+- Update message bus topic wild cards ([#2fb2187](https://github.com/edgexfoundry/app-service-configurable/commit/2fb2187aee5de59b88737c8c64f9f7346195a6a3))
+  ```text
+  BREAKING CHANGE: use MQTT wild cards + for single level and # for multiple levels
+  ```
+- Replace internal topics from config with new constants and use base topic ([#ae5c3a2](https://github.com/edgexfoundry/app-service-configurable/commit/ae5c3a222e830755d999430446b5cf0927b9c680))
+  ```text
+  BREAKING CHANGE: Internal topics no longer configurable, except the base topic. Trigger topics for edgex-messagebus and external-mqtt now directly under Trigger section. All configured topics (subscribe and function pipeline) now automatically have the base topic (default of "edgex/") prepended.
+  ```
+- Consume Secret DTO changes in App SDK ([#38d2ea](https://github.com/edgexfoundry/app-service-configurable/commit/38d2ea53745de48730f2be4fd311f21cab61737a))
+  ```text
+  BREAKING CHANGE: Secret dtos Path property renamed to SecretName
+  ```
+- Renamed SecretName to SecretValueKey and SecretnPath to SecretName ([#64e14a40](https://github.com/edgexfoundry/app-service-configurable/commit/64e14a40a239d934ad2ac2e5656398ec3b76321c))
+  ```text
+  BREAKING CHANGE: Renamed SecretName to SecretValueKey and SecretPath to SecretName, removed push-to-core profile
+  ```
+- Change configuration profile formats to YAML ([#726c7ba](https://github.com/edgexfoundry/app-service-configurable/commit/726c7bac779ae455276856dfdf2d144874947dc5))
+  ```text
+  BREAKING CHANGE: Configuration profiles now uses YAML format
+  ```
+- Consume MakeItRun rename to Run ([#558](https://github.com/edgexfoundry/app-service-configurable/issues/558)) ([#023efeb](https://github.com/edgexfoundry/app-service-configurable/commits/023efeb))
+- **snap:** Drop the support for legacy snap env options ([#33a8a0f](https://github.com/edgexfoundry/app-service-configurable/commit/33a8a0fb1d1881fd1b73fa23662390bbef39c173))
+  ```text
+  BREAKING CHANGE: Drop the support for deprecated snap options starting with `env.`
+  ```
+- **snap:** Update command and metadata sourcing ([#532](https://github.com/edgexfoundry/app-service-configurable/issues/532)) ([#11af183](https://github.com/edgexfoundry/app-service-configurable/commits/11af183))
+
+### Documentation 📖
+
+- Add main branch Warning ([#561](https://github.com/edgexfoundry/app-service-configurable/issues/561)) ([#a1dbe1c](https://github.com/edgexfoundry/app-service-configurable/commits/a1dbe1c))
+
+### Build 👷
+
+- Update to Go 1.20, Alpine 3.17 and linter v1.51.2 ([#530](https://github.com/edgexfoundry/app-service-configurable/issues/530)) ([#a803cbc](https://github.com/edgexfoundry/app-service-configurable/commits/a803cbc))
+- Disable CGO for all docker builds so always work ([#494](https://github.com/edgexfoundry/app-service-configurable/issues/494)) ([#8115572](https://github.com/edgexfoundry/app-service-configurable/commits/8115572))
+- **snap:** Remove ZMQ from snap ([#a0e8a3](https://github.com/edgexfoundry/app-service-configurable/commit/a0e8a3cf402e2d18cab125a1c4a8a92554f18848))
+
 ## [v2.3.0] - Levski - 2022-11-09 (Only compatible with the 2.x releases)
 
 ### Features ✨
