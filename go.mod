@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.20
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.1.0-dev.5
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.1.0-dev.6
 
 require (
 	github.com/Microsoft/go-winio v0.6.0 // indirect
