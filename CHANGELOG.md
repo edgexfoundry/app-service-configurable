@@ -4,6 +4,14 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
+## [v3.0.1] Minnesota - 2023-07-25 (Only compatible with the 3.x releases)
+
+### Features ✨
+
+- **Security** - Add missing authentication hooks to standard routes ([#1447](https://github.com/edgexfoundry/app-functions-sdk-go/pull/1447))
+
+  BREAKING CHANGE: EdgeX standard routes, except /ping, will require authentication when running in secure mode
+
 ## [v3.0.0] Minnesota - 2023-05-31 (Only compatible with the 3.x releases)
 
 ### Features ✨
