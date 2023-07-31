@@ -28,6 +28,16 @@ Writable:
   Telemetry:
     Interval: "0s" # Disables reporting
 
+  InsecureSecrets:
+    mqtt:
+      SecretName: "mqtt"
+      SecretData:
+        username: ""
+        password: ""
+        cacert: ""
+        clientcert: ""
+        clientkey: ""
+
 Service:
   Host: "localhost"
   Port: 59706
@@ -49,5 +59,5 @@ Trigger:
     QoS: 0 # Quality of Service 0 (At most once), 1 (At least once) or 2 (Exactly once)
     Retain: true
     SkipCertVerify: false
-    SecretName: "mqtt-trigger" 
+    SecretName: "mqtt" 
     AuthMode: "none"
