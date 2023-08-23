@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.20
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.1.0-dev.19
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.1.0-dev.20
 
 require (
 	github.com/Microsoft/go-winio v0.6.0 // indirect
@@ -28,7 +28,7 @@ require (
 	github.com/go-redis/redis/v7 v7.3.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/gomodule/redigo v2.0.0+incompatible // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/uuid v1.3.1 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/consul/api v1.22.0 // indirect
