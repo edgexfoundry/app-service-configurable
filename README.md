@@ -10,9 +10,7 @@
 
 App-Service-Configurable is provided as an easy way to get started with processing data flowing through EdgeX.
 
-For latest documentation please visit https://docs.edgexfoundry.org and navigate to **Microservices** (On top menu) then **Application Service -> App Service Configurable** (On left side menu)
-
-For a list of examples please visit https://docs.edgexfoundry.org and navigate to **Example and Tutorials** (On top menu) then **Application Services** tab and follow the link in the description.
+For latest documentation please visit https://docs.edgexfoundry.org/latest/microservices/application/AppServiceConfigurable
 
 ## Build Prerequisites
 
