@@ -15,7 +15,7 @@
 #
 
 #build stage
-ARG BASE=golang:1.20-alpine3.17
+ARG BASE=golang:1.21-alpine3.18
 FROM ${BASE} AS builder
 
 ARG ALPINE_PKG_BASE="make git"
@@ -34,7 +34,7 @@ ARG MAKE="make -e ADD_BUILD_TAGS=$ADD_BUILD_TAGS build"
 RUN $MAKE
 
 #final stage
-FROM alpine:3.17
+FROM alpine:3.18
 LABEL license='SPDX-License-Identifier: Apache-2.0' \
   copyright='Copyright (c) 2023: Intel'
 LABEL Name=app-service-configurable Version=${VERSION}
