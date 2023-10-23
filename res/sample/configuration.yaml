@@ -119,6 +119,11 @@ Writable:
           SkipVerify: "false"
           AuthMode: "none"
           PersistOnError: "false"
+          WillEnabled: "false"
+          WillPayload: ""
+          WillQos: "0"
+          WillRetained: "false"
+          WillTopic: ""
 
 # InsecureSecrets are required for  authenticated HTTP exports, MQTT exports and AES  when not using security services, i.e. Vault
   InsecureSecrets:

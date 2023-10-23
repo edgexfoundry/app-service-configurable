@@ -57,6 +57,11 @@ Writable:
           SkipVerify: "false"
           AuthMode: "none"
           PersistOnError: "false"
+          WillEnabled: "false"
+          WillPayload: ""
+          WillQos: "0"
+          WillRetained: "false"
+          WillTopic: ""
 
   InsecureSecrets:
     mqtt:

@@ -61,3 +61,9 @@ Trigger:
     SkipCertVerify: false
     SecretName: "mqtt" 
     AuthMode: "none"
+    Will:
+      Enabled: false
+      Payload: ""
+      Qos: 0
+      Retained: false
+      Topic: ""
