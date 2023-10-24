@@ -18,7 +18,7 @@ Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/m
 
 ## Build with NATS Messaging
 Currently, the NATS Messaging capability (NATS MessageBus) is opt-in at build time.
-This means that the published Docker image and Snaps do not include the NATS messaging capability.
+This means that the published Docker image does not include the NATS messaging capability.
 ```makefile
 make build-nats - Builds local binary with NATS MessageBus support
 make docker-nats - Builds local docker image with NATS MessageBus support
@@ -28,11 +28,9 @@ See [Compose Builder](https://github.com/edgexfoundry/edgex-compose/tree/main/co
 
 ## Packaging
 
-This component is packaged as docker image and snap.
+This component is packaged as docker image.
 
 For docker, please refer to the [Dockerfile](Dockerfile) and [Docker Compose Builder](https://github.com/edgexfoundry/edgex-compose/tree/main/compose-builder) scripts.
-
-For the snap, refer to the [snap](snap) directory.
 
 ## Versioning
 
