@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.21
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.1.0-dev.49
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.1.0-dev.51
 
 require (
 	github.com/Microsoft/go-winio v0.6.0 // indirect
@@ -10,10 +10,10 @@ require (
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.3.2 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.4.3 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.1.0-dev.52 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.1.0-dev.53 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v3 v3.1.0-dev.7 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v3 v3.1.0-dev.17 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v3 v3.1.0-dev.30 // indirect
+	github.com/edgexfoundry/go-mod-messaging/v3 v3.1.0-dev.31 // indirect
 	github.com/edgexfoundry/go-mod-registry/v3 v3.1.0-dev.7 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v3 v3.1.0-dev.12 // indirect
 	github.com/fatih/color v1.14.1 // indirect
@@ -52,7 +52,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/nats-io/nats.go v1.31.0 // indirect
-	github.com/nats-io/nkeys v0.4.5 // indirect
+	github.com/nats-io/nkeys v0.4.6 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	github.com/spiffe/go-spiffe/v2 v2.1.6 // indirect
