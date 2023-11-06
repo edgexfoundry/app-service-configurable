@@ -10,11 +10,11 @@
 
 App-Service-Configurable is provided as an easy way to get started with processing data flowing through EdgeX.
 
-For latest documentation please visit https://docs.edgexfoundry.org/latest/microservices/application/AppServiceConfigurable
+For latest documentation please visit https://docs.edgexfoundry.org/latest/microservices/application/services/AppServiceConfigurable/Purpose/
 
 ## Build Prerequisites
 
-Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md).
+Please see the [edgex-go README](https://github.com/edgexfoundry/edgex-go/blob/main/README.md#prerequisites).
 
 ## Build with NATS Messaging
 Currently, the NATS Messaging capability (NATS MessageBus) is opt-in at build time.
