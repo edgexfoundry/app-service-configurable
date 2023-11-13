@@ -4,6 +4,46 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
+## [v3.1.0] Napa - 2023-11-15 (Only compatible with the 3.x releases)
+
+### ✨  Features
+
+- Remove snap packaging ([#612](https://github.com/edgexfoundry/app-service-configurable/issues/612)) ([5219991…](https://github.com/edgexfoundry/app-service-configurable/commit/52199917436ecc7613ed2233e2d3644ee65f7bdc))
+```text
+
+BREAKING CHANGE: Remove snap packaging ([#612](https://github.com/edgexfoundry/app-service-configurable/issues/612))
+
+```
+- Add defaults for new Last Will options ([#610](https://github.com/edgexfoundry/app-service-configurable/issues/610)) ([f689f4b…](https://github.com/edgexfoundry/app-service-configurable/commit/f689f4ba914cd94db4edcd504921ce235cc7ee6f))
+
+
+### ♻ Code Refactoring
+
+- Remove github.com/pkg/errors from Attribution.txt ([#584](https://github.com/edgexfoundry/app-service-configurable/issues/584)) ([7eb6870…](https://github.com/edgexfoundry/app-service-configurable/commit/7eb6870f083ace6c1f79e58d33ce706f6bd3bcba))
+
+
+### 🐛 Bug Fixes
+
+- Add InsecureSecrets section to external-mqtt-trigger profile ([#579](https://github.com/edgexfoundry/app-service-configurable/issues/579)) ([766558f…](https://github.com/edgexfoundry/app-service-configurable/commit/766558fd32b3d60314202d2661e12183be73f345))
+
+
+### 📖 Documentation
+
+- Update link to point to new docs section ([#616](https://github.com/edgexfoundry/app-service-configurable/issues/616)) ([b279e99…](https://github.com/edgexfoundry/app-service-configurable/commit/b279e99bc72aab90b799f17157d7f2e7dfbc53e7))
+- Update repo links in the readme ([#591](https://github.com/edgexfoundry/app-service-configurable/issues/591)) ([426d498…](https://github.com/edgexfoundry/app-service-configurable/commit/426d4987f89e41a3a60d71327a42892dbbd5fd11))
+
+
+### 👷 Build
+
+- Upgrade to go-1.21, Linter1.54.2 and Alpine 3.18 ([#594](https://github.com/edgexfoundry/app-service-configurable/issues/594)) ([759f161…](https://github.com/edgexfoundry/app-service-configurable/commit/759f161ccdd1991ea406a7cb9b3094479a703e86))
+
+
+### 🤖 Continuous Integration
+
+- Add automated release workflow on tag creation ([f1d380f…](https://github.com/edgexfoundry/app-service-configurable/commit/f1d380f375b477c8bbf415d18cc168c061acd04c))
+
+
+
 ## [v3.0.1] Minnesota - 2023-07-25 (Only compatible with the 3.x releases)
 ### Features ✨
 Security - Add missing authentication hooks to standard routes (#1447)
