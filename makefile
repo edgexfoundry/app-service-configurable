@@ -62,4 +62,4 @@ clean:
 	rm -f $(MICROSERVICE)
 
 vendor:
-	$(GO) mod vendor
+	go mod vendor
