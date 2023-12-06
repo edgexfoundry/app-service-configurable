@@ -9,7 +9,7 @@ APPVERSION=$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
 SDKVERSION=$(shell cat ./go.mod | grep 'github.com/edgexfoundry/app-functions-sdk-go/v3 v' | sed 's/require//g' | awk '{print $$2}')
 
 MICROSERVICE=app-service-configurable
-GOFLAGS=-ldflags "-X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.SDKVersion=$(SDKVERSION) \
+GOFLAGS=-ldflags "-s -w -X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.SDKVersion=$(SDKVERSION) \
                    -X github.com/edgexfoundry/app-functions-sdk-go/v3/internal.ApplicationVersion=$(APPVERSION)" \
                    -trimpath -mod=readonly
 GOTESTFLAGS?=-race
