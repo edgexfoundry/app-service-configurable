@@ -50,7 +50,8 @@ Writable:
           SecretName: "mqtt"
           ClientId: "MQTT-Export"
           QOS: "0"
-          AutoReconnect: "false"
+          AutoReconnect: "true"
+          MaxReconnectInterval: "" # Empty value means use default setting
           KeepAlive: "" # Empty indicates to use default value
           ConnectTimeout: "" # Empty indicates to use default value
           Retain: "false"
@@ -62,6 +63,9 @@ Writable:
           WillQos: "0"
           WillRetained: "false"
           WillTopic: ""
+          PreConnect: "true"
+          PreConnectRetryCount: "" # Empty value means use default setting
+          PreConnectRetryInterval: "" # Empty value means use default setting
 
   InsecureSecrets:
     mqtt:

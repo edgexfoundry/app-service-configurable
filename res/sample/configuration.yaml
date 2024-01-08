@@ -107,12 +107,13 @@ Writable:
       MQTTExport:
         Parameters:
           BrokerAddress: "tcps://localhost:8883"
-          # Topic can have place holders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
+          # Topic can have placeholders in the form "{key-name}" that are replaced with matching Context values. Error occurs if no value match place holder(s).
           Topic: "mytopic"
           SecretName: "mqtt"
           ClientId: "myclientid"
           QOS: "0"
-          AutoReconnect: "false"
+          AutoReconnect: "true"
+          MaxReconnectInterval: "" # Empty value means use default setting
           KeepAlive: "" # Empty value means use default setting
           ConnectionTimeout: "" # Empty value means use default setting
           Retain: "false"
@@ -124,6 +125,9 @@ Writable:
           WillQos: "0"
           WillRetained: "false"
           WillTopic: ""
+          PreConnect: "true"
+          PreConnectRetryCount: "" # Empty value means use default setting
+          PreConnectRetryInterval: "" # Empty value means use default setting
 
 # InsecureSecrets are required for  authenticated HTTP exports, MQTT exports and AES  when not using security services, i.e. Vault
   InsecureSecrets:
