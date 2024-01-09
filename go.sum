@@ -28,8 +28,8 @@ github.com/diegoholiveira/jsonlogic/v3 v3.4.0 h1:TN++nRmEMA5UHzKl8MJ1kbF5SSzWtKH
 github.com/diegoholiveira/jsonlogic/v3 v3.4.0/go.mod h1:9oE8z9G+0OMxOoLHF3fhek3KuqD5CBqM0B6XFL08MSg=
 github.com/eclipse/paho.mqtt.golang v1.4.3 h1:2kwcUGn8seMUfWndX0hGbvH8r7crgcJguQNCyp70xik=
 github.com/eclipse/paho.mqtt.golang v1.4.3/go.mod h1:CSYvoAlsMkhYOXh/oKyxa8EcBci6dVkLCbo5tTC1RIE=
-github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.7 h1:uC5GspaayMr4IE5l+uydlioB/gP7I3etkUZfMKJwAUw=
-github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.7/go.mod h1:IjOOHi+rwjTsCtsW3xk+XXo0y1dcgABEvuSHKnpXVBc=
+github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.9 h1:7CTQqJPOSuJhmKDypkG36xWk9Nz7AXVbP1GuMk32tII=
+github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.9/go.mod h1:IjOOHi+rwjTsCtsW3xk+XXo0y1dcgABEvuSHKnpXVBc=
 github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.10 h1:x0aQrrWdA0dlK9yArcVzCCEq3F/mmvoe8Wl+Gc3gLhE=
 github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.10/go.mod h1:/t/ne1daGiXNbAC4XXOBDz0xJvAnj+xXYkPGlMJXvBM=
 github.com/edgexfoundry/go-mod-configuration/v3 v3.2.0-dev.1 h1:efuxuoKUQQ5MmX847XUm/kQE3CkO70YRsTcn1T4rfrs=
