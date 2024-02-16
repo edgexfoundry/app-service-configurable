@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.21
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.18
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.19
 
 require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
@@ -17,7 +17,7 @@ require (
 	github.com/edgexfoundry/go-mod-registry/v3 v3.2.0-dev.2 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v3 v3.2.0-dev.5 // indirect
 	github.com/fatih/color v1.14.1 // indirect
-	github.com/fxamacker/cbor/v2 v2.5.0 // indirect
+	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/go-jose/go-jose/v3 v3.0.1 // indirect
 	github.com/go-kit/log v0.2.1 // indirect
