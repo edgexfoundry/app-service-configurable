@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.21
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.24
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.25
 
 require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
@@ -10,16 +10,16 @@ require (
 	github.com/cenkalti/backoff v2.2.1+incompatible // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.4.0 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.4.3 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.18 // indirect
-	github.com/edgexfoundry/go-mod-configuration/v3 v3.2.0-dev.2 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.21 // indirect
+	github.com/edgexfoundry/go-mod-configuration/v3 v3.2.0-dev.3 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v3 v3.2.0-dev.8 // indirect
 	github.com/edgexfoundry/go-mod-messaging/v3 v3.2.0-dev.12 // indirect
-	github.com/edgexfoundry/go-mod-registry/v3 v3.2.0-dev.2 // indirect
+	github.com/edgexfoundry/go-mod-registry/v3 v3.2.0-dev.3 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v3 v3.2.0-dev.5 // indirect
 	github.com/fatih/color v1.14.1 // indirect
 	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
-	github.com/go-jose/go-jose/v3 v3.0.1 // indirect
+	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
