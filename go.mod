@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.21
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.42
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.43
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -13,11 +13,11 @@ require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.5.3 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.4.3 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.45 // indirect
-	github.com/edgexfoundry/go-mod-configuration/v3 v3.2.0-dev.9 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.48 // indirect
+	github.com/edgexfoundry/go-mod-configuration/v3 v3.2.0-dev.11 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v3 v3.2.0-dev.30 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v3 v3.2.0-dev.28 // indirect
-	github.com/edgexfoundry/go-mod-registry/v3 v3.2.0-dev.12 // indirect
+	github.com/edgexfoundry/go-mod-messaging/v3 v3.2.0-dev.29 // indirect
+	github.com/edgexfoundry/go-mod-registry/v3 v3.2.0-dev.13 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v3 v3.2.0-dev.9 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
@@ -54,7 +54,7 @@ require (
 	github.com/gorilla/schema v1.4.1 // indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
-	github.com/hashicorp/consul/api v1.28.3 // indirect
+	github.com/hashicorp/consul/api v1.29.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-hclog v1.5.0 // indirect
