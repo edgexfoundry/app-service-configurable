@@ -3,5 +3,5 @@
 --
 -- SPDX-License-Identifier: Apache-2.0
 
--- schema for core-data related tables
+-- schema for app service related tables
 CREATE SCHEMA IF NOT EXISTS app_svc;
