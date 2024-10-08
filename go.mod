@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.23
 
-require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.52
+require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.54
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -15,7 +15,7 @@ require (
 	github.com/eclipse/paho.mqtt.golang v1.5.0 // indirect
 	github.com/edgexfoundry/go-mod-bootstrap/v3 v3.2.0-dev.60 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v3 v3.2.0-dev.17 // indirect
-	github.com/edgexfoundry/go-mod-core-contracts/v3 v3.2.0-dev.46 // indirect
+	github.com/edgexfoundry/go-mod-core-contracts/v3 v3.2.0-dev.49 // indirect
 	github.com/edgexfoundry/go-mod-messaging/v3 v3.2.0-dev.35 // indirect
 	github.com/edgexfoundry/go-mod-registry/v3 v3.2.0-dev.16 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v3 v3.2.0-dev.13 // indirect
