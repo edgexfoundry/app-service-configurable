@@ -1,6 +1,6 @@
 module github.com/edgexfoundry/app-service-configurable
 
-go 1.21
+go 1.23
 
 require github.com/edgexfoundry/app-functions-sdk-go/v3 v3.2.0-dev.52
 
