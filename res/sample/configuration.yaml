@@ -31,7 +31,7 @@ Writable:
     # See the Built-In Transforms/Functions section of the SDK"s README for complete list.
     # Some functions do not require any parameters, but still must be listed.
     # Also, functions not specified in ExecutionOrder above can still be included which allows for easier
-    # dynamic changes from Consul.
+    # dynamic changes from keeper.
     Functions:
       FilterByProfileName:
         Parameters:
