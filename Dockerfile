@@ -60,5 +60,5 @@ EXPOSE 48095
 # SDK initialization failed: Could not load configuration file (./res/configuration.yaml)...
 
 ENTRYPOINT ["/app-service-configurable"]
-CMD ["-cp=consul.http://edgex-core-consul:8500", "--registry"]
+CMD ["-cp=keeper.http://edgex-core-keeper:59890", "--registry"]
 
