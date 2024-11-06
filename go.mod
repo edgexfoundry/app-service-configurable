@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.23
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0-dev.4
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0-dev.5
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -13,8 +13,8 @@ require (
 	github.com/eclipse/paho.mqtt.golang v1.5.0 // indirect
 	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.0.0-dev.2 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v4 v4.0.0-dev.3 // indirect
-	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.0.0-dev.2 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v4 v4.0.0-dev.3 // indirect
+	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.0.0-dev.3 // indirect
+	github.com/edgexfoundry/go-mod-messaging/v4 v4.0.0-dev.5 // indirect
 	github.com/edgexfoundry/go-mod-registry/v4 v4.0.0-dev.2 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v4 v4.0.0-dev.2 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
@@ -40,7 +40,6 @@ require (
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.22.1 // indirect
-	github.com/go-redis/redis/v7 v7.3.0 // indirect
 	github.com/go-resty/resty/v2 v2.15.3 // indirect
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
