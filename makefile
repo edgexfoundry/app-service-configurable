@@ -38,6 +38,9 @@ build:
 build-nats:
 	make -e ADD_BUILD_TAGS=include_nats_messaging build
 
+build-noziti:
+	make -e ADD_BUILD_TAGS=no_openziti build
+
 tidy:
 	go mod tidy
 
@@ -55,6 +58,9 @@ docker:
 
 docker-nats:
 	make -C . -e ADD_BUILD_TAGS=include_nats_messaging docker
+
+docker-noziti:
+	make -e ADD_BUILD_TAGS=no_openziti docker
 
 lint:
 	@which golangci-lint >/dev/null || echo "WARNING: go linter not installed. To install, run make install-lint"
