@@ -68,12 +68,12 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/diegoholiveira/jsonlogic/v3 v3.5.3 h1:CPyZQ3fOgiIDZ1yWzPGUpyht5tYTOnRoN913c0mkXZw=
-github.com/diegoholiveira/jsonlogic/v3 v3.5.3/go.mod h1:3nnfWovrlZq2rTpucrJ2KMIS8TMf6IoFneofmeqk/qk=
+github.com/diegoholiveira/jsonlogic/v3 v3.6.0 h1:pSVxMTeNOVwsQsJgUV8ENNvtZSev528FbE0fV0+XsWo=
+github.com/diegoholiveira/jsonlogic/v3 v3.6.0/go.mod h1:3nnfWovrlZq2rTpucrJ2KMIS8TMf6IoFneofmeqk/qk=
 github.com/eclipse/paho.mqtt.golang v1.5.0 h1:EH+bUVJNgttidWFkLLVKaQPGmkTUfQQqjOsyvMGvD6o=
 github.com/eclipse/paho.mqtt.golang v1.5.0/go.mod h1:du/2qNQVqJf/Sqs4MEL77kR8QTqANF7XU7Fk0aOTAgk=
-github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0-dev.12 h1:10Q4EwBpc/9K/7pJXUOqe+ytJgvBY7lOOvpvll6g2To=
-github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0-dev.12/go.mod h1:tjQrZIxgIkBXfbwM5woQariag/BubM4itig2UtY0eEA=
+github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0-dev.13 h1:WMMasaV8QolgVdp8u1CbfNuEBwZDXtR8/7mNMJ/v8so=
+github.com/edgexfoundry/app-functions-sdk-go/v4 v4.0.0-dev.13/go.mod h1:HEPOTq+Suq9nMvmrI0jpU8tivlZuxo98j/fkiO3iegk=
 github.com/edgexfoundry/go-mod-bootstrap/v4 v4.0.0-dev.11 h1:jyaQupwV/HNMokdk3keaiaQ0e92DAOzxB/TaBz+QKIc=
 github.com/edgexfoundry/go-mod-bootstrap/v4 v4.0.0-dev.11/go.mod h1:9M9h0Aa21QUkEmr5B9tDx8z/7E2CtIrE8GU+PGidqwQ=
 github.com/edgexfoundry/go-mod-configuration/v4 v4.0.0-dev.7 h1:usY2gWHK3yNw3G9Ox8N0YAAPJmrT9mn9TDtHnPJyNLI=
