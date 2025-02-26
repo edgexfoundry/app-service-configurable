@@ -4,6 +4,39 @@
 
 - [app-functions-sdk-go](https://github.com/edgexfoundry/app-functions-sdk-go/blob/main/CHANGELOG.md)
 
+## [4.0.0] Odessa - 2025-03-12 (Only compatible with the 4.x releases)
+
+### ✨  Features
+
+- Add new build-noziti and docker-noziti targets into Makefile ([1114b19…](https://github.com/edgexfoundry/app-service-configurable/commit/1114b1985558a9549ef2aa3b9a81ca743a036c0e))
+- Enable PIE support for ASLR and full RELRO ([9200144…](https://github.com/edgexfoundry/app-service-configurable/commit/92001444439b5571917969c8a7ea74bbf5fbffd8))
+- Add postgres db init start script ([#673](https://github.com/edgexfoundry/app-service-configurable/issues/673)) ([15c04fe…](https://github.com/edgexfoundry/app-service-configurable/commit/15c04fe60731885bccda40a58f5d4699135bca2b))
+```text
+
+BREAKING CHANGE: Switched default database to PostgreSQL across all services
+
+```
+- Add openziti support ([#652](https://github.com/edgexfoundry/app-service-configurable/issues/652)) ([d14d288…](https://github.com/edgexfoundry/app-service-configurable/commit/d14d2885d31a8bbc3eba5c894c279c3ceea6765f))
+- Add MQTT Export preconnect settings to profiles ([#633](https://github.com/edgexfoundry/app-service-configurable/issues/633)) ([bdd01e9…](https://github.com/edgexfoundry/app-service-configurable/commit/bdd01e90b95e6b38e37d562ed60190accab1224f))
+
+### ♻ Code Refactoring
+
+- Update module to v4 ([cdafe4a…](https://github.com/edgexfoundry/app-service-configurable/commit/cdafe4aac16d8228de4a4ea5c9f65f47895288ba))
+```text
+
+BREAKING CHANGE: import paths will need to change to v4, also replace consul with core keeper
+
+```
+
+### 🐛 Bug Fixes
+
+- Only one ldflags flag is allowed ([e14eefe…](https://github.com/edgexfoundry/app-service-configurable/commit/e14eefe25dbc7c62754f0ebe2ed209c64148497d))
+
+### 👷 Build
+
+- Upgrade the SDK version in the makefile ([970307e…](https://github.com/edgexfoundry/app-service-configurable/commit/970307ebbe9179528340d1a166cd371fef10ef11))
+- Upgrade to go-1.23, Linter1.61.0 and Alpine 3.20 ([b97eeb4…](https://github.com/edgexfoundry/app-service-configurable/commit/b97eeb49fda9cd5b1e2d1d18cf48f9a15151a2fe))
+
 ## [v3.1.0] Napa - 2023-11-15 (Only compatible with the 3.x releases)
 
 ### ✨  Features
