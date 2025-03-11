@@ -1,11 +1,11 @@
 test.txt
 go.mod.bk
-debug
+/debug/
 *.exe
 app-service-configurable
 .vscode
 coverage.out
-logs/
+/logs/
 .idea
 VERSION
 
