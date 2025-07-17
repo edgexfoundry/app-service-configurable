@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.23.7
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.16
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.17
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -12,7 +12,7 @@ require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.8.4 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.5.0 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.18 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.19 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v4 v4.1.0-dev.9 // indirect
 	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.1.0-dev.6 // indirect
 	github.com/edgexfoundry/go-mod-messaging/v4 v4.1.0-dev.10 // indirect
@@ -43,7 +43,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.26.0 // indirect
 	github.com/go-resty/resty/v2 v2.16.5 // indirect
-	github.com/golang-jwt/jwt/v5 v5.2.2 // indirect
+	github.com/golang-jwt/jwt/v5 v5.2.3 // indirect
 	github.com/gomodule/redigo v2.0.0+incompatible // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
