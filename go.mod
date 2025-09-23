@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.23.7
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.30
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.34
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -12,10 +12,10 @@ require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.8.4 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.5.0 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.34 // indirect
-	github.com/edgexfoundry/go-mod-configuration/v4 v4.1.0-dev.12 // indirect
-	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.1.0-dev.12 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v4 v4.1.0-dev.15 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.37 // indirect
+	github.com/edgexfoundry/go-mod-configuration/v4 v4.1.0-dev.16 // indirect
+	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.1.0-dev.18 // indirect
+	github.com/edgexfoundry/go-mod-messaging/v4 v4.1.0-dev.17 // indirect
 	github.com/edgexfoundry/go-mod-registry/v4 v4.1.0-dev.4 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v4 v4.1.0-dev.4 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
@@ -54,7 +54,7 @@ require (
 	github.com/jackc/pgerrcode v0.0.0-20240316143900-6e2875d9b438 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
-	github.com/jackc/pgx/v5 v5.7.5 // indirect
+	github.com/jackc/pgx/v5 v5.7.6 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/kataras/go-events v0.0.3 // indirect
@@ -74,7 +74,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/muhlemmer/gu v0.3.1 // indirect
-	github.com/nats-io/nats.go v1.44.0 // indirect
+	github.com/nats-io/nats.go v1.45.0 // indirect
 	github.com/nats-io/nkeys v0.4.11 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
@@ -96,7 +96,7 @@ require (
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/speps/go-hashids v2.0.0+incompatible // indirect
-	github.com/spf13/cast v1.9.2 // indirect
+	github.com/spf13/cast v1.10.0 // indirect
 	github.com/spiffe/go-spiffe/v2 v2.5.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
