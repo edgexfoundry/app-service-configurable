@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.25.0
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.44
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.45
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -10,7 +10,7 @@ require (
 	github.com/barkimedes/go-deepcopy v0.0.0-20220514131651-17c30cfc62df // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
-	github.com/diegoholiveira/jsonlogic/v3 v3.8.6 // indirect
+	github.com/diegoholiveira/jsonlogic/v3 v3.9.0 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.5.1 // indirect
 	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.47 // indirect
 	github.com/edgexfoundry/go-mod-configuration/v4 v4.1.0-dev.17 // indirect
