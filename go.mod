@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.25.0
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.46
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.47
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -66,7 +66,7 @@ require (
 	github.com/jackc/pgerrcode v0.0.0-20250907135507-afb5586c32a6 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
-	github.com/jackc/pgx/v5 v5.7.6 // indirect
+	github.com/jackc/pgx/v5 v5.8.0 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/kataras/go-events v0.0.3 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
