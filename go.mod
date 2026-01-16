@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.25.0
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.47
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.49
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -70,7 +70,7 @@ require (
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/kataras/go-events v0.0.3 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
-	github.com/labstack/echo/v4 v4.14.0 // indirect
+	github.com/labstack/echo/v4 v4.15.0 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
