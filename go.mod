@@ -2,7 +2,7 @@ module github.com/edgexfoundry/app-service-configurable
 
 go 1.25.0
 
-require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.65
+require github.com/edgexfoundry/app-functions-sdk-go/v4 v4.1.0-dev.66
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect
@@ -11,10 +11,10 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/diegoholiveira/jsonlogic/v3 v3.9.1 // indirect
 	github.com/eclipse/paho.mqtt.golang v1.5.1 // indirect
-	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.67 // indirect
-	github.com/edgexfoundry/go-mod-configuration/v4 v4.1.0-dev.18 // indirect
-	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.1.0-dev.35 // indirect
-	github.com/edgexfoundry/go-mod-messaging/v4 v4.1.0-dev.23 // indirect
+	github.com/edgexfoundry/go-mod-bootstrap/v4 v4.1.0-dev.68 // indirect
+	github.com/edgexfoundry/go-mod-configuration/v4 v4.1.0-dev.19 // indirect
+	github.com/edgexfoundry/go-mod-core-contracts/v4 v4.1.0-dev.36 // indirect
+	github.com/edgexfoundry/go-mod-messaging/v4 v4.1.0-dev.26 // indirect
 	github.com/edgexfoundry/go-mod-registry/v4 v4.1.0-dev.10 // indirect
 	github.com/edgexfoundry/go-mod-secrets/v4 v4.1.0-dev.15 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
